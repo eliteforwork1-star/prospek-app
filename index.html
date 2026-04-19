@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>PROSPEK</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --t1:#00C9B8;--t2:#00A89A;--t3:#007A70;
+  --bg:#F0FAFA;--bg2:#E0F5F4;
+  --tx:#0A2E2C;--tx2:#3D6B68;--tx3:#7AADAA;
+  --or:#FF6B35;--orl:#FFF0EB;
+  --re:#E84040;--rel:#FFEBEE;
+  --gr:#00C07A;--grl:#E6FFF4;
+  --ye:#F5A623;--yel:#FFF8EC;
+  --pu:#6C63FF;--pul:#F0EFFF;
+  --sh:0 4px 24px rgba(0,201,184,.15);
+  --sh2:0 2px 12px rgba(0,0,0,.08);
+}
+html,body{height:100%;font-family:'Sora',sans-serif;background:var(--bg);color:var(--tx);overflow:hidden}
+.app{display:flex;flex-direction:column;height:100vh;height:100dvh;max-width:430px;margin:0 auto;position:fixed;top:0;left:50%;transform:translateX(-50%);bottom:0;width:100%}
+.topbar{background:linear-gradient(135deg,var(--t1),var(--t3));padding:12px 16px 10px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;overflow:hidden;position:relative}
+.topbar::before{content:'';position:absolute;top:-15px;right:-15px;width:70px;height:70px;border-radius:50%;background:rgba(255,255,255,.1)}
+.app-name{font-size:19px;font-weight:800;color:white;z-index:1}
+.app-sub{font-size:9px;color:rgba(255,255,255,.75);margin-top:1px}
+.topbar-right{display:flex;flex-direction:column;align-items:flex-end;gap:3px;z-index:1}
+.time-badge{background:rgba(255,255,255,.2);border-radius:16px;padding:3px 9px;font-size:10px;color:white;font-weight:600}
+.sync-btn{font-size:9px;color:rgba(255,255,255,.85);cursor:pointer;background:rgba(255,255,255,.15);padding:2px 8px;border-radius:10px;border:none;font-family:'Sora',sans-serif}
+.main{flex:1;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.main::-webkit-scrollbar{display:none}
+.nav{display:grid;grid-template-columns:repeat(5,1fr);background:white;border-top:1px solid #E0F5F4;flex-shrink:0;box-shadow:0 -4px 20px rgba(0,0,0,.06);padding-bottom:env(safe-area-inset-bottom,0px);position:relative;z-index:100}
+.nb{padding:9px 4px 7px;text-align:center;cursor:pointer;font-size:8px;font-weight:600;color:#AAC;border:none;background:none;font-family:'Sora',sans-serif;letter-spacing:.04em;text-transform:uppercase;transition:.15s;position:relative}
+.nb.on{color:var(--t1)}
+.nb .ico{font-size:19px;display:block;margin-bottom:2px}
+.nb.on .ico{transform:scale(1.1)}
+.nb-dot{position:absolute;top:7px;right:50%;transform:translateX(8px);width:7px;height:7px;background:var(--re);border-radius:50%;border:2px solid white}
+.sec{padding:14px;animation:fi .2s ease}
+@keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--t1),var(--t3));border-radius:16px;padding:16px;margin-bottom:12px;color:white;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-10px;right:-10px;width:70px;height:70px;border-radius:50%;background:rgba(255,255,255,.08)}
+.hero-lbl{font-size:10px;font-weight:600;opacity:.8;text-transform:uppercase;letter-spacing:.07em}
+.hero-val{font-size:30px;font-weight:800;margin:3px 0}
+.hero-sub{font-size:11px;opacity:.7}
+.hero-bar{background:rgba(255,255,255,.2);border-radius:5px;height:5px;margin:10px 0 5px;overflow:hidden}
+.hero-fill{height:100%;background:white;border-radius:5px;transition:1.2s ease}
+.hero-pct{font-size:10px;opacity:.75}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.stat{background:white;border-radius:12px;padding:12px;box-shadow:var(--sh2)}
+.stat-val{font-size:20px;font-weight:800}
+.stat-lbl{font-size:9px;color:var(--tx2);margin-top:2px;font-weight:500}
+.stat-ico{font-size:16px;margin-bottom:4px}
+.brief{background:linear-gradient(135deg,#0A2E2C,#007A70);border-radius:16px;padding:14px;margin-bottom:12px;color:white}
+.brief-ttl{font-size:10px;opacity:.7;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}
+.brief-msg{font-size:13px;font-weight:600;line-height:1.6;margin-bottom:10px}
+.brief-btn{padding:6px 14px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);border-radius:8px;font-size:11px;font-weight:600;color:white;cursor:pointer;font-family:'Sora',sans-serif}
+.alrt{border-radius:10px;padding:10px 12px;margin-bottom:7px;display:flex;align-items:center;gap:8px}
+.alrt-ico{font-size:16px;flex-shrink:0}
+.alrt-txt{font-size:11px;font-weight:600;color:var(--tx);line-height:1.4}
+.stitle{font-size:10px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.08em;margin:13px 0 6px;padding:0 2px}
+.card{background:white;border-radius:12px;padding:12px;margin-bottom:7px;box-shadow:var(--sh2);cursor:pointer;transition:.12s}
+.card:active{transform:scale(.99)}
+.cu{border-left:3px solid var(--re)}
+.cc{border-left:3px solid var(--or)}
+.cr{border-left:3px solid var(--pu)}
+.cn{border-left:3px solid var(--t1)}
+.ch{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.cnom{font-size:12px;font-weight:700;color:var(--tx);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:185px}
+.cmeta{font-size:9px;color:var(--tx2);margin-top:2px}
+.bdg{padding:3px 7px;border-radius:16px;font-size:8px;font-weight:700;white-space:nowrap}
+.bu{background:var(--rel);color:var(--re)}
+.bc{background:var(--orl);color:var(--or)}
+.br{background:var(--pul);color:var(--pu)}
+.bn{background:var(--bg2);color:var(--t2)}
+.bo{background:var(--grl);color:var(--gr)}
+.bp{background:#F5F5F5;color:#AAA}
+.cacts{display:flex;gap:5px;margin-top:9px;flex-wrap:wrap}
+.bsm{padding:5px 9px;border-radius:7px;font-size:9px;font-weight:600;border:1.5px solid #E8F5F4;background:#F8FFFE;color:var(--t2);cursor:pointer;font-family:'Sora',sans-serif;text-decoration:none;display:inline-block}
+.bsm:active{transform:scale(.95)}
+.bcall{background:var(--t1);color:white;border-color:var(--t1)}
+.bok{background:var(--grl);color:var(--gr);border-color:var(--gr)}
+.brdv{background:var(--pul);color:var(--pu);border-color:var(--pu)}
+.brel{background:var(--orl);color:var(--or);border-color:var(--or)}
+.bno{background:#F5F5F5;color:#AAA;border-color:#EEE}
+.fg{margin-bottom:12px}
+.fl{font-size:10px;font-weight:600;color:var(--tx2);display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:.05em}
+.fi{width:100%;padding:11px 13px;border:2px solid #E0F5F4;border-radius:11px;font-size:14px;font-family:'Sora',sans-serif;color:var(--tx);background:white;transition:.15s;-webkit-appearance:none;appearance:none}
+.fi:focus{outline:none;border-color:var(--t1)}
+textarea.fi{resize:vertical;min-height:65px}
+.bp1{width:100%;padding:13px;background:linear-gradient(135deg,var(--t1),var(--t2));color:white;border:none;border-radius:12px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Sora',sans-serif;box-shadow:var(--sh);margin-top:4px}
+.bp1:active{transform:scale(.98)}
+.bp2{width:100%;padding:11px;background:white;color:var(--t1);border:2px solid var(--t1);border-radius:12px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Sora',sans-serif;margin-top:6px}
+.crgrid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:12px}
+.crstat{background:white;border-radius:11px;padding:10px;text-align:center;box-shadow:var(--sh2)}
+.crstat input{width:100%;text-align:center;font-size:26px;font-weight:800;color:var(--t1);border:none;background:none;font-family:'Sora',sans-serif;padding:3px 0}
+.crstat input:focus{outline:none}
+.crstat-lbl{font-size:8px;color:var(--tx2);font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
+.rbox{background:var(--bg2);border:2px solid var(--t1);border-radius:12px;padding:12px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--tx);line-height:1.8;white-space:pre-wrap;margin:8px 0;max-height:180px;overflow-y:auto}
+.bcopy{width:100%;padding:11px;background:white;color:var(--t1);border:2px solid var(--t1);border-radius:11px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Sora',sans-serif}
+.toast{position:fixed;bottom:75px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--tx);color:white;padding:9px 18px;border-radius:18px;font-size:11px;font-weight:600;z-index:999;opacity:0;transition:.25s;pointer-events:none;white-space:nowrap;max-width:90%}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.srch{background:white;border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:8px;margin-bottom:10px;box-shadow:var(--sh2);border:2px solid transparent;transition:.2s}
+.srch:focus-within{border-color:var(--t1)}
+.srch input{flex:1;border:none;font-family:'Sora',sans-serif;font-size:15px;color:var(--tx);background:none;padding:4px 0;min-height:36px}
+.srch input:focus{outline:none}
+.srch input::placeholder{color:var(--tx3);font-size:13px}
+.srch-clear{font-size:18px;cursor:pointer;color:var(--tx3);padding:4px;flex-shrink:0}
+.chips{display:flex;gap:5px;overflow-x:auto;padding-bottom:3px;margin-bottom:10px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{padding:4px 11px;border-radius:18px;font-size:9px;font-weight:600;border:1.5px solid #E0F5F4;background:white;color:var(--tx2);cursor:pointer;white-space:nowrap;flex-shrink:0;font-family:'Sora',sans-serif}
+.chip.on{background:var(--t1);color:white;border-color:var(--t1)}
+.obj{background:white;border-radius:12px;padding:12px;margin-bottom:8px;box-shadow:var(--sh2)}
+.obj-row{display:flex;justify-content:space-between;align-items:center;font-size:11px;padding:5px 0;border-bottom:1px solid var(--bg2)}
+.obj-row:last-child{border-bottom:none}
+.obj-k{color:var(--tx2)}
+.obj-v{font-weight:700;color:var(--t1)}
+.irow{display:flex;justify-content:space-between;align-items:center;padding:9px 12px;border-bottom:1px solid var(--bg2);font-size:11px}
+.ik{color:var(--tx2)}
+.iv{font-weight:700;color:var(--tx);text-align:right;max-width:55%}
+.bck{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--t2);cursor:pointer;background:none;border:none;font-family:'Sora',sans-serif;margin-bottom:12px;font-weight:600}
+.dhdr{background:linear-gradient(135deg,var(--t1),var(--t3));border-radius:14px;padding:16px;color:white;margin-bottom:12px}
+.obs{background:var(--yel);border-radius:11px;padding:11px;margin:8px 0;font-size:11px;color:var(--tx);line-height:1.6}
+.tag{display:inline-block;padding:2px 7px;border-radius:10px;font-size:9px;font-weight:700;margin:2px}
+.tag-rappel{background:var(--pul);color:var(--pu)}
+.tag-perdu{background:#F5F5F5;color:#888}
+.tag-chaud{background:var(--orl);color:var(--or)}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <div>
+      <div class="app-name">PROSPEK</div>
+      <div class="app-sub">TOSSAVI GILDAS &middot; SUNU Assurances</div>
+    </div>
+    <div class="topbar-right">
+      <div class="time-badge" id="tbadge">--:--</div>
+      <button class="sync-btn" id="syncbtn" onclick="syncSheets()">&#x1F504; Sync Sheets</button>
+    </div>
+  </div>
+  <div class="main" id="main"></div>
+  <nav class="nav" id="nav"></nav>
+  <div class="toast" id="toast"></div>
+  <div id="callbar" style="display:none;position:fixed;bottom:70px;left:50%;transform:translateX(-50%);background:var(--t1);color:white;border-radius:20px;padding:8px 16px;font-size:12px;font-weight:700;z-index:150;box-shadow:0 4px 20px rgba(0,201,184,.4);display:flex;align-items:center;gap:8px;max-width:380px;width:90%">
+    <span id="callbar-num" style="flex:1;font-family:JetBrains Mono,monospace;font-size:13px"></span>
+    <a id="callbar-link" href="#" style="color:white;text-decoration:none;padding:5px 12px;background:rgba(255,255,255,.25);border-radius:12px;font-size:11px">Appeler</a>
+    <span onclick="hideCallBar()" style="cursor:pointer;opacity:.7;font-size:16px">x</span>
+  </div>
+</div>
+<script>
+// ============================================================
+// CONFIG & CONSTANTES
+// ============================================================
+var SHEETS_URL='https://script.google.com/macros/s/AKfycbxHjj_FEYK2iTG4UxigBc7Um8H6QC_9orJVYV7grljOqB1-sSzGKhBmAuyMbK2tFiQ/exec';
+var OBJECTIF=1000000;
+var TODAY=new Date().toISOString().slice(0,10);
+
+var CONTRATS=[
+  {nom:'LOKO DJINGUIN EUPHREM',produit:'REP NF',prime:25000,duree:18,comm:7125,date:'2026-04-10',st:'attente'},
+  {nom:"D OLIVEIRA MOLLY",produit:'Mixte Plus NF',prime:25000,duree:18,comm:4825,date:'2026-04-03',st:'attente'},
+  {nom:'KAKESSA DIEUDONNE',produit:'REP NF',prime:10000,duree:10,comm:1900,date:'2026-04-03',st:'attente'},
+  {nom:'AMAVIGAN AYI ERIC',produit:'REP NF',prime:20000,duree:15,comm:3800,date:'2026-03-27',st:'attente'},
+  {nom:'ADOGOUIN YENAWA',produit:'REP NF',prime:15000,duree:10,comm:2850,date:'2026-03-27',st:'attente'},
+  {nom:'GANDONOU CONSTANT',produit:'REP NF',prime:20000,duree:20,comm:3800,date:'2026-03-13',st:'actif'},
+  {nom:'AGBDO GUILLAUME',produit:'Mixte Plus NF',prime:120000,duree:15,comm:34740,date:'2026-02-27',st:'actif'},
+  {nom:'ZOUNTEGNI JOREX',produit:'REP NF',prime:50000,duree:15,comm:9450,date:'2026-04-25',st:'attente'},
+  {nom:'ALAGBE LATIFOU',produit:'REP NF',prime:10000,duree:13,comm:2470,date:'2026-04-25',st:'attente'},
+  {nom:'ADJOBO LEMINON MARIE',produit:'REP NF',prime:15000,duree:12,comm:3420,date:'2026-04-17',st:'attente'},
+  {nom:'QUENUM COCOU',produit:'REP NF',prime:10000,duree:11,comm:2090,date:'2026-03-13',st:'attente'},
+  {nom:'OFANGOBI IBRAHIM',produit:'REP NF',prime:20000,duree:12,comm:4560,date:'2026-03-06',st:'attente'},
+];
+
+var DEFAULT_CONTACTS=[
+  {id:'p01',nom:'MME GBAGUIDI MARIE',tel:'0197078611',src:'Depots terme',st:'urgent',prod:'Fonds Cantonne NF-1',prime:2000000,obs:'Interessee Fonds Cantonne - Mardi 15h',rel:'2026-04-08'},
+  {id:'p02',nom:'AKOSSOMBO HOUVI JOELLE',tel:'0195963494',src:'Pharmacie UBPHAR',st:'urgent',prod:'Mixte Plus NF',prime:50000,obs:'Pharmacienne - WhatsApp ok',rel:'2026-04-08'},
+  {id:'p03',nom:'ALICE AVOCATE',tel:'0165659868',src:'Avocats',st:'urgent',prod:'Mixte Plus NF',prime:50000,obs:'A rappele - attente retour',rel:'2026-04-08'},
+  {id:'p04',nom:'DR JOELLE HOUNVI',tel:'0195963494',src:'Pharmacie',st:'chaud',prod:'Mixte Plus NF',prime:50000,obs:'RDV vendredi 17/04 15h',rel:'2026-04-17'},
+  {id:'p05',nom:'MAITRE RAFIKOU ALABI',tel:'0195960020',src:'Avocats',st:'chaud',prod:'Mixte Plus NF',prime:50000,obs:'Interesse - fixer RDV',rel:'2026-04-14'},
+  {id:'p06',nom:'DR BASILE FASSINOU',tel:'0197771562',src:'Depots terme',st:'chaud',prod:'Fonds Cantonne NF-1',prime:3000000,obs:'Medecin fort potentiel - Mardi 10h30',rel:'2026-04-15'},
+  {id:'p07',nom:'MR FATAI MEDECIN',tel:'0197101974',src:'Prospection',st:'chaud',prod:'Mixte Plus NF',prime:80000,obs:'BOA Zongo - vendredi 16h30',rel:'2026-04-18'},
+  {id:'p08',nom:'DR GBAGUIDI',tel:'',src:'Prospection 2023',st:'chaud',prod:'Librepargne',prime:500000,obs:'Retraite dans 1 an - relancer dans 2-3 semaines',rel:'2026-05-07'},
+  {id:'p09',nom:'MR ALAKPATO RENE',tel:'',src:'Prospection',st:'chaud',prod:'A definir',prime:30000,obs:'2 ans essais - RDV vendredi',rel:'2026-04-17'},
+  {id:'p10',nom:'MR WANOU ASECNA',tel:'0194142929',src:'Prospection 2026',st:'chaud',prod:'Mixte Plus NF',prime:50000,obs:'ASECNA = tres bon salaire',rel:'2026-04-17'},
+  {id:'p11',nom:'ROMUALD NOUDEGBESSI',tel:'0160583830',src:'Prospection 2026',st:'chaud',prod:'A definir',prime:30000,obs:'Dans 1 mois',rel:'2026-05-14'},
+  {id:'p12',nom:'MR GILLES ADJAGBONI',tel:'0196984305',src:'Ministere',st:'nouveau',prod:'REP NF',prime:15000,obs:'Fonctionnaire Etat - 09/04',rel:'2026-04-21'},
+  {id:'p13',nom:'MR EDMOND NOUKPEDE',tel:'0166533749',src:'Ministere',st:'nouveau',prod:'REP NF',prime:15000,obs:'Fonctionnaire Etat - 09/04',rel:'2026-04-21'},
+  {id:'p14',nom:'M GILLES SIRAT',tel:'0195403589',src:'Ministere',st:'nouveau',prod:'REP NF',prime:15000,obs:'Fonctionnaire Etat - 09/04',rel:'2026-04-21'},
+  {id:'p15',nom:'M SAGBOHAN',tel:'0166546439',src:'Prospection 2026',st:'nouveau',prod:'REP NF',prime:15000,obs:'Vu le 14/04',rel:'2026-04-21'},
+];
+
+// ============================================================
+// MEMOIRE LOCALE
+// ============================================================
+function save(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+function load(k,def){try{var s=localStorage.getItem(k);return s?JSON.parse(s):def;}catch(e){return def;}}
+
+var contacts=load('pk_contacts',DEFAULT_CONTACTS);
+var view='accueil',selId=null,searchQ='',filterSt='tous';
+
+// ============================================================
+// UTILS
+// ============================================================
+function fmt(n){return Math.round(n).toLocaleString('fr-FR')+' FCFA';}
+function fp(p){if(!p)return'';var v=(p+'').replace(/\s/g,'');if(v&&v[0]!='0'&&v[0]!='+')v='0'+v;return v;}
+function now(){var d=new Date();return ('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2);}
+function period(){var h=new Date().getHours();if(h>=5&&h<12)return'Matin';if(h>=12&&h<18)return'Apres-midi';if(h>=18&&h<22)return'Soir';return'Nuit';}
+function daysAgo(d){if(!d)return 999;return Math.floor((new Date()-new Date(d))/86400000);}
+
+function toast(m){
+  var t=document.getElementById('toast');
+  t.textContent=m;t.classList.add('show');
+  clearTimeout(t._t);t._t=setTimeout(function(){t.classList.remove('show');},2500);
+}
+
+function calcComm(prod,prime,dur){
+  if(!prod)return 0;
+  dur=dur||10;
+  var p=prod.toLowerCase();
+  if(p.indexOf('td')>=0||p.indexOf('3cap')>=0)return Math.round(prime*0.10);
+  if(p.indexOf('fonds')>=0||p.indexOf('capi')>=0)return Math.round(prime*0.015);
+  if(p.indexOf('hr5')>=0)return Math.round(prime*0.019);
+  var taux=p.indexOf('mixte')>=0?0.0193:0.019;
+  return Math.round(prime*Math.min(dur,15)*12*taux/12);
+}
+
+function totalComm(){return CONTRATS.reduce(function(s,c){return s+c.comm;},0);}
+
+// ============================================================
+// INTELLIGENCE : ANALYSE AUTOMATIQUE DES OBSERVATIONS
+// ============================================================
+function analyserObs(texte){
+  var result={statut:null,relance:null,tags:[]};
+  if(!texte)return result;
+  var t=texte.toLowerCase();
+  var today=new Date();
+
+  // DETECTION STATUT
+  if(t.indexOf('pas interesse')>=0||t.indexOf('refuse')>=0||t.indexOf('pas interest')>=0||t.indexOf('non interesse')>=0||t.indexOf('perdu')>=0){
+    result.statut='perdu';result.tags.push('perdu');
+  } else if(t.indexOf('signe')>=0||t.indexOf('contrat signe')>=0||t.indexOf('a signe')>=0){
+    result.statut='signe';result.tags.push('signe');
+  } else if(t.indexOf('interesse')>=0||t.indexOf('chaud')>=0||t.indexOf('tres interesse')>=0){
+    result.statut='chaud';result.tags.push('chaud');
+  }
+
+  // DETECTION DATE DE RELANCE
+  var d=null;
+  if(t.indexOf('demain')>=0){
+    d=new Date(today.getTime()+86400000);
+  } else if(t.indexOf('apres demain')>=0){
+    d=new Date(today.getTime()+2*86400000);
+  } else if(t.indexOf('dans 1 semaine')>=0||t.indexOf('semaine prochaine')>=0){
+    d=new Date(today.getTime()+7*86400000);
+  } else if(t.indexOf('dans 2 semaines')>=0){
+    d=new Date(today.getTime()+14*86400000);
+  } else if(t.indexOf('dans 1 mois')>=0||t.indexOf('fin du mois')>=0){
+    d=new Date(today.getTime()+30*86400000);
+  } else if(t.indexOf('dans 2 mois')>=0){
+    d=new Date(today.getTime()+60*86400000);
+  } else if(t.indexOf('dans 3 mois')>=0){
+    d=new Date(today.getTime()+90*86400000);
+  } else if(t.indexOf('lundi')>=0){
+    var day=today.getDay();var diff=day<=1?1-day:8-day;d=new Date(today.getTime()+diff*86400000);
+  } else if(t.indexOf('mardi')>=0){
+    var day=today.getDay();var diff=day<=2?2-day:9-day;d=new Date(today.getTime()+diff*86400000);
+  } else if(t.indexOf('mercredi')>=0){
+    var day=today.getDay();var diff=day<=3?3-day:10-day;d=new Date(today.getTime()+diff*86400000);
+  } else if(t.indexOf('jeudi')>=0){
+    var day=today.getDay();var diff=day<=4?4-day:11-day;d=new Date(today.getTime()+diff*86400000);
+  } else if(t.indexOf('vendredi')>=0){
+    var day=today.getDay();var diff=day<=5?5-day:12-day;d=new Date(today.getTime()+diff*86400000);
+  } else if(t.indexOf('rappeler')>=0||t.indexOf('rappel')>=0||t.indexOf('relancer')>=0){
+    result.tags.push('rappel');
+    if(!d)d=new Date(today.getTime()+7*86400000);
+  }
+
+  // Chercher mois specifiques
+  var mois=['janvier','fevrier','mars','avril','mai','juin','juillet','aout','septembre','octobre','novembre','decembre'];
+  mois.forEach(function(m,i){
+    if(t.indexOf(m)>=0){
+      var y=today.getFullYear();
+      var mnum=i;
+      if(mnum<=today.getMonth())y++;
+      d=new Date(y,mnum,15);
+    }
+  });
+
+  if(d)result.relance=d.toISOString().slice(0,10);
+  return result;
+}
+
+// ============================================================
+// ACTIONS
+// ============================================================
+function updateSt(id,st,rel){
+  contacts=contacts.map(function(c){
+    if(c.id===id){var nc=Object.assign({},c,{st:st});if(rel)nc.rel=rel;return nc;}
+    return c;
+  });
+  save('pk_contacts',contacts);
+  var c=contacts.find(function(x){return x.id===id;});
+  if(c)sendSheets('updateStatut',{nom:c.nom,tel:c.tel,statut:st});
+  var msgs={signe:'Contrat signe !',rdv:'RDV enregistre !',rappel:'Rappel programme',perdu:'Contact perdu',chaud:'Contact chaud !'};
+  toast((msgs[st]||'Mis a jour'));
+  if(view==='detail')view='pipeline';
+  render();
+}
+
+function saveObs(id){
+  var val=(document.getElementById('obs-inp')||{}).value||'';
+  var analyse=analyserObs(val);
+  var updates={obs:val};
+  if(analyse.statut)updates.st=analyse.statut;
+  if(analyse.relance)updates.rel=analyse.relance;
+  contacts=contacts.map(function(c){
+    if(c.id===id)return Object.assign({},c,updates);
+    return c;
+  });
+  save('pk_contacts',contacts);
+  var c=contacts.find(function(x){return x.id===id;});
+  if(c)sendSheets('addObservation',{nom:c.nom,tel:c.tel,observation:val,relance:analyse.relance||''});
+  var msg='Observation enregistree';
+  if(analyse.statut)msg+=' | Statut: '+analyse.statut;
+  if(analyse.relance)msg+=' | Relance: '+analyse.relance;
+  toast(msg);
+  render();
+}
+
+// ============================================================
+// GOOGLE SHEETS
+// ============================================================
+function sendSheets(action,data){
+  var body=Object.assign({action:action},data);
+  fetch(SHEETS_URL,{method:'POST',body:JSON.stringify(body)}).catch(function(){});
+}
+
+// filtrerSeulement remplacé par onSearch+mettreAJourListe
+
+function composerNumero(){
+  var input=document.getElementById('quick-tel');
+  if(!input)return;
+  var tel=input.value.replace(/\s/g,'');
+  if(!tel){toast('Entrer un numero');return;}
+  if(tel[0]!='0'&&tel[0]!='+')tel='0'+tel;
+  // Chercher dans les contacts locaux d'abord
+  var trouve=contacts.find(function(c){return c.tel===tel||c.tel.indexOf(tel)>=0;});
+  if(trouve){
+    toast('Appel: '+trouve.nom);
+  }
+  window.location.href='tel:'+tel;
+}
+
+var _searchTimer=null;
+function rechercherSheets(q){
+  clearTimeout(_searchTimer);
+  if(!q||q.length<3)return;
+  // D abord chercher localement
+  var local=contacts.filter(function(c){
+    return c.nom.toLowerCase().indexOf(q.toLowerCase())>=0||c.tel.indexOf(q)>=0;
+  });
+  // Si peu de resultats locaux, chercher dans Sheets apres 500ms
+  if(local.length<3){
+    _searchTimer=setTimeout(function(){
+      fetch(SHEETS_URL+'?action=search&q='+encodeURIComponent(q))
+        .then(function(r){return r.json();})
+        .then(function(res){
+          if(res.success&&res.contacts&&res.contacts.length>0){
+            var added=0;
+            res.contacts.forEach(function(sc){
+              if(!sc.nom)return;
+              var ex=contacts.find(function(c){
+                return c.nom.toUpperCase()===sc.nom.toUpperCase()||(sc.tel&&sc.tel.length>5&&c.tel===fp(sc.tel));
+              });
+              if(!ex){
+                contacts.push({id:'sh'+Date.now()+Math.random(),nom:(sc.nom||'').toUpperCase(),tel:fp(sc.tel||''),src:sc.source||'Sheets',st:(sc.statut||'nouveau').toLowerCase(),prod:sc.produit||'',prime:15000,obs:sc.notes||'',rel:sc.relance||''});
+                added++;
+              }
+            });
+            if(added>0){
+              save('pk_contacts',contacts);
+              renderMain();
+              toast(res.count+' resultat'+(res.count>1?'s':'')+' trouve'+(res.count>1?'s':'')+' dans Sheets');
+            }
+          }
+        }).catch(function(){});
+    },500);
+  }
+}
+
+function syncSheets(){
+  var btn=document.getElementById('syncbtn');
+  if(btn)btn.textContent='Sync...';
+  toast('Connexion Google Sheets...');
+  fetch(SHEETS_URL+'?action=getPipeline')
+    .then(function(r){return r.json();})
+    .then(function(res){
+      if(res.success&&res.contacts&&res.contacts.length){
+        var added=0;
+        res.contacts.forEach(function(sc){
+          if(!sc.nom)return;
+          var ex=contacts.find(function(c){
+            return c.nom.toUpperCase()===sc.nom.toUpperCase()||(sc.tel&&sc.tel.length>5&&c.tel===fp(sc.tel));
+          });
+          if(!ex){
+            contacts.push({id:'sh'+Date.now()+Math.random(),nom:sc.nom.toUpperCase(),tel:fp(sc.tel||''),src:sc.source||'Sheets',st:sc.statut||'nouveau',prod:sc.produit||'A definir',prime:15000,obs:sc.notes||'',rel:sc.relance||''});
+            added++;
+          }
+        });
+        save('pk_contacts',contacts);
+        toast('Synchro OK - '+res.total+' contacts');
+      } else {
+        toast('Sheets connecte');
+      }
+      if(btn)btn.textContent='Synchro OK';
+      setTimeout(function(){if(btn)btn.textContent='Sync Sheets';},3000);
+      render();
+    })
+    .catch(function(){
+      toast('Hors ligne - donnees locales');
+      if(btn)btn.textContent='Sync Sheets';
+    });
+}
+
+// ============================================================
+// INTELLIGENCE : BRIEF + ALERTES
+// ============================================================
+function getBrief(){
+  var h=new Date().getHours();
+  var urg=contacts.filter(function(c){return c.st==='urgent'&&c.rel<=TODAY;});
+  var ch=contacts.filter(function(c){return c.st==='chaud';});
+  if(h>=5&&h<12){
+    var msg='Bonjour Gildas !\n';
+    if(urg.length)msg+='URGENT: '+urg.length+' contact'+(urg.length>1?'s':'')+' a appeler maintenant\n';
+    if(ch.length)msg+=ch.length+' prospects chauds a relancer';
+    return {show:true,type:'matin',ttl:'BRIEF DU MATIN',msg:msg.trim(),action:'pipeline'};
+  }
+  if(h>=18){
+    return {show:true,type:'soir',ttl:'BILAN DU SOIR',msg:'Fais ton compte-rendu maintenant.\nRemplis l onglet C.R. et envoie a Claude.',action:'compterendu'};
+  }
+  return {show:false};
+}
+
+function getAlertes(){
+  var a=[];
+  var urg=contacts.filter(function(c){return c.st==='urgent'&&c.rel<=TODAY;});
+  if(urg.length)a.push({bg:'#FFEBEE',bd:'#E84040',ico:'',txt:urg.length+' contact'+(urg.length>1?'s':'')+' urgent'+(urg.length>1?'s':'')+' - Appeler MAINTENANT'});
+  var bl=CONTRATS.filter(function(c){return c.st==='attente'&&daysAgo(c.date)>30;});
+  if(bl.length)a.push({bg:'#FFF3E0',bd:'#E65100',ico:'',txt:bl.length+' contrat'+(bl.length>1?'s':'')+' en attente depuis +30 jours - Verifier avec ta cheffe'});
+  var comm=totalComm();
+  var restant=OBJECTIF-comm;
+  if(restant>0)a.push({bg:'#E3F2FD',bd:'#0D47A1',ico:'',txt:'Gap: '+fmt(restant)+' - Il te faut ~'+Math.ceil(restant/5000)+' contrats a 5 000 FCFA/mois'});
+  return a;
+}
+
+// ============================================================
+// MODAL RELANCE INTELLIGENTE
+// ============================================================
+function openRelance(id){
+  var today=new Date();
+  var opts=[
+    {l:'Demain',d:new Date(today.getTime()+86400000).toISOString().slice(0,10)},
+    {l:'3 jours',d:new Date(today.getTime()+3*86400000).toISOString().slice(0,10)},
+    {l:'1 semaine',d:new Date(today.getTime()+7*86400000).toISOString().slice(0,10)},
+    {l:'2 semaines',d:new Date(today.getTime()+14*86400000).toISOString().slice(0,10)},
+    {l:'1 mois',d:new Date(today.getTime()+30*86400000).toISOString().slice(0,10)},
+    {l:'2 mois',d:new Date(today.getTime()+60*86400000).toISOString().slice(0,10)},
+  ];
+  var m=document.createElement('div');
+  m.id='rmod';
+  m.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:200;display:flex;align-items:flex-end;justify-content:center';
+  var inner=document.createElement('div');
+  inner.style.cssText='background:white;border-radius:20px 20px 0 0;padding:20px;width:100%;max-width:430px';
+  var ttl=document.createElement('div');
+  ttl.style.cssText='font-size:14px;font-weight:700;margin-bottom:14px;color:#0A2E2C';
+  ttl.textContent='Programmer une relance';
+  var grid=document.createElement('div');
+  grid.style.cssText='display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px';
+  opts.forEach(function(o){
+    var btn=document.createElement('div');
+    btn.style.cssText='padding:10px;background:#E0F5F4;border-radius:10px;text-align:center;font-size:11px;font-weight:600;color:#00A89A;cursor:pointer';
+    btn.innerHTML=o.l+'<br><span style="font-size:9px;opacity:.7">'+o.d+'</span>';
+    btn.onclick=(function(oid,od){return function(){setRelance(oid,od);};})(id,o.d);
+    grid.appendChild(btn);
+  });
+  var ann=document.createElement('button');
+  ann.textContent='Annuler';
+  ann.style.cssText='width:100%;padding:11px;background:white;color:#00C9B8;border:2px solid #00C9B8;border-radius:12px;font-size:12px;font-weight:700;cursor:pointer;font-family:Sora,sans-serif';
+  ann.onclick=closeModal;
+  inner.appendChild(ttl);inner.appendChild(grid);inner.appendChild(ann);m.appendChild(inner);
+  m.onclick=function(e){if(e.target===m)closeModal();};
+  document.body.appendChild(m);
+}
+
+function setRelance(id,date){
+  updateSt(id,'rappel',date);
+  closeModal();
+  toast('Relance programmee pour le '+date);
+}
+
+function closeModal(){var m=document.getElementById('rmod');if(m)m.remove();}
+
+// ============================================================
+// NAV
+// ============================================================
+var TABS=[
+  {id:'accueil',ico:'',lb:'Accueil'},
+  {id:'pipeline',ico:'',lb:'Pipeline'},
+  {id:'ajouter',ico:'',lb:'Ajouter'},
+  {id:'bilan',ico:'',lb:'Bilan'},
+  {id:'compterendu',ico:'',lb:'C.R.'},
+];
+
+function renderNav(){
+  var urg=contacts.filter(function(c){return c.st==='urgent'&&c.rel<=TODAY;}).length;
+  var html='';
+  TABS.forEach(function(t){
+    var on=view===t.id||(view==='detail'&&t.id==='pipeline');
+    html+='<button class="nb'+(on?' on':'')+'" onclick="navTo(\''+t.id+'\')">';
+    if(t.id==='pipeline'&&urg>0)html+='<div class="nb-dot"></div>';
+    html+='<span class="ico">'+t.ico+'</span>'+t.lb+'</button>';
+  });
+  document.getElementById('nav').innerHTML=html;
+}
+
+function navTo(v){view=v;selId=null;render();}
+
+// ============================================================
+// RENDER ACCUEIL
+// ============================================================
+function renderAccueil(){
+  var comm=totalComm();
+  var pct=Math.min(100,Math.round(comm/OBJECTIF*100));
+  var urg=contacts.filter(function(c){return c.st==='urgent'&&c.rel<=TODAY;});
+  var chauds=contacts.filter(function(c){return c.st==='chaud';}).length;
+  var brief=getBrief();
+  var alertes=getAlertes();
+  var h='<div class="sec">';
+
+  if(brief.show){
+    h+='<div class="brief">';
+    h+='<div class="brief-ttl">'+brief.ttl+'</div>';
+    h+='<div class="brief-msg">'+brief.msg.replace(/\n/g,'<br>')+'</div>';
+    h+='<button class="brief-btn" onclick="navTo(\''+brief.action+'\')">Voir maintenant</button>';
+    h+='</div>';
+  }
+
+  h+='<div class="hero">';
+  h+='<div class="hero-lbl">Commission mensuelle estimee</div>';
+  h+='<div class="hero-val">'+fmt(comm)+'</div>';
+  h+='<div class="hero-sub">Objectif : 1 000 000 FCFA / mois</div>';
+  h+='<div class="hero-bar"><div class="hero-fill" style="width:'+pct+'%"></div></div>';
+  h+='<div class="hero-pct">'+pct+'% atteint - Gap : '+fmt(OBJECTIF-comm)+'</div>';
+  h+='</div>';
+
+  h+='<div class="stats">';
+  h+='<div class="stat"><div class="stat-ico"></div><div class="stat-val" style="color:var(--t1)">'+CONTRATS.length+'</div><div class="stat-lbl">Contrats 2026</div></div>';
+  h+='<div class="stat"><div class="stat-ico"></div><div class="stat-val" style="color:var(--or)">'+chauds+'</div><div class="stat-lbl">Prospects chauds</div></div>';
+  h+='<div class="stat"><div class="stat-ico"></div><div class="stat-val" style="color:var(--re)">'+urg.length+'</div><div class="stat-lbl">Urgents</div></div>';
+  h+='<div class="stat"><div class="stat-ico"></div><div class="stat-val" style="color:var(--pu)">'+contacts.length+'</div><div class="stat-lbl">Pipeline total</div></div>';
+  h+='</div>';
+
+  if(alertes.length){
+    h+='<div class="stitle">ALERTES INTELLIGENTES</div>';
+    alertes.forEach(function(a){
+      h+='<div class="alrt" style="background:'+a.bg+';border-left:3px solid '+a.bd+'">';
+      h+='<div class="alrt-ico">'+a.ico+'</div>';
+      h+='<div class="alrt-txt">'+a.txt+'</div>';
+      h+='</div>';
+    });
+  }
+
+  if(urg.length){
+    h+='<div class="stitle">A APPELER MAINTENANT</div>';
+    urg.slice(0,3).forEach(function(c){h+=renderCard(c,true);});
+    if(urg.length>3)h+='<div style="text-align:center;font-size:10px;color:var(--tx3);padding:5px">+'+(urg.length-3)+' autres dans Pipeline</div>';
+  }
+
+  h+='<div class="stitle">MES CONTRATS 2026</div>';
+  CONTRATS.slice(0,5).forEach(function(c){
+    var bg=c.st==='actif'?'var(--grl)':'var(--yel)';
+    h+='<div class="card cn">';
+    h+='<div class="ch">';
+    h+='<div><div class="cnom">'+c.nom.substring(0,26)+'</div><div class="cmeta">'+c.produit+' - '+c.duree+' ans</div></div>';
+    h+='<div style="text-align:right"><div style="font-size:13px;font-weight:800;color:var(--t1)">'+fmt(c.comm)+'</div>';
+    h+='<div style="font-size:8px;margin-top:2px;background:'+bg+';padding:2px 5px;border-radius:5px">'+(c.st==='actif'?'Actif':'En attente')+'</div></div>';
+    h+='</div></div>';
+  });
+  if(CONTRATS.length>5)h+='<div style="text-align:center;font-size:10px;color:var(--tx3);padding:5px;cursor:pointer" onclick="navTo(\'bilan\')">Voir tous les '+CONTRATS.length+' contrats</div>';
+
+  h+='<div style="height:20px"></div></div>';
+  return h;
+}
+
+// ============================================================
+// RENDER PIPELINE
+// ============================================================
+function renderPipeline(){
+  var f=contacts.slice();
+  if(searchQ)f=f.filter(function(c){return c.nom.toLowerCase().indexOf(searchQ.toLowerCase())>=0||c.tel.indexOf(searchQ)>=0;});
+  if(filterSt!=='tous')f=f.filter(function(c){return c.st===filterSt;});
+  var cnt={u:contacts.filter(function(c){return c.st==='urgent';}).length,c:contacts.filter(function(c){return c.st==='chaud';}).length,r:contacts.filter(function(c){return c.st==='rdv';}).length,n:contacts.filter(function(c){return c.st==='nouveau';}).length};
+  var h='<div class="sec">';
+  h+='<div class="srch"><span></span><input placeholder="Nom, telephone..." value="'+searchQ+'" oninput="searchQ=this.value;renderMain()"></div>';
+  h+='<div class="chips">';
+  h+='<button class="chip'+(filterSt==='tous'?' on':'')+'" onclick="filterSt=\'tous\';renderMain()">Tous ('+contacts.length+')</button>';
+  h+='<button class="chip'+(filterSt==='urgent'?' on':'')+'" onclick="filterSt=\'urgent\';renderMain()"> Urgent '+cnt.u+'</button>';
+  h+='<button class="chip'+(filterSt==='chaud'?' on':'')+'" onclick="filterSt=\'chaud\';renderMain()"> Chaud '+cnt.c+'</button>';
+  h+='<button class="chip'+(filterSt==='rdv'?' on':'')+'" onclick="filterSt=\'rdv\';renderMain()"> RDV '+cnt.r+'</button>';
+  h+='<button class="chip'+(filterSt==='nouveau'?' on':'')+'" onclick="filterSt=\'nouveau\';renderMain()"> Nouveau '+cnt.n+'</button>';
+  h+='</div>';
+  h+='<div id="contact-count" style="font-size:9px;color:var(--tx3);margin-bottom:7px">'+f.length+' contact'+(f.length>1?'s':'')+'</div>';
+  h+='<div id="contact-list">';
+  if(!f.length)h+='<div style="text-align:center;padding:35px;color:var(--tx3)"><div style="font-size:36px;margin-bottom:8px">&#128269;</div>Aucun resultat</div>';
+  else f.forEach(function(c){h+=renderCard(c,false);});
+  h+='</div>';
+  h+='<div style="height:20px"></div></div>';
+  return h;
+}
+
+function renderCard(c,mini){
+  var bdg={urgent:'bu',chaud:'bc',rdv:'br',nouveau:'bn',signe:'bo',perdu:'bp',rappel:'br'}[c.st]||'bn';
+  var lbl={urgent:'Urgent',chaud:'Chaud',rdv:'RDV',nouveau:'Nouveau',signe:'Signe',perdu:'Perdu',rappel:'Rappel'}[c.st]||c.st;
+  var cls={urgent:'cu',chaud:'cc',rdv:'cr'}[c.st]||'cn';
+  var comm=calcComm(c.prod,c.prime,10);
+  var tel=fp(c.tel);
+  var h='<div class="card '+cls+'" onclick="openDetail(\''+c.id+'\')">';
+  h+='<div class="ch">';
+  h+='<div style="flex:1;min-width:0"><div class="cnom">'+c.nom.substring(0,30)+'</div>';
+  h+='<div class="cmeta">'+c.src+'</div>';
+    if(tel)h+='<a href="tel:'+tel+'" onclick="event.stopPropagation()" style="font-size:10px;font-weight:700;color:var(--t1);text-decoration:none;display:block;margin-top:1px">'+tel+'</a>';
+    h+='</div>';
+  h+='<div style="text-align:right;flex-shrink:0"><span class="bdg '+bdg+'">'+lbl+'</span>';
+  if(comm>0)h+='<div style="font-size:9px;color:var(--t1);font-weight:700;margin-top:2px">'+fmt(comm)+'/m</div>';
+  h+='</div></div>';
+  if(c.obs&&!mini)h+='<div style="font-size:10px;color:var(--tx2);margin-top:5px;line-height:1.4">'+c.obs.substring(0,70)+'</div>';
+  if(!mini){
+    h+='<div class="cacts">';
+    if(tel)h+='<a href="tel:'+tel+'" onclick="event.stopPropagation()" style="text-decoration:none"><button class="bsm bcall"> Appeler</button></a>';
+    h+='<button class="bsm bok" onclick="event.stopPropagation();updateSt(\''+c.id+'\',\'signe\')"> Signe</button>';
+    h+='<button class="bsm brdv" onclick="event.stopPropagation();updateSt(\''+c.id+'\',\'rdv\')"> RDV</button>';
+    h+='<button class="bsm brel" onclick="event.stopPropagation();openRelance(\''+c.id+'\')"> Relance</button>';
+    h+='</div>';
+  }
+  h+='</div>';
+  return h;
+}
+
+// ============================================================
+// RENDER DETAIL (INTELLIGENT)
+// ============================================================
+function openDetail(id){selId=id;view='detail';render();}
+
+function renderDetail(){
+  var c=contacts.find(function(x){return x.id===selId;});
+  if(!c)return '<div class="sec"><div style="text-align:center;padding:35px;color:var(--tx3)">Introuvable</div></div>';
+  var comm=calcComm(c.prod,c.prime,10);
+  var tel=fp(c.tel);
+  var bdg={urgent:'bu',chaud:'bc',rdv:'br',nouveau:'bn',signe:'bo',perdu:'bp'}[c.st]||'bn';
+  var analyse=analyserObs(c.obs||'');
+
+  var h='<div class="sec">';
+  h+='<button class="bck" onclick="view=\'pipeline\';render()">Retour</button>';
+  h+='<div class="dhdr">';
+  h+='<div style="font-size:16px;font-weight:800">'+c.nom+'</div>';
+  h+='<div style="font-size:11px;opacity:.8;margin-top:3px">'+c.src+'</div>';
+  if(tel)h+='<div style="font-size:12px;margin-top:7px;opacity:.9"> '+tel+'</div>';
+  h+='</div>';
+
+  if(tel)h+='<a href="tel:'+tel+'" style="text-decoration:none"><button class="bp1" style="margin-bottom:10px"> Appeler '+tel+'</button></a>';
+
+  h+='<div class="stitle">Changer le statut</div>';
+  h+='<div class="cacts" style="margin-bottom:12px">';
+  h+='<button class="bsm bok" onclick="updateSt(\''+c.id+'\',\'signe\')"> Signe</button>';
+  h+='<button class="bsm brdv" onclick="updateSt(\''+c.id+'\',\'rdv\')"> RDV fixe</button>';
+  h+='<button class="bsm brel" onclick="openRelance(\''+c.id+'\')"> Programmer relance</button>';
+  h+='<button class="bsm bno" onclick="updateSt(\''+c.id+'\',\'perdu\')"> Perdu</button>';
+  h+='</div>';
+
+  h+='<div class="card" style="padding:0">';
+  var rows=[
+    ['Statut','<span class="bdg '+bdg+'">'+c.st+'</span>'],
+    ['Produit',c.prod||'-'],
+    ['Prime estimee',c.prime?fmt(c.prime):'-'],
+    ['Commission/mois',comm>0?'<strong style="color:var(--t1)">'+fmt(comm)+'</strong>':'-'],
+    ['Source',c.src||'-'],
+    ['Prochaine relance',c.rel||'-'],
+  ];
+  rows.forEach(function(r){
+    h+='<div class="irow"><span class="ik">'+r[0]+'</span><span class="iv">'+r[1]+'</span></div>';
+  });
+  h+='</div>';
+
+  if(c.obs){
+    h+='<div class="obs">'+c.obs;
+    if(analyse.tags.length){
+      h+='<br>';
+      analyse.tags.forEach(function(tag){h+='<span class="tag tag-'+tag+'">'+tag+'</span>';});
+    }
+    h+='</div>';
+  }
+
+  h+='<div class="stitle"> Ajouter une observation</div>';
+  h+='<div class="stitle" style="font-size:9px;color:var(--or);text-transform:none;letter-spacing:0">Ecris "rappeler lundi", "pas interesse", "dans 1 mois"... et l\'app detecte automatiquement</div>';
+  h+='<div class="card">';
+  h+='<textarea class="fi" id="obs-inp" placeholder="Ce qu il a dit, RDV prevu, objection...">'+(c.obs||'')+'</textarea>';
+  h+='<button class="bp1" onclick="saveObs(\''+c.id+'\')" style="margin-top:8px"> Enregistrer (detection auto)</button>';
+  h+='</div>';
+  h+='<div style="height:20px"></div></div>';
+  return h;
+}
+
+// ============================================================
+// RENDER AJOUTER
+// ============================================================
+function renderAjouter(){
+  var h='<div class="sec">';
+  h+='<div class="stitle">Nouveau contact terrain</div>';
+  h+='<div class="card">';
+  h+='<div class="fg"><label class="fl">Nom complet *</label><input class="fi" id="a-nom" type="text" placeholder="MR KOUASSI MARTIN" style="text-transform:uppercase"></div>';
+  h+='<div class="fg"><label class="fl">Telephone</label><input class="fi" id="a-tel" type="tel" placeholder="0197..." onblur="var v=this.value.replace(/ /g,\'\');if(v&&v[0]!=\'0\'&&v[0]!=\'+\')this.value=\'0\'+v"></div>';
+  h+='<div class="fg"><label class="fl">Ou rencontre</label>';
+  h+='<select class="fi" id="a-src"><option>Ministere</option><option>Port / Douanes</option><option>Tresor / Finance</option><option>Clinique / Hopital</option><option>Pharmacie</option><option>Avocat / Notaire</option><option>Mairie / Elu</option><option>Rue / Terrain</option><option>Recommandation</option><option>Autre</option></select></div>';
+  h+='<div class="fg"><label class="fl">Produit a proposer</label>';
+  h+='<select class="fi" id="a-prod"><option>REP NF</option><option>Mixte Plus NF</option><option>Fonds Cantonne</option><option>TD Temporaire Deces</option><option>A definir</option></select></div>';
+  h+='<div class="fg"><label class="fl">Relancer dans</label>';
+  h+='<select class="fi" id="a-rel"><option value="0">Aujourd hui</option><option value="1">Demain</option><option value="3">3 jours</option><option value="7">1 semaine</option><option value="14">2 semaines</option><option value="30">1 mois</option></select></div>';
+  h+='<div class="fg"><label class="fl">Notes (ce qu il a dit, lieu, heure...)</label><textarea class="fi" id="a-obs" placeholder="Tresor - rappeler mardi 10h - a des enfants scolarises"></textarea></div>';
+  h+='<button class="bp1" onclick="ajouterContact()"> Ajouter au pipeline</button>';
+  h+='</div><div style="height:20px"></div></div>';
+  return h;
+}
+
+function ajouterContact(){
+  var nom=(document.getElementById('a-nom')||{}).value;
+  if(!nom||!nom.trim()){toast('Nom obligatoire');return;}
+  nom=nom.trim().toUpperCase();
+  var tel=((document.getElementById('a-tel')||{}).value||'').replace(/\s/g,'');
+  if(tel&&tel[0]!='0'&&tel[0]!='+')tel='0'+tel;
+  var relDays=parseInt(((document.getElementById('a-rel')||{}).value||'0'));
+  var relDate=new Date(Date.now()+relDays*86400000).toISOString().slice(0,10);
+  var obs=((document.getElementById('a-obs')||{}).value||'');
+  var analyse=analyserObs(obs);
+  var c={
+    id:'n'+Date.now(),
+    nom:nom,
+    tel:tel,
+    src:((document.getElementById('a-src')||{}).value||''),
+    prod:((document.getElementById('a-prod')||{}).value||''),
+    prime:15000,
+    st:analyse.statut||'nouveau',
+    obs:'['+new Date().toLocaleDateString('fr-FR')+'] '+obs,
+    rel:analyse.relance||relDate
+  };
+  contacts.unshift(c);
+  save('pk_contacts',contacts);
+  toast('Ajout en cours...');
+  sendSheets('addProspect',c);
+  setTimeout(function(){toast(nom+' ajoute + envoye dans Sheets');},500);
+  view='pipeline';render();
+}
+
+// ============================================================
+// RENDER BILAN
+// ============================================================
+function renderBilan(){
+  var comm=totalComm();
+  var pct=Math.min(100,Math.round(comm/OBJECTIF*100));
+  var actifs=CONTRATS.filter(function(c){return c.st==='actif';});
+  var h='<div class="sec">';
+  h+='<div class="hero">';
+  h+='<div class="hero-lbl">Commission mensuelle 2026</div>';
+  h+='<div class="hero-val">'+fmt(comm)+'</div>';
+  h+='<div class="hero-bar"><div class="hero-fill" style="width:'+pct+'%"></div></div>';
+  h+='<div class="hero-pct">Objectif 1 000 000 FCFA - '+pct+'% - Gap: '+fmt(OBJECTIF-comm)+'</div>';
+  h+='</div>';
+  h+='<div class="obj">';
+  h+='<div style="font-size:10px;font-weight:700;color:var(--tx2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">SIMULATION OBJECTIF</div>';
+  var rows2=[
+    ['Contrats actifs',actifs.length+' - '+fmt(actifs.reduce(function(s,c){return s+c.comm;},0))],
+    ['En attente prelevement',(CONTRATS.length-actifs.length)+' contrats'],
+    ['Si tout demarre',fmt(comm)],
+    ['Mixte 50k pour 1M','22 contrats'],
+    ['1 depot 10M = comm.','150 000 FCFA'],
+  ];
+  rows2.forEach(function(r){h+='<div class="obj-row"><span class="obj-k">'+r[0]+'</span><span class="obj-v">'+r[1]+'</span></div>';});
+  h+='</div>';
+  h+='<div class="stitle">TOUS LES CONTRATS 2026</div>';
+  CONTRATS.forEach(function(c){
+    h+='<div class="card '+(c.st==='actif'?'cn':'cc')+'">';
+    h+='<div class="ch">';
+    h+='<div><div class="cnom">'+c.nom.substring(0,26)+'</div><div class="cmeta">'+c.produit+' - '+c.duree+' ans - '+c.date+'</div></div>';
+    h+='<div style="text-align:right">';
+    h+='<div style="font-size:13px;font-weight:800;color:var(--t1)">'+fmt(c.comm)+'</div>';
+    h+='<div style="font-size:8px;padding:2px 5px;border-radius:5px;margin-top:2px;background:'+(c.st==='actif'?'var(--grl)':'var(--yel)')+'">'+( c.st==='actif'?'Actif':'En attente')+'</div>';
+    h+='</div></div></div>';
+  });
+  h+='<div style="height:20px"></div></div>';
+  return h;
+}
+
+// ============================================================
+// RENDER COMPTE-RENDU
+// ============================================================
+function renderCR(){
+  var h=new Date().getHours();
+  var isSoir=h>=17;
+  var out='<div class="sec">';
+  out+='<div class="stitle">'+(isSoir?'COMPTE-RENDU DU SOIR':'BRIEF DU MATIN')+'</div>';
+  if(isSoir){
+    out+='<div class="card">';
+    out+='<div style="font-size:12px;font-weight:700;margin-bottom:12px;color:var(--t1)">Bilan de ta journee</div>';
+    out+='<div class="crgrid">';
+    out+='<div class="crstat"><input type="number" id="cra" placeholder="0" min="0"><div class="crstat-lbl">Appels</div></div>';
+    out+='<div class="crstat"><input type="number" id="crc" placeholder="0" min="0"><div class="crstat-lbl">Contacts</div></div>';
+    out+='<div class="crstat"><input type="number" id="crr" placeholder="0" min="0"><div class="crstat-lbl">RDV</div></div>';
+    out+='<div class="crstat"><input type="number" id="crs" placeholder="0" min="0"><div class="crstat-lbl">Signes</div></div>';
+    out+='</div>';
+    out+='<div class="fg"><label class="fl">Prospects chauds du jour</label><textarea class="fi" id="crch" placeholder="Qui a montre de l interet ?"></textarea></div>';
+    out+='<div class="fg"><label class="fl">A relancer demain</label><textarea class="fi" id="crde" placeholder="Qui rappeler demain ?"></textarea></div>';
+    out+='<div class="fg"><label class="fl">Notes importantes</label><textarea class="fi" id="crno" placeholder="Observations, blocages, idees..."></textarea></div>';
+    out+='<button class="bp1" onclick="genResume()">Generer le resume</button>';
+    out+='</div><div id="rzone"></div>';
+  } else {
+    var urg=contacts.filter(function(c){return c.st==='urgent'&&c.rel<=TODAY;}).length;
+    var ch=contacts.filter(function(c){return c.st==='chaud';}).length;
+    out+='<div class="card"><div style="font-size:12px;font-weight:700;margin-bottom:10px;color:var(--t1)">Ta journee commence</div>';
+    out+='<div style="font-size:11px;color:var(--tx2);line-height:2"> <strong>'+urg+' urgent'+(urg>1?'s':'')+'</strong> a appeler<br> <strong>'+ch+' prospects chauds</strong> a relancer</div></div>';
+    out+='<div class="stitle">RAPPELS ACTIFS</div>';
+    out+='<div class="card"><div style="font-size:11px;line-height:2;color:var(--tx)"> Relancer <strong>DR JOELLE HOUNVI</strong> et <strong>MR ALAKPATO RENE</strong><br> Verifier prelevements <strong>ABOGOUN TANKO</strong><br> Dans 2-3 semaines : Relancer <strong>DR GBAGUIDI</strong></div></div>';
+  }
+  out+='<div style="height:20px"></div></div>';
+  return out;
+}
+
+function genResume(){
+  var date=new Date().toLocaleDateString('fr-FR');
+  var a=((document.getElementById('cra')||{}).value||'0');
+  var c=((document.getElementById('crc')||{}).value||'0');
+  var r=((document.getElementById('crr')||{}).value||'0');
+  var s=((document.getElementById('crs')||{}).value||'0');
+  var ch=((document.getElementById('crch')||{}).value||'-');
+  var de=((document.getElementById('crde')||{}).value||'-');
+  var no=((document.getElementById('crno')||{}).value||'-');
+  var txt='COMPTE-RENDU - '+date+'\n';
+  txt+='=================\n';
+  txt+='Appels: '+a+' | Contacts: '+c+'\n';
+  txt+='RDV: '+r+' | Signes: '+s+'\n\n';
+  txt+='Chauds du jour:\n'+ch+'\n\n';
+  txt+='A relancer demain:\n'+de+'\n\n';
+  txt+='Notes:\n'+no+'\n';
+  txt+='=================\nPROSPEK - TOSSAVI GILDAS';
+  sendSheets('compteRendu',{date:date,appels:a,contacts:c,rdv:r,signes:s,chauds:ch,demain:de,notes:no});
+  var rz=document.getElementById('rzone');
+  if(rz){
+    rz.innerHTML='<div class="stitle" style="margin-top:14px">Resume a coller dans Claude</div><div class="rbox">'+txt+'</div><button class="bcopy" id="copybtn"> Copier et envoyer a Claude</button><div style="height:20px"></div>';
+    document.getElementById('copybtn').onclick=function(){
+      navigator.clipboard.writeText(txt).then(function(){toast('Copie ! Colle dans Claude');}).catch(function(){toast('Selectionne le texte et copie');});
+    };
+  }
+}
+
+// ============================================================
+// RENDER PRINCIPAL
+// ============================================================
+function renderMain(){
+  var h='';
+  if(view==='accueil')h=renderAccueil();
+  else if(view==='pipeline')h=renderPipeline();
+  else if(view==='detail')h=renderDetail();
+  else if(view==='ajouter')h=renderAjouter();
+  else if(view==='bilan')h=renderBilan();
+  else if(view==='compterendu')h=renderCR();
+  document.getElementById('main').innerHTML=h;
+  // Remettre le focus sur la recherche si on est dans pipeline
+  if(view==='pipeline'&&searchQ){
+    var inp=document.getElementById('srch-input');
+    if(inp){
+      inp.focus();
+      // Remettre le curseur à la fin
+      var len=inp.value.length;
+      inp.setSelectionRange(len,len);
+    }
+  }
+}
+
+function render(){renderNav();renderMain();}
+
+function showCallBar(tel,nom){
+  var bar=document.getElementById('callbar');
+  var num=document.getElementById('callbar-num');
+  var lnk=document.getElementById('callbar-link');
+  if(!bar||!tel)return;
+  num.textContent=nom+' - '+tel;
+  lnk.href='tel:'+tel;
+  bar.style.display='flex';
+}
+
+function hideCallBar(){
+  var bar=document.getElementById('callbar');
+  if(bar)bar.style.display='none';
+}
+
+// ============================================================
+// HEURE + DEMARRAGE
+// ============================================================
+function updateTime(){
+  var p=period();
+  var n=now();
+  var badge=document.getElementById('tbadge');
+  if(badge)badge.textContent=p+' '+n;
+}
+setInterval(updateTime,30000);
+updateTime();
+render();
+
+// Auto-sync silencieux au demarrage
+setTimeout(function(){
+  fetch(SHEETS_URL+'?action=getPipeline')
+    .then(function(r){return r.json();})
+    .then(function(res){
+      if(res.success&&res.total>0){
+        var b=document.getElementById('syncbtn');
+        if(b){b.textContent=''+res.total+' contacts';setTimeout(function(){if(b)b.textContent='Sync Sheets';},4000);}
+      }
+    }).catch(function(){});
+},2000);
+</script>
+</body>
+</html>
