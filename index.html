@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>PROSPEK ÉQUIPE — SUNU 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --t1:#00C9B8;--t2:#00A89A;--t3:#007A70;--t4:#004D47;
+  --bg:#F0FAFA;--bg2:#E0F5F4;--bg3:#FFFFFF;
+  --tx:#0A2E2C;--tx2:#3D6B68;--tx3:#7AADAA;
+  --or:#FF6B35;--orl:#FFF0EB;
+  --re:#E84040;--rel:#FFEBEB;
+  --gr:#00C07A;--grl:#E6FFF4;
+  --ye:#F5A623;--yel:#FFF8EC;
+  --pu:#6C63FF;--pul:#F0EFFF;
+  --sh:0 4px 24px rgba(0,201,184,.15);
+  --sh2:0 2px 12px rgba(0,0,0,.08);
+}
+html,body{height:100%;overflow:hidden;font-family:'Sora',sans-serif;background:var(--bg);color:var(--tx)}
+.app{display:flex;flex-direction:column;height:100vh;max-width:430px;margin:0 auto;position:relative}
+.topbar{background:var(--t1);padding:14px 18px 12px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;position:relative;overflow:hidden}
+.topbar::before{content:'';position:absolute;top:-20px;right:-20px;width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.12)}
+.topbar::after{content:'';position:absolute;bottom:-30px;left:30px;width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,.08)}
+.app-name{font-size:20px;font-weight:800;color:white;letter-spacing:.02em;z-index:1}
+.app-sub{font-size:10px;color:rgba(255,255,255,.8);font-weight:400;margin-top:1px}
+.topbar-right{text-align:right;z-index:1}
+.time-badge{background:rgba(255,255,255,.2);border-radius:20px;padding:4px 10px;font-size:11px;color:white;font-weight:600;backdrop-filter:blur(8px)}
+.main{flex:1;overflow-y:auto;overflow-x:hidden;padding:0;scrollbar-width:none}
+.main::-webkit-scrollbar{display:none}
+.nav{display:grid;background:white;border-top:1px solid #E8F5F4;flex-shrink:0;box-shadow:0 -4px 20px rgba(0,0,0,.06)}
+.nb{padding:10px 4px 8px;text-align:center;cursor:pointer;font-size:8px;font-weight:600;color:#AAC;border:none;background:none;font-family:'Sora',sans-serif;letter-spacing:.04em;text-transform:uppercase;transition:.2s;position:relative}
+.nb.on{color:var(--t1)}
+.nb .ico{font-size:20px;display:block;margin-bottom:3px}
+.nb.on .ico{transform:scale(1.1)}
+.nb-dot{position:absolute;top:8px;right:50%;transform:translateX(8px);width:7px;height:7px;background:var(--re);border-radius:50%;border:2px solid white}
+.section{padding:16px;animation:fadeIn .25s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--t1),var(--t3));border-radius:18px;padding:18px;margin-bottom:14px;color:white;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-10px;right:-10px;width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.1)}
+.hero-label{font-size:10px;font-weight:600;opacity:.8;text-transform:uppercase;letter-spacing:.08em}
+.hero-val{font-size:32px;font-weight:800;margin:4px 0}
+.hero-sub{font-size:11px;opacity:.75}
+.hero-bar{background:rgba(255,255,255,.2);border-radius:6px;height:6px;margin:12px 0 6px;overflow:hidden}
+.hero-fill{height:100%;background:white;border-radius:6px;transition:1s ease}
+.hero-pct{font-size:11px;opacity:.8}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.stat{background:white;border-radius:14px;padding:14px;box-shadow:var(--sh2)}
+.stat-val{font-size:22px;font-weight:800}
+.stat-label{font-size:10px;color:var(--tx2);margin-top:3px;font-weight:500}
+.stat-icon{font-size:18px;margin-bottom:6px}
+.sec-title{font-size:11px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.08em;margin:16px 0 8px;padding:0 2px}
+.card{background:white;border-radius:14px;padding:14px;margin-bottom:8px;box-shadow:var(--sh2);cursor:pointer;transition:.15s;position:relative;overflow:hidden}
+.card:active{transform:scale(.99)}
+.card-left-r{border-left:3px solid var(--re)}
+.card-left-o{border-left:3px solid var(--or)}
+.card-left-t{border-left:3px solid var(--t1)}
+.card-left-g{border-left:3px solid var(--gr)}
+.card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.card-nom{font-size:13px;font-weight:700;color:var(--tx);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:200px}
+.card-meta{font-size:10px;color:var(--tx2);margin-top:2px}
+.badge{padding:3px 8px;border-radius:20px;font-size:9px;font-weight:700;white-space:nowrap}
+.b-r{background:var(--rel);color:var(--re)}
+.b-o{background:var(--orl);color:var(--or)}
+.b-p{background:var(--pul);color:var(--pu)}
+.b-g{background:var(--grl);color:var(--gr)}
+.b-t{background:var(--bg2);color:var(--t2)}
+.b-gray{background:#F5F5F5;color:#AAA}
+.card-actions{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.btn-sm{padding:5px 10px;border-radius:8px;font-size:10px;font-weight:600;border:1.5px solid #E8F5F4;background:#F8FFFE;color:var(--t2);cursor:pointer;font-family:'Sora',sans-serif;transition:.15s}
+.btn-sm:active{transform:scale(.96)}
+.btn-call{background:var(--t1);color:white;border-color:var(--t1)}
+.btn-ok{background:var(--grl);color:var(--gr);border-color:var(--gr)}
+.btn-rdv{background:var(--pul);color:var(--pu);border-color:var(--pu)}
+.btn-rel{background:var(--orl);color:var(--or);border-color:var(--or)}
+.btn-no{background:#F5F5F5;color:#AAA;border-color:#EEE}
+.form-group{margin-bottom:14px}
+.form-label{font-size:11px;font-weight:600;color:var(--tx2);display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:.05em}
+.form-input{width:100%;padding:12px 14px;border:2px solid #E8F5F4;border-radius:12px;font-size:14px;font-family:'Sora',sans-serif;color:var(--tx);background:white;transition:.15s;-webkit-appearance:none}
+.form-input:focus{outline:none;border-color:var(--t1)}
+select.form-input{appearance:none}
+textarea.form-input{resize:vertical;min-height:70px}
+.btn-primary{width:100%;padding:14px;background:linear-gradient(135deg,var(--t1),var(--t2));color:white;border:none;border-radius:14px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Sora',sans-serif;box-shadow:var(--sh);transition:.15s;margin-top:6px}
+.btn-primary:active{transform:scale(.98)}
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--tx);color:white;padding:10px 20px;border-radius:20px;font-size:12px;font-weight:600;z-index:999;opacity:0;transition:.3s;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.search-bar{background:white;border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:8px;margin-bottom:12px;box-shadow:var(--sh2)}
+.search-bar input{flex:1;border:none;font-family:'Sora',sans-serif;font-size:13px;color:var(--tx);background:none}
+.search-bar input:focus{outline:none}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:12px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{padding:5px 12px;border-radius:20px;font-size:10px;font-weight:600;border:1.5px solid #E8F5F4;background:white;color:var(--tx2);cursor:pointer;white-space:nowrap;flex-shrink:0;font-family:'Sora',sans-serif}
+.chip.on{background:var(--t1);color:white;border-color:var(--t1)}
+/* LOGIN */
+.login-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:32px 24px;background:linear-gradient(160deg,#E0FAFA 0%,#F5FFFD 100%)}
+.login-logo{font-size:36px;font-weight:800;color:var(--t1);letter-spacing:.05em;margin-bottom:4px}
+.login-tagline{font-size:12px;color:var(--tx3);margin-bottom:40px;text-align:center}
+.login-card{background:white;border-radius:24px;padding:28px 24px;width:100%;max-width:340px;box-shadow:0 8px 40px rgba(0,201,184,.15)}
+.login-title{font-size:16px;font-weight:700;color:var(--tx);margin-bottom:20px;text-align:center}
+.login-input{width:100%;padding:14px 16px;border:2px solid #E8F5F4;border-radius:14px;font-size:18px;font-family:'JetBrains Mono',monospace;color:var(--tx);text-align:center;letter-spacing:.15em;text-transform:uppercase;-webkit-appearance:none}
+.login-input:focus{outline:none;border-color:var(--t1)}
+.login-btn{width:100%;margin-top:16px;padding:15px;background:linear-gradient(135deg,var(--t1),var(--t2));color:white;border:none;border-radius:14px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Sora',sans-serif;box-shadow:var(--sh)}
+.login-err{color:var(--re);font-size:12px;text-align:center;margin-top:10px;display:none}
+/* SETUP */
+.setup-wrap{padding:24px;animation:fadeIn .3s ease}
+.setup-title{font-size:20px;font-weight:800;color:var(--tx);margin-bottom:4px}
+.setup-sub{font-size:12px;color:var(--tx3);margin-bottom:28px}
+.cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.cat-btn{padding:14px 10px;border-radius:14px;border:2px solid #E8F5F4;background:white;text-align:center;cursor:pointer;font-family:'Sora',sans-serif;transition:.15s}
+.cat-btn.sel{border-color:var(--t1);background:var(--bg2)}
+.cat-btn-ico{font-size:22px;margin-bottom:4px}
+.cat-btn-name{font-size:12px;font-weight:700;color:var(--tx)}
+.cat-btn-obj{font-size:9px;color:var(--tx3);margin-top:2px}
+/* BADGE */
+.badge-card{border-radius:16px;padding:14px;margin-bottom:10px;display:flex;align-items:center;gap:12px}
+.badge-feu{background:linear-gradient(135deg,#FF6B35,#FF4D6A);color:white}
+.badge-forme{background:linear-gradient(135deg,#00C9B8,#00A89A);color:white}
+.badge-boost{background:linear-gradient(135deg,#6C63FF,#A855F7);color:white}
+.badge-ico{font-size:28px}
+.badge-info{flex:1}
+.badge-title{font-size:14px;font-weight:800}
+.badge-sub{font-size:10px;opacity:.85;margin-top:2px}
+/* CLASSEMENT */
+.rank-card{background:white;border-radius:14px;padding:14px;margin-bottom:8px;box-shadow:var(--sh2);display:flex;align-items:center;gap:12px}
+.rank-num{font-size:22px;font-weight:800;width:32px;text-align:center}
+.rank-1{color:#F5A623}
+.rank-2{color:#7AADAA}
+.rank-3{color:var(--or)}
+.rank-info{flex:1}
+.rank-nom{font-size:13px;font-weight:700}
+.rank-meta{font-size:10px;color:var(--tx3);margin-top:2px}
+.rank-comm{font-size:14px;font-weight:800;color:var(--t1);text-align:right}
+.rank-me{border:2px solid var(--t1);background:var(--bg2)}
+.rank-bar{height:4px;background:#E8F5F4;border-radius:4px;margin-top:8px;overflow:hidden}
+.rank-bar-fill{height:100%;background:var(--t1);border-radius:4px}
+/* ALERTE */
+.alert-card{border-radius:14px;padding:14px;margin-bottom:8px;border-left:3px solid}
+.alert-r{background:var(--rel);border-color:var(--re)}
+.alert-o{background:var(--orl);border-color:var(--or)}
+.alert-g{background:var(--grl);border-color:var(--gr)}
+.alert-title{font-size:12px;font-weight:700}
+.alert-body{font-size:11px;margin-top:3px;opacity:.8}
+/* NOTE CHEF */
+.note-card{background:white;border-radius:14px;padding:14px;margin-bottom:8px;box-shadow:var(--sh2)}
+.note-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.note-who{font-size:11px;font-weight:700;color:var(--t2)}
+.note-date{font-size:10px;color:var(--tx3)}
+.note-text{font-size:12px;color:var(--tx);line-height:1.5}
+/* STREAK */
+.streak-bar{display:flex;gap:4px;margin:8px 0}
+.streak-day{width:28px;height:28px;border-radius:8px;background:#E8F5F4;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--tx3)}
+.streak-day.ok{background:var(--t1);color:white}
+.streak-day.today{background:var(--or);color:white}
+/* INFO ROW */
+.info-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--bg2);font-size:12px}
+.info-key{color:var(--tx2);font-weight:500}
+.info-val{font-weight:700;color:var(--tx)}
+.empty{text-align:center;padding:40px 20px;color:var(--tx3)}
+.empty-icon{font-size:40px;margin-bottom:10px}
+.empty-text{font-size:13px}
+.cr-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.cr-stat{background:white;border-radius:12px;padding:12px;text-align:center;box-shadow:var(--sh2)}
+.cr-stat input{width:100%;text-align:center;font-size:28px;font-weight:800;color:var(--t1);border:none;background:none;font-family:'Sora',sans-serif;padding:4px 0}
+.cr-stat input:focus{outline:none}
+.cr-stat-label{font-size:9px;color:var(--tx2);font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-top:3px}
+.loading{text-align:center;padding:30px;color:var(--tx3);font-size:13px}
+</style>
+</head>
+<body>
+<div id="login-screen" class="login-wrap">
+  <div class="login-logo">PROSPEK</div>
+  <div class="login-tagline">SUNU Assurances Vie Bénin · Équipe UP3</div>
+  <div class="login-card">
+    <div class="login-title">Entre ton code d'accès</div>
+    <input class="login-input" id="login-code" type="text" maxlength="20" placeholder="EX: GILDAS2026" oninput="this.value=this.value.toUpperCase()" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="login-btn" onclick="doLogin()">Connexion →</button>
+    <div class="login-err" id="login-err">Code incorrect. Vérifie et réessaie.</div>
+  </div>
+</div>
+
+<div id="setup-screen" style="display:none;overflow-y:auto;height:100vh">
+  <div class="setup-wrap">
+    <div class="setup-title">Bienvenue <span id="setup-nom">!</span></div>
+    <div class="setup-sub">Configure ton profil — tu peux modifier ça à tout moment</div>
+    <div class="sec-title">TA CATÉGORIE SUNU</div>
+    <div class="cat-grid" id="cat-grid">
+      <div class="cat-btn" onclick="selCat('Leader')" id="cat-Leader"><div class="cat-btn-ico">🏆</div><div class="cat-btn-name">Leader</div><div class="cat-btn-obj">5 contrats/sem · 125k</div></div>
+      <div class="cat-btn" onclick="selCat('Challenger')" id="cat-Challenger"><div class="cat-btn-ico">🚀</div><div class="cat-btn-name">Challenger</div><div class="cat-btn-obj">5 contrats/sem · 100k</div></div>
+      <div class="cat-btn" onclick="selCat('Avenir')" id="cat-Avenir"><div class="cat-btn-ico">⭐</div><div class="cat-btn-name">Avenir</div><div class="cat-btn-obj">5 contrats/sem · 80k</div></div>
+      <div class="cat-btn" onclick="selCat('Débutant')" id="cat-Débutant"><div class="cat-btn-ico">🌱</div><div class="cat-btn-name">Débutant</div><div class="cat-btn-obj">3 contrats/sem · 26k</div></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">TON OBJECTIF PERSONNEL (FCFA/MOIS)</label>
+      <input class="form-input" id="setup-obj" type="number" placeholder="1000000" value="1000000">
+      <div style="font-size:10px;color:var(--tx3);margin-top:6px">⚡ Tu pourras modifier ça à tout moment dans ton profil</div>
+    </div>
+    <button class="btn-primary" onclick="saveSetup()">Commencer →</button>
+  </div>
+</div>
+
+<div id="app-screen" class="app" style="display:none">
+  <div class="topbar">
+    <div>
+      <div class="app-name">PROSPEK</div>
+      <div class="app-sub" id="topbar-sub">ÉQUIPE UP3</div>
+    </div>
+    <div class="topbar-right">
+      <div class="time-badge" id="time-badge">--:--</div>
+    </div>
+  </div>
+  <div class="main" id="main"></div>
+  <nav class="nav" id="nav" style="grid-template-columns:repeat(5,1fr)"></nav>
+  <div class="toast" id="toast"></div>
+</div>
+
+<script>
+// ============================================================
+// CONFIG
+// ============================================================
+const API = 'https://script.google.com/macros/s/AKfycbwDsuanGIVoabNfg6xVwCd9U74WDjMSy__QlXQowU_CAjKcJYRq1HfCtiPXPB2CVnRDgg/exec';
+const TODAY = new Date().toISOString().slice(0,10);
+const OBJECTIFS_SUNU = {Leader:{contrats_sem:5,ca_sem:125000},Challenger:{contrats_sem:5,ca_sem:100000},Avenir:{contrats_sem:5,ca_sem:80000},Débutant:{contrats_sem:3,ca_sem:26000}};
+
+// État
+let S = {
+  code:'', nom:'', role:'', onglet:'',
+  categorie:'', objectifPerso:1000000,
+  view:'accueil', filterSt:'tous', searchQ:'',
+  dashboard:null, prospects:[], relances:[], classement:[],
+  equipe:[], alertes:[], notes:[],
+  setupDone:false
+};
+
+// ============================================================
+// INIT
+// ============================================================
+function init(){
+  const saved = localStorage.getItem('prospek_equipe_session');
+  if(saved){
+    try{
+      const sess = JSON.parse(saved);
+      Object.assign(S, sess);
+      if(S.code && S.nom){
+        showApp();
+        loadData();
+        return;
+      }
+    }catch(e){}
+  }
+  document.getElementById('login-screen').style.display='flex';
+}
+
+// ============================================================
+// LOGIN
+// ============================================================
+async function doLogin(){
+  const code = document.getElementById('login-code').value.trim().toUpperCase();
+  if(!code){return;}
+  document.querySelector('.login-btn').textContent = 'Connexion...';
+  try{
+    const res = await fetch(`${API}?action=login&code=${code}`);
+    const data = await res.json();
+    if(data.success){
+      S.code = code;
+      S.nom = data.nom;
+      S.role = data.role;
+      S.onglet = data.onglet;
+      document.getElementById('login-err').style.display='none';
+      // Check setup
+      const setupKey = 'prospek_setup_'+code;
+      const setupSaved = localStorage.getItem(setupKey);
+      if(setupSaved){
+        const setup = JSON.parse(setupSaved);
+        S.categorie = setup.categorie;
+        S.objectifPerso = setup.objectifPerso;
+        S.setupDone = true;
+        saveSession();
+        showApp();
+        loadData();
+      } else {
+        showSetup();
+      }
+    } else {
+      document.getElementById('login-err').style.display='block';
+      document.querySelector('.login-btn').textContent='Connexion →';
+    }
+  }catch(e){
+    // Fallback login avec codes connus
+    const KNOWN = {
+      'GILDAS2026':{nom:'TOSSAVI GILDAS',role:'commercial',onglet:'TOSSAVI'},
+      'CHEF_KPEKPEDE':{nom:'KPEKPEDE GRACE',role:'chef',onglet:'CHEF'},
+      'KPEKPEDE2026':{nom:'KPEKPEDE SANDRA',role:'commercial',onglet:'KPEKPEDE'},
+      'FANOU2026':{nom:'FANOU HERVE',role:'commercial',onglet:'FANOU'},
+      'AGBESSI2026':{nom:'AGBESSI OPPORTUNE',role:'commercial',onglet:'AGBESSI'},
+    };
+    const u = KNOWN[code];
+    if(u){
+      S.code=code; S.nom=u.nom; S.role=u.role; S.onglet=u.onglet;
+      document.getElementById('login-err').style.display='none';
+      const setupSaved = localStorage.getItem('prospek_setup_'+code);
+      if(setupSaved){
+        const setup = JSON.parse(setupSaved);
+        S.categorie=setup.categorie; S.objectifPerso=setup.objectifPerso; S.setupDone=true;
+        saveSession(); showApp(); loadData();
+      } else { showSetup(); }
+    } else {
+      document.getElementById('login-err').style.display='block';
+      document.querySelector('.login-btn').textContent='Connexion →';
+    }
+  }
+}
+
+// ============================================================
+// SETUP
+// ============================================================
+let selCatVal = '';
+function showSetup(){
+  document.getElementById('login-screen').style.display='none';
+  document.getElementById('setup-screen').style.display='block';
+  document.getElementById('setup-nom').textContent = S.nom.split(' ')[1] || S.nom;
+  if(S.code==='GILDAS2026') selCat('Challenger');
+}
+function selCat(c){
+  selCatVal = c;
+  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('sel'));
+  document.getElementById('cat-'+c).classList.add('sel');
+}
+function saveSetup(){
+  if(!selCatVal){toast('⚠️ Choisis ta catégorie SUNU');return;}
+  S.categorie = selCatVal;
+  S.objectifPerso = parseInt(document.getElementById('setup-obj').value)||1000000;
+  S.setupDone = true;
+  localStorage.setItem('prospek_setup_'+S.code, JSON.stringify({categorie:selCatVal, objectifPerso:S.objectifPerso}));
+  saveSession();
+  document.getElementById('setup-screen').style.display='none';
+  showApp();
+  loadData();
+}
+
+// ============================================================
+// APP
+// ============================================================
+function showApp(){
+  document.getElementById('login-screen').style.display='none';
+  document.getElementById('setup-screen').style.display='none';
+  document.getElementById('app-screen').style.display='flex';
+  document.getElementById('topbar-sub').textContent = S.nom + (S.role==='chef'?' · Chef d\'équipe':' · '+S.categorie);
+  renderNav();
+  render();
+  updateTime();
+  setInterval(updateTime,30000);
+}
+
+function saveSession(){
+  localStorage.setItem('prospek_equipe_session', JSON.stringify({
+    code:S.code, nom:S.nom, role:S.role, onglet:S.onglet,
+    categorie:S.categorie, objectifPerso:S.objectifPerso, setupDone:S.setupDone
+  }));
+}
+
+// ============================================================
+// LOAD DATA
+// ============================================================
+async function loadData(){
+  try{
+    if(S.role==='chef'){
+      const [eq, cls] = await Promise.all([
+        fetch(`${API}?action=getEquipe&code=${S.code}`).then(r=>r.json()),
+        fetch(`${API}?action=getClassement&code=${S.code}`).then(r=>r.json())
+      ]);
+      if(eq.success) S.equipe = eq.equipe||[];
+      if(cls.success) S.classement = cls.classement||[];
+      genAlertes();
+    } else {
+      const [dash, pros, rels, cls] = await Promise.all([
+        fetch(`${API}?action=getDashboard&code=${S.code}`).then(r=>r.json()),
+        fetch(`${API}?action=getProspects&code=${S.code}`).then(r=>r.json()),
+        fetch(`${API}?action=getRelances&code=${S.code}`).then(r=>r.json()),
+        fetch(`${API}?action=getClassement&code=${S.code}`).then(r=>r.json())
+      ]);
+      if(dash.success) S.dashboard = dash;
+      if(pros.success) S.prospects = pros.prospects||[];
+      if(rels.success) S.relances = rels.relances||[];
+      if(cls.success) S.classement = cls.classement||[];
+    }
+    render();
+  }catch(e){
+    console.log('API indisponible — mode local');
+  }
+}
+
+// Générer alertes intelligentes (chef)
+function genAlertes(){
+  S.alertes=[];
+  S.equipe.forEach(m=>{
+    if(m.contrats===0) S.alertes.push({type:'r',msg:`${m.nom.split(' ')[0]} — 0 contrat ce mois`,action:'À coacher'});
+    else if(m.contrats>=5) S.alertes.push({type:'g',msg:`${m.nom.split(' ')[0]} — ${m.contrats} contrats 🔥`,action:'Féliciter !'});
+    else if(m.contrats<=2) S.alertes.push({type:'o',msg:`${m.nom.split(' ')[0]} — ${m.contrats} contrats seulement`,action:'À relancer'});
+  });
+}
+
+// ============================================================
+// UTILS
+// ============================================================
+function fmt(n){return Math.round(n||0).toLocaleString('fr-FR')+' FCFA';}
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200);}
+function now(){const d=new Date();return d.getHours().toString().padStart(2,'0')+':'+d.getMinutes().toString().padStart(2,'0');}
+function isPeriod(){const h=new Date().getHours();if(h>=5&&h<12)return'🌅 Matin';if(h>=12&&h<18)return'☀️ Après-midi';if(h>=18&&h<22)return'🌆 Soir';return'🌙 Nuit';}
+function updateTime(){document.getElementById('time-badge').textContent=isPeriod()+' '+now();}
+
+function getBadge(comm, obj){
+  const p = comm/obj;
+  if(p>=0.8)return{cls:'badge-feu',ico:'🔥',title:'En feu !',sub:'Tu déchires ce mois-ci'};
+  if(p>=0.4)return{cls:'badge-forme',ico:'⚡',title:'En forme',sub:'Continue sur cette lancée'};
+  return{cls:'badge-boost',ico:'⚠️',title:'À booster',sub:'Passons à la vitesse supérieure'};
+}
+
+function getStreak(){
+  const streak = parseInt(localStorage.getItem('prospek_streak_'+S.code)||'1');
+  const last = localStorage.getItem('prospek_streak_date_'+S.code)||TODAY;
+  if(last!==TODAY){
+    const newStreak = (last===yesterday())?streak+1:1;
+    localStorage.setItem('prospek_streak_'+S.code,newStreak);
+    localStorage.setItem('prospek_streak_date_'+S.code,TODAY);
+    return newStreak;
+  }
+  return streak;
+}
+function yesterday(){const d=new Date();d.setDate(d.getDate()-1);return d.toISOString().slice(0,10);}
+function markActivity(){
+  localStorage.setItem('prospek_streak_date_'+S.code,TODAY);
+  const streak=parseInt(localStorage.getItem('prospek_streak_'+S.code)||'0');
+  localStorage.setItem('prospek_streak_'+S.code,streak+1);
+}
+
+// ============================================================
+// NAV
+// ============================================================
+const TABS_COMMERCIAL = [
+  {id:'accueil',ico:'🏠',lb:'Accueil'},
+  {id:'pipeline',ico:'🔥',lb:'Pipeline'},
+  {id:'ajouter',ico:'➕',lb:'Ajouter'},
+  {id:'bilan',ico:'📊',lb:'Bilan'},
+  {id:'equipe',ico:'👥',lb:'Équipe'},
+];
+const TABS_CHEF = [
+  {id:'equipe',ico:'👥',lb:'Équipe'},
+  {id:'classement',ico:'🏆',lb:'Classement'},
+  {id:'alertes',ico:'🚨',lb:'Alertes'},
+  {id:'notes',ico:'📝',lb:'Notes'},
+  {id:'profil',ico:'⚙️',lb:'Profil'},
+];
+
+function renderNav(){
+  const tabs = S.role==='chef'?TABS_CHEF:TABS_COMMERCIAL;
+  const urgents = S.prospects.filter(p=>p.urgent&&p.statut!=='Perdu'&&p.statut!=='Signé').length;
+  document.getElementById('nav').style.gridTemplateColumns=`repeat(${tabs.length},1fr)`;
+  document.getElementById('nav').innerHTML=tabs.map(t=>`
+    <button class="nb ${S.view===t.id?'on':''}" onclick="navTo('${t.id}')">
+      <span class="ico">${t.ico}</span>${t.lb}
+      ${t.id==='pipeline'&&urgents>0?`<div class="nb-dot"></div>`:''}
+      ${t.id==='alertes'&&S.alertes.filter(a=>a.type==='r').length>0?`<div class="nb-dot"></div>`:''}
+    </button>
+  `).join('');
+}
+
+function navTo(v){S.view=v;S.searchQ='';render();}
+
+// ============================================================
+// RENDER
+// ============================================================
+function render(){
+  renderNav();
+  const m = document.getElementById('main');
+  if(S.role==='chef'){
+    if(S.view==='equipe')m.innerHTML=renderChefEquipe();
+    else if(S.view==='classement')m.innerHTML=renderClassement();
+    else if(S.view==='alertes')m.innerHTML=renderAlertes();
+    else if(S.view==='notes')m.innerHTML=renderNotes();
+    else if(S.view==='profil')m.innerHTML=renderProfil();
+  } else {
+    if(S.view==='accueil')m.innerHTML=renderAccueil();
+    else if(S.view==='pipeline')m.innerHTML=renderPipeline();
+    else if(S.view==='ajouter')m.innerHTML=renderAjouter();
+    else if(S.view==='bilan')m.innerHTML=renderBilan();
+    else if(S.view==='equipe')m.innerHTML=renderClassement();
+    else if(S.view==='profil')m.innerHTML=renderProfil();
+  }
+}
+
+// ============================================================
+// ACCUEIL (COMMERCIAL)
+// ============================================================
+function renderAccueil(){
+  const dash = S.dashboard;
+  const comm = dash?dash.commissionMois:0;
+  const obj = S.objectifPerso||1000000;
+  const pct = Math.min(100,Math.round(comm/obj*100));
+  const gap = Math.max(0,obj-comm);
+  const streak = getStreak();
+  const badge = getBadge(comm,obj);
+  const urgents = S.prospects.filter(p=>p.urgent);
+  const chauds = S.prospects.filter(p=>p.statut==='Chaud'||p.statut==='RDV fixé');
+  const cat = S.categorie||'Challenger';
+  const objSunu = OBJECTIFS_SUNU[cat]||OBJECTIFS_SUNU.Challenger;
+  const contratsMois = dash?dash.nbContratsMois:0;
+  const monRang = S.classement.find(c=>c.estMoi);
+
+  // Objectif hebdo
+  const contratsSemObj = objSunu.contrats_sem;
+  const briefMsg = contratsMois>=contratsSemObj*4?
+    `🎉 Objectif mensuel atteint !`:
+    `📋 Il te faut encore ${Math.max(0,contratsSemObj*4-contratsMois)} contrats ce mois`;
+
+  let h=`<div class="section">
+    <div class="hero">
+      <div class="hero-label">Commission mensuelle estimée</div>
+      <div class="hero-val">${fmt(comm)}</div>
+      <div class="hero-sub">Objectif perso : ${fmt(obj)}</div>
+      <div class="hero-bar"><div class="hero-fill" style="width:${pct}%"></div></div>
+      <div class="hero-pct">${pct}% atteint — Gap : ${fmt(gap)}</div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="stat-icon">📋</div><div class="stat-val" style="color:var(--t1)">${contratsMois}</div><div class="stat-label">Contrats ce mois</div></div>
+      <div class="stat"><div class="stat-icon">🔥</div><div class="stat-val" style="color:var(--or)">${chauds.length}</div><div class="stat-label">Prospects chauds</div></div>
+      <div class="stat"><div class="stat-icon">🚨</div><div class="stat-val" style="color:var(--re)">${urgents.length}</div><div class="stat-label">Relances urgentes</div></div>
+      <div class="stat"><div class="stat-icon">👥</div><div class="stat-val" style="color:var(--pu)">${S.prospects.length||dash?.nbProspects||0}</div><div class="stat-label">Pipeline total</div></div>
+    </div>
+
+    <div class="badge-card ${badge.cls}">
+      <div class="badge-ico">${badge.ico}</div>
+      <div class="badge-info">
+        <div class="badge-title">${badge.title}</div>
+        <div class="badge-sub">${badge.sub}</div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-size:18px;font-weight:800">🔥${streak}</div>
+        <div style="font-size:9px;opacity:.8">jours actifs</div>
+      </div>
+    </div>
+
+    <div class="card card-left-t" style="cursor:default">
+      <div style="font-size:11px;font-weight:700;color:var(--tx2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">BRIEF INTELLIGENT</div>
+      <div style="font-size:13px;font-weight:700;color:var(--tx)">${briefMsg}</div>
+      <div style="font-size:11px;color:var(--tx3);margin-top:4px">🔥 Streak: ${streak} jour${streak>1?'s':''} d'activité</div>
+      ${monRang?`<div style="font-size:11px;color:var(--t2);margin-top:4px">🏆 Classement équipe : #${monRang.rang}</div>`:''}
+    </div>
+
+    <div class="card card-left-t" style="cursor:default">
+      <div style="font-size:11px;font-weight:700;color:var(--tx2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">OBJECTIF ${cat.toUpperCase()}</div>
+      <div class="info-row"><span class="info-key">Catégorie</span><span class="info-val">${cat}</span></div>
+      <div class="info-row"><span class="info-key">Contrats/semaine</span><span class="info-val">${objSunu.contrats_sem} contrats</span></div>
+      <div class="info-row"><span class="info-key">CA/semaine</span><span class="info-val">${fmt(objSunu.ca_sem)}</span></div>
+      <div class="info-row" style="border:none"><span class="info-key">Objectif mensuel SUNU</span><span class="info-val">${fmt(objSunu.ca_sem*4)}</span></div>
+    </div>
+
+    ${urgents.length>0?`<div class="sec-title">🚨 À RELANCER MAINTENANT</div>`:''}
+    ${urgents.slice(0,2).map(p=>renderCard(p)).join('')}
+    ${urgents.length>2?`<button class="btn-primary" style="margin-top:0" onclick="navTo('pipeline')">Voir tous les ${urgents.length} urgents →</button>`:''}
+
+    <div style="height:20px"></div>
+  </div>`;
+  return h;
+}
+
+// ============================================================
+// PIPELINE
+// ============================================================
+function renderPipeline(){
+  let filtered = S.prospects.filter(p=>{
+    if(S.filterSt!=='tous'&&p.statut!==S.filterSt)return false;
+    if(S.searchQ&&!p.nom.toLowerCase().includes(S.searchQ.toLowerCase())&&!(p.tel||'').includes(S.searchQ))return false;
+    return true;
+  });
+
+  const counts = {tous:S.prospects.length};
+  ['Nouveau','Chaud','RDV fixé','Signé','Perdu'].forEach(s=>{counts[s]=S.prospects.filter(p=>p.statut===s).length;});
+
+  let h=`<div class="section">
+    <div class="search-bar">
+      <span>🔍</span>
+      <input type="text" placeholder="Rechercher un prospect..." value="${S.searchQ}" oninput="S.searchQ=this.value;render()">
+    </div>
+    <div class="chips">
+      ${Object.entries(counts).map(([k,v])=>`<div class="chip ${S.filterSt===k?'on':''}" onclick="S.filterSt='${k}';render()">${k} (${v})</div>`).join('')}
+    </div>`;
+
+  if(filtered.length===0){
+    h+=`<div class="empty"><div class="empty-icon">📭</div><div class="empty-text">Aucun prospect trouvé</div></div>`;
+  } else {
+    filtered.forEach(p=>{ h+=renderCard(p); });
+  }
+  h+=`</div>`;
+  return h;
+}
+
+function renderCard(p){
+  const urgent = p.urgent;
+  const statut = p.statut||'Nouveau';
+  let borderCls = 'card-left-t';
+  let badgeCls = 'b-t'; let badgeTxt = statut;
+  if(urgent||statut==='Perdu'){borderCls='card-left-r';badgeCls='b-r';badgeTxt='URGENT';}
+  else if(statut==='Chaud'){borderCls='card-left-o';badgeCls='b-o';}
+  else if(statut==='RDV fixé'){borderCls='card-left-o';badgeCls='b-p';}
+  else if(statut==='Signé'){borderCls='card-left-g';badgeCls='b-g';}
+
+  return `<div class="card ${borderCls}">
+    <div class="card-head">
+      <div>
+        <div class="card-nom">${(p.nom||'').substring(0,28)}</div>
+        <div class="card-meta">${p.fonction||p.source||''}</div>
+      </div>
+      <span class="badge ${badgeCls}">${badgeTxt}</span>
+    </div>
+    ${p.notes?`<div style="font-size:10px;color:var(--tx3);margin-top:6px;line-height:1.4">${String(p.notes).substring(0,80)}</div>`:''}
+    ${statut!=='Perdu'&&statut!=='Signé'?`
+    <div class="card-actions">
+      ${p.tel?`<button class="btn-sm btn-call" onclick="window.location='tel:${p.tel}'">📞 Appeler</button>`:''}
+      ${p.tel?`<button class="btn-sm" onclick="window.open('https://wa.me/229${p.tel}','_blank')">💬 WA</button>`:''}
+      <button class="btn-sm btn-ok" onclick="updateProspect(${p.id},'Signé')">✅ Signé</button>
+      <button class="btn-sm btn-rdv" onclick="updateProspect(${p.id},'RDV fixé')">📅 RDV</button>
+      <button class="btn-sm btn-no" onclick="updateProspect(${p.id},'Perdu')">❌</button>
+    </div>`:''}
+  </div>`;
+}
+
+async function updateProspect(id, statut){
+  const p = S.prospects.find(x=>x.id===id);
+  if(!p)return;
+  p.statut = statut;
+  if(statut==='Signé') markActivity();
+  toast(statut==='Signé'?'✅ Contrat signé ! Bravo !':statut==='RDV fixé'?'📅 RDV noté !':'❌ Perdu');
+  render();
+  // Sync Sheets
+  try{
+    await fetch(API,{method:'POST',body:JSON.stringify({action:'updateStatut',code:S.code,nom:p.nom,tel:p.tel,statut})});
+  }catch(e){}
+}
+
+// ============================================================
+// AJOUTER
+// ============================================================
+function renderAjouter(){
+  return `<div class="section">
+    <div class="sec-title">NOUVEAU PROSPECT</div>
+    <div class="form-group">
+      <label class="form-label">Nom complet *</label>
+      <input class="form-input" id="f-nom" type="text" placeholder="AGOSSOU Jean-Pierre">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Téléphone</label>
+      <input class="form-input" id="f-tel" type="tel" placeholder="0197000000">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Fonction / Secteur</label>
+      <input class="form-input" id="f-fonc" type="text" placeholder="Douanier, Médecin, Avocat...">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Source</label>
+      <select class="form-input" id="f-src">
+        <option>Terrain</option>
+        <option>Fonctionnaires</option>
+        <option>Douaniers</option>
+        <option>Avocats</option>
+        <option>Pharmacies</option>
+        <option>Médecins</option>
+        <option>Cliniques</option>
+        <option>Notaires</option>
+        <option>Référence</option>
+        <option>Autre</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Statut</label>
+      <select class="form-input" id="f-stat">
+        <option>Nouveau</option>
+        <option>Chaud</option>
+        <option>RDV fixé</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Produit envisagé</label>
+      <select class="form-input" id="f-prod">
+        <option>À définir</option>
+        <option>REP NF</option>
+        <option>Mixte Plus NF</option>
+        <option>Liberty</option>
+        <option>Fonds Cantonné NF-1</option>
+        <option>CAPIPLU</option>
+        <option>HR5</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Date de relance</label>
+      <input class="form-input" id="f-rel" type="date" value="${new Date(Date.now()+2*86400000).toISOString().slice(0,10)}">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Notes</label>
+      <textarea class="form-input" id="f-notes" placeholder="Ce qu'il a dit, objections, contexte..."></textarea>
+    </div>
+    <button class="btn-primary" onclick="submitProspect()">✅ Enregistrer le prospect</button>
+    <div style="height:20px"></div>
+  </div>`;
+}
+
+async function submitProspect(){
+  const nom = document.getElementById('f-nom').value.trim();
+  if(!nom){toast('⚠️ Le nom est obligatoire');return;}
+  const data = {
+    action:'addProspect', code:S.code,
+    nom, tel:document.getElementById('f-tel').value,
+    fonction:document.getElementById('f-fonc').value,
+    source:document.getElementById('f-src').value,
+    statut:document.getElementById('f-stat').value,
+    produit:document.getElementById('f-prod').value,
+    relance:document.getElementById('f-rel').value,
+    notes:document.getElementById('f-notes').value
+  };
+  // Ajout local immédiat
+  const newP = {...data, id:Date.now(), urgent:false};
+  S.prospects.unshift(newP);
+  markActivity();
+  toast('✅ '+nom+' ajouté au pipeline !');
+  S.view='pipeline'; render();
+  // Sync Sheets
+  try{ await fetch(API,{method:'POST',body:JSON.stringify(data)}); }catch(e){}
+}
+
+// ============================================================
+// BILAN / CR
+// ============================================================
+function renderBilan(){
+  return `<div class="section">
+    <div class="sec-title">COMPTE-RENDU DU JOUR</div>
+    <div class="cr-grid">
+      <div class="cr-stat"><input type="number" id="cr-app" value="0" min="0"><div class="cr-stat-label">📞 Appels</div></div>
+      <div class="cr-stat"><input type="number" id="cr-con" value="0" min="0"><div class="cr-stat-label">👥 Contacts</div></div>
+      <div class="cr-stat"><input type="number" id="cr-rdv" value="0" min="0"><div class="cr-stat-label">📅 RDV</div></div>
+      <div class="cr-stat"><input type="number" id="cr-sig" value="0" min="0"><div class="cr-stat-label">✅ Signés</div></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Prospects chauds (noms)</label>
+      <textarea class="form-input" id="cr-chauds" placeholder="Liste des prospects chauds du jour..."></textarea>
+    </div>
+    <div class="form-group">
+      <label class="form-label">À faire demain</label>
+      <textarea class="form-input" id="cr-dem" placeholder="Relances prévues, RDV à confirmer..."></textarea>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Notes libres</label>
+      <textarea class="form-input" id="cr-notes" placeholder="Observations, difficultés, victoires..."></textarea>
+    </div>
+    <button class="btn-primary" onclick="submitCR()">📊 Enregistrer le bilan</button>
+    <div style="height:20px"></div>
+  </div>`;
+}
+
+async function submitCR(){
+  const data = {
+    action:'saveCompteRendu', code:S.code,
+    date:TODAY,
+    appels:parseInt(document.getElementById('cr-app').value)||0,
+    contacts:parseInt(document.getElementById('cr-con').value)||0,
+    rdv:parseInt(document.getElementById('cr-rdv').value)||0,
+    signes:parseInt(document.getElementById('cr-sig').value)||0,
+    chauds:document.getElementById('cr-chauds').value,
+    demain:document.getElementById('cr-dem').value,
+    notes:document.getElementById('cr-notes').value
+  };
+  markActivity();
+  toast('✅ Bilan enregistré dans Sheets !');
+  try{ await fetch(API,{method:'POST',body:JSON.stringify(data)}); }catch(e){}
+}
+
+// ============================================================
+// CLASSEMENT (COMMERCIAL + CHEF)
+// ============================================================
+function renderClassement(){
+  const max = S.classement.length>0?S.classement[0].commission||1:1;
+  let h=`<div class="section">
+    <div class="sec-title">🏆 CLASSEMENT ÉQUIPE — CE MOIS</div>`;
+  if(S.classement.length===0){
+    h+=`<div class="empty"><div class="empty-icon">⏳</div><div class="empty-text">Chargement du classement...</div></div>`;
+  } else {
+    S.classement.forEach(m=>{
+      const pct = Math.round((m.commission||0)/max*100);
+      const medals = ['🥇','🥈','🥉'];
+      const med = m.rang<=3?medals[m.rang-1]:m.rang;
+      h+=`<div class="rank-card ${m.estMoi?'rank-me':''}">
+        <div class="rank-num ${m.rang<=3?'rank-'+m.rang:''}">${med}</div>
+        <div class="rank-info">
+          <div class="rank-nom">${m.nom}${m.estMoi?' (Toi)':''}</div>
+          <div class="rank-meta">${m.contrats||0} contrat${(m.contrats||0)>1?'s':''}</div>
+          <div class="rank-bar"><div class="rank-bar-fill" style="width:${pct}%"></div></div>
+        </div>
+        <div class="rank-comm">${fmt(m.commission||0)}</div>
+      </div>`;
+    });
+    // Fallback si liste vide
+  }
+  h+=`</div>`;
+  return h;
+}
+
+// ============================================================
+// CHEF — ÉQUIPE
+// ============================================================
+function renderChefEquipe(){
+  let totalComm=0, totalContrats=0;
+  S.equipe.forEach(m=>{totalComm+=m.commission||0;totalContrats+=m.contrats||0;});
+  let h=`<div class="section">
+    <div class="hero">
+      <div class="hero-label">Commission totale équipe UP3</div>
+      <div class="hero-val">${fmt(totalComm)}</div>
+      <div class="hero-sub">${totalContrats} contrats ce mois · ${S.equipe.length} commerciaux</div>
+    </div>
+    <div class="sec-title">VUE ÉQUIPE</div>`;
+  if(S.equipe.length===0){
+    h+=`<div class="empty"><div class="empty-icon">⏳</div><div class="empty-text">Chargement des données équipe...</div></div>`;
+  } else {
+    S.equipe.forEach(m=>{
+      const pct=Math.min(100,Math.round((m.commission||0)/1000000*100));
+      h+=`<div class="card card-left-${m.contrats>=3?'g':m.contrats>=1?'o':'r'}">
+        <div class="card-head">
+          <div>
+            <div class="card-nom">${m.nom}</div>
+            <div class="card-meta">${m.contrats||0} contrats · ${m.prospects||0} prospects</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:13px;font-weight:800;color:var(--t1)">${fmt(m.commission||0)}</div>
+            <div class="badge ${m.contrats>=3?'b-g':m.contrats>=1?'b-o':'b-r'}">${m.contrats>=3?'🔥 En feu':m.contrats>=1?'⚡ En forme':'⚠️ À booster'}</div>
+          </div>
+        </div>
+        <div class="rank-bar" style="margin-top:8px"><div class="rank-bar-fill" style="width:${pct}%"></div></div>
+      </div>`;
+    });
+  }
+  h+=`</div>`;
+  return h;
+}
+
+// ============================================================
+// CHEF — ALERTES
+// ============================================================
+function renderAlertes(){
+  let h=`<div class="section"><div class="sec-title">ALERTES INTELLIGENTES</div>`;
+  if(S.alertes.length===0){
+    h+=`<div class="empty"><div class="empty-icon">✅</div><div class="empty-text">Aucune alerte urgente</div></div>`;
+  } else {
+    S.alertes.forEach(a=>{
+      h+=`<div class="alert-card alert-${a.type}">
+        <div class="alert-title">${a.msg}</div>
+        <div class="alert-body">Action suggérée : ${a.action}</div>
+      </div>`;
+    });
+  }
+  h+=`<div style="height:20px"></div></div>`;
+  return h;
+}
+
+// ============================================================
+// CHEF — NOTES
+// ============================================================
+function renderNotes(){
+  const saved = JSON.parse(localStorage.getItem('prospek_notes_chef')||'[]');
+  let h=`<div class="section">
+    <div class="sec-title">ENVOYER UNE NOTE</div>
+    <div class="form-group">
+      <label class="form-label">Commercial</label>
+      <select class="form-input" id="note-who">
+        ${S.equipe.map(m=>`<option value="${m.nom}">${m.nom}</option>`).join('')}
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Type</label>
+      <select class="form-input" id="note-type">
+        <option value="encouragement">🌟 Encouragement</option>
+        <option value="alerte">⚠️ Alerte</option>
+        <option value="conseil">💡 Conseil</option>
+        <option value="felicitation">🏆 Félicitation</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Note</label>
+      <textarea class="form-input" id="note-text" placeholder="Écris ta note ici..."></textarea>
+    </div>
+    <button class="btn-primary" onclick="submitNote()">📝 Enregistrer la note</button>
+    <div class="sec-title" style="margin-top:20px">NOTES RÉCENTES</div>
+    ${saved.slice(-5).reverse().map(n=>`
+      <div class="note-card">
+        <div class="note-header">
+          <div class="note-who">${n.who}</div>
+          <div class="note-date">${n.date}</div>
+        </div>
+        <div style="font-size:10px;color:var(--t2);margin-bottom:4px">${n.type}</div>
+        <div class="note-text">${n.text}</div>
+      </div>
+    `).join('')}
+    <div style="height:20px"></div>
+  </div>`;
+  return h;
+}
+
+async function submitNote(){
+  const who = document.getElementById('note-who').value;
+  const type = document.getElementById('note-type').value;
+  const text = document.getElementById('note-text').value.trim();
+  if(!text){toast('⚠️ Écris une note');return;}
+  const saved = JSON.parse(localStorage.getItem('prospek_notes_chef')||'[]');
+  saved.push({who, type, text, date:TODAY});
+  localStorage.setItem('prospek_notes_chef',JSON.stringify(saved));
+  toast(`✅ Note envoyée à ${who}`);
+  render();
+  try{
+    await fetch(API,{method:'POST',body:JSON.stringify({action:'saveNote',code:S.code,commercial:who,note:text,type})});
+  }catch(e){}
+}
+
+// ============================================================
+// PROFIL
+// ============================================================
+function renderProfil(){
+  return `<div class="section">
+    <div class="hero">
+      <div class="hero-label">Mon profil</div>
+      <div class="hero-val" style="font-size:22px">${S.nom}</div>
+      <div class="hero-sub">${S.role==='chef'?'Chef d\'équipe UP3':S.categorie+' · UP3'}</div>
+    </div>
+    ${S.role!=='chef'?`
+    <div class="card card-left-t" style="cursor:default">
+      <div class="info-row"><span class="info-key">Catégorie SUNU</span><span class="info-val">${S.categorie}</span></div>
+      <div class="info-row"><span class="info-key">Objectif personnel</span><span class="info-val">${fmt(S.objectifPerso)}/mois</span></div>
+      <div class="info-row" style="border:none"><span class="info-key">Streak</span><span class="info-val">🔥 ${getStreak()} jours</span></div>
+    </div>
+    <div class="form-group" style="margin-top:14px">
+      <label class="form-label">Modifier objectif personnel</label>
+      <input class="form-input" id="new-obj" type="number" value="${S.objectifPerso}">
+    </div>
+    <button class="btn-primary" onclick="updateObj()" style="background:var(--t2)">💾 Sauvegarder</button>`:''}
+    <button class="btn-primary" onclick="deconnect()" style="background:var(--re);margin-top:10px">🚪 Se déconnecter</button>
+    <div style="height:20px"></div>
+  </div>`;
+}
+
+function updateObj(){
+  const v = parseInt(document.getElementById('new-obj').value)||1000000;
+  S.objectifPerso = v;
+  localStorage.setItem('prospek_setup_'+S.code,JSON.stringify({categorie:S.categorie,objectifPerso:v}));
+  saveSession();
+  toast('✅ Objectif mis à jour');
+  render();
+}
+function deconnect(){
+  localStorage.removeItem('prospek_equipe_session');
+  location.reload();
+}
+
+// ============================================================
+// START
+// ============================================================
+init();
+</script>
+</body>
+</html>
