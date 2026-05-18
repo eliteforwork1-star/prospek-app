@@ -1,0 +1,1307 @@
+<!-- PROSPEK EQUIPE V3.2 - 2026-05-13 -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="PROSPEK">
+<meta name="theme-color" content="#00C9B8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>PROSPEK EQUIPE</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{--t1:#00C9B8;--t2:#00A89A;--t3:#007A70;--bg:#F0FAFA;--bg2:#E0F5F4;--tx:#0A2E2C;--tx2:#3D6B68;--tx3:#7AADAA;--or:#FF6B35;--orl:#FFF0EB;--re:#E84040;--rel:#FFEBEE;--gr:#00C07A;--grl:#E6FFF4;--ye:#F5A623;--yel:#FFF8EC;--pu:#6C63FF;--pul:#F0EFFF;--sh:0 4px 24px rgba(0,201,184,.15);--sh2:0 2px 12px rgba(0,0,0,.08)}
+html,body{height:100%;font-family:'Sora',sans-serif;background:var(--bg);color:var(--tx);overflow:hidden}
+.app{display:flex;flex-direction:column;height:100vh;height:100dvh;max-width:430px;margin:0 auto;position:fixed;top:0;left:50%;transform:translateX(-50%);bottom:0;width:100%}
+.topbar{background:linear-gradient(135deg,var(--t1),var(--t3));padding:12px 16px 10px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;overflow:hidden;position:relative}
+.topbar::before{content:'';position:absolute;top:-15px;right:-15px;width:70px;height:70px;border-radius:50%;background:rgba(255,255,255,.1)}
+.app-name{font-size:19px;font-weight:800;color:white;z-index:1}
+.app-sub{font-size:10px;color:rgba(255,255,255,.75);margin-top:1px}
+.topbar-right{display:flex;flex-direction:column;align-items:flex-end;gap:3px;z-index:1}
+.tbadge{background:rgba(255,255,255,.2);border-radius:16px;padding:3px 9px;font-size:12px;color:white;font-weight:600}
+.syncbtn{font-size:11px;color:rgba(255,255,255,.85);cursor:pointer;background:rgba(255,255,255,.15);padding:2px 8px;border-radius:10px;border:none;font-family:'Sora',sans-serif}
+.main{flex:1;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.main::-webkit-scrollbar{display:none}
+.nav{display:grid;background:white;border-top:1px solid #E0F5F4;flex-shrink:0;box-shadow:0 -4px 20px rgba(0,0,0,.06);padding-bottom:env(safe-area-inset-bottom,0px)}
+.nb{padding:9px 4px 7px;text-align:center;cursor:pointer;font-size:10px;font-weight:600;color:#AAC;border:none;background:none;font-family:'Sora',sans-serif;letter-spacing:.04em;text-transform:uppercase;transition:.15s;position:relative}
+.nb.on{color:var(--t1)}.nb .ico{font-size:19px;display:block;margin-bottom:2px}.nb.on .ico{transform:scale(1.1)}
+.nb-dot{position:absolute;top:7px;right:50%;transform:translateX(8px);width:7px;height:7px;background:var(--re);border-radius:50%;border:2px solid white}
+.sec{padding:14px;animation:fi .2s ease}
+@keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.brief{background:linear-gradient(135deg,var(--t3),var(--t4,#003330));border-radius:14px;padding:14px;margin-bottom:12px;color:white}
+.brief-ttl{font-size:11px;font-weight:700;opacity:.8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}
+.brief-msg{font-size:13px;line-height:1.55;font-weight:500}
+.brief-btn{margin-top:10px;padding:7px 14px;background:rgba(255,255,255,.2);border:1.5px solid rgba(255,255,255,.4);border-radius:10px;color:white;font-size:12px;font-weight:700;cursor:pointer;font-family:'Sora',sans-serif}
+.hero{background:linear-gradient(135deg,var(--t1),var(--t3));border-radius:16px;padding:16px;margin-bottom:12px;color:white;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-10px;right:-10px;width:70px;height:70px;border-radius:50%;background:rgba(255,255,255,.08)}
+.hero-lbl{font-size:12px;font-weight:600;opacity:.8;text-transform:uppercase;letter-spacing:.07em}
+.hero-val{font-size:30px;font-weight:800;margin:3px 0}.hero-sub{font-size:11px;opacity:.7}
+.hero-bar{background:rgba(255,255,255,.2);border-radius:5px;height:5px;margin:10px 0 5px;overflow:hidden}
+.hero-fill{height:100%;background:white;border-radius:5px;transition:1.2s ease}.hero-pct{font-size:12px;opacity:.75}
+.obj2{background:white;border-radius:12px;padding:12px;margin-bottom:10px;box-shadow:var(--sh2)}
+.obj2-row{margin-bottom:8px}.obj2-lbl{display:flex;justify-content:space-between;font-size:10px;font-weight:600;margin-bottom:3px}
+.obj2-bar{background:#E8F5F4;border-radius:4px;height:5px;overflow:hidden}
+.obj2-fill{height:100%;border-radius:4px;transition:.8s ease}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.stat{background:white;border-radius:12px;padding:12px;box-shadow:var(--sh2);cursor:pointer;transition:transform .15s}.stat:active{transform:scale(.97)}
+.stat-ico{font-size:16px;margin-bottom:3px}.stat-val{font-size:22px;font-weight:800}.stat-lbl{font-size:10px;color:var(--tx2);margin-top:2px;font-weight:500}
+.badge-com{border-radius:14px;padding:12px 14px;margin-bottom:10px;display:flex;align-items:center;gap:10px;color:white}
+.badge-feu{background:linear-gradient(135deg,#FF6B35,#FF4D6A)}.badge-forme{background:linear-gradient(135deg,var(--t1),var(--t2))}.badge-boost{background:linear-gradient(135deg,#6C63FF,#A855F7)}
+.badge-ico{font-size:26px}.badge-info{flex:1}.badge-title{font-size:13px;font-weight:800}.badge-sub{font-size:10px;opacity:.85;margin-top:1px}
+.streak-val{text-align:right}.streak-num{font-size:20px;font-weight:800}.streak-lbl{font-size:9px;opacity:.8}
+.alrt{display:flex;align-items:flex-start;gap:8px;border-radius:12px;padding:10px 12px;margin-bottom:6px;border-left:3px solid}
+.alrt-ico{font-size:16px;flex-shrink:0}.alrt-txt{font-size:12px;font-weight:500;line-height:1.45}
+.stitle{font-size:11px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.08em;margin:14px 0 7px}
+.card{background:white;border-radius:13px;padding:12px;margin-bottom:7px;box-shadow:var(--sh2);cursor:pointer;transition:.12s;position:relative;overflow:hidden}
+.card:active{transform:scale(.99)}.cn{cursor:default}
+.cu{border-left:3px solid var(--re)}.cc{border-left:3px solid var(--or)}.ck{border-left:3px solid var(--t1)}.cg{border-left:3px solid var(--gr)}.cp{border-left:3px solid var(--pu)}
+.ch{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.cnom{font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:190px}
+.cmeta{font-size:10px;color:var(--tx2);margin-top:2px}
+.cbadge{padding:3px 8px;border-radius:16px;font-size:9px;font-weight:700;white-space:nowrap}
+.bu{background:var(--rel);color:var(--re)}.bo{background:var(--orl);color:var(--or)}.bp{background:var(--pul);color:var(--pu)}.bt{background:var(--bg2);color:var(--t2)}.bg2{background:var(--grl);color:var(--gr)}.bx{background:#F5F5F5;color:#AAA}
+.cobs{font-size:10px;color:var(--tx3);margin-top:5px;line-height:1.4}
+.cact{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap}
+.bsm{padding:5px 9px;border-radius:7px;font-size:10px;font-weight:600;border:1.5px solid #E0F5F4;background:#F8FFFE;color:var(--t2);cursor:pointer;font-family:'Sora',sans-serif;text-decoration:none;display:inline-block}
+.bsm:active{transform:scale(.96)}.bcall{background:var(--t1);color:white;border-color:var(--t1)}.bok{background:var(--grl);color:var(--gr);border-color:var(--gr)}.brdv{background:var(--pul);color:var(--pu);border-color:var(--pu)}.brel{background:var(--orl);color:var(--or);border-color:var(--or)}.bno{background:#F5F5F5;color:#AAA;border-color:#EEE}
+.back{display:flex;align-items:center;gap:5px;font-size:13px;color:var(--t2);cursor:pointer;background:none;border:none;font-family:'Sora',sans-serif;margin-bottom:12px;font-weight:600}
+.det-head{background:linear-gradient(135deg,var(--t1),var(--t3));border-radius:14px;padding:16px;color:white;margin-bottom:12px}
+.det-nom{font-size:17px;font-weight:800}.det-meta{font-size:11px;opacity:.8;margin-top:3px}
+.irow{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--bg2);font-size:12px}
+.irow:last-child{border-bottom:none}.ikey{color:var(--tx2);font-weight:500}.ival{font-weight:700;text-align:right}
+.obs-box{background:var(--yel);border-radius:11px;padding:11px;margin:8px 0;font-size:11px;line-height:1.6;white-space:pre-wrap}
+.search-bar{background:white;border-radius:11px;padding:9px 13px;display:flex;align-items:center;gap:8px;margin-bottom:11px;box-shadow:var(--sh2)}
+.search-bar input{flex:1;border:none;font-family:'Sora',sans-serif;font-size:13px;color:var(--tx);background:none}.search-bar input:focus{outline:none}
+.chips{display:flex;gap:5px;overflow-x:auto;padding-bottom:4px;margin-bottom:10px;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}
+.chip{padding:4px 11px;border-radius:16px;font-size:10px;font-weight:600;border:1.5px solid #E0F5F4;background:white;color:var(--tx2);cursor:pointer;white-space:nowrap;flex-shrink:0;font-family:'Sora',sans-serif}
+.chip.on{background:var(--t1);color:white;border-color:var(--t1)}
+.fg{margin-bottom:12px}.fl{font-size:11px;font-weight:600;color:var(--tx2);display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:.05em}
+.fi{width:100%;padding:11px 13px;border:2px solid #E0F5F4;border-radius:11px;font-size:14px;font-family:'Sora',sans-serif;color:var(--tx);background:white;-webkit-appearance:none}
+.fi:focus{outline:none;border-color:var(--t1)}select.fi{appearance:none}textarea.fi{resize:vertical;min-height:65px}
+.btn-p{width:100%;padding:13px;background:linear-gradient(135deg,var(--t1),var(--t2));color:white;border:none;border-radius:13px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Sora',sans-serif;box-shadow:var(--sh);margin-top:5px}
+.btn-p:active{transform:scale(.98)}
+.cr-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:12px}
+.cr-box{background:white;border-radius:11px;padding:11px;text-align:center;box-shadow:var(--sh2)}
+.cr-box input{width:100%;text-align:center;font-size:26px;font-weight:800;color:var(--t1);border:none;background:none;font-family:'Sora',sans-serif;padding:3px 0}.cr-box input:focus{outline:none}
+.cr-lbl{font-size:9px;color:var(--tx2);font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-top:3px}
+.rank-card{background:white;border-radius:13px;padding:12px 14px;margin-bottom:7px;box-shadow:var(--sh2);display:flex;align-items:center;gap:10px}
+.rank-me{border:2px solid var(--t1);background:var(--bg2)}.rank-num{font-size:20px;font-weight:800;width:30px;text-align:center}
+.r1{color:#F5A623}.r2{color:#7AADAA}.r3{color:var(--or)}.rank-info{flex:1}.rank-nom{font-size:13px;font-weight:700}
+.rank-meta{font-size:10px;color:var(--tx3);margin-top:1px}.rank-bar{height:3px;background:#E8F5F4;border-radius:3px;margin-top:5px;overflow:hidden}
+.rank-bar-fill{height:100%;background:var(--t1);border-radius:3px}.rank-comm{font-size:13px;font-weight:800;color:var(--t1)}
+.note-card{background:white;border-radius:13px;padding:13px;margin-bottom:7px;box-shadow:var(--sh2)}
+.note-who{font-size:11px;font-weight:700;color:var(--t2);margin-bottom:4px}.note-txt{font-size:12px;color:var(--tx);line-height:1.5}.note-date{font-size:9px;color:var(--tx3);margin-top:4px}
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--tx);color:white;padding:9px 18px;border-radius:18px;font-size:12px;font-weight:600;z-index:999;opacity:0;transition:.3s;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+.sec-screen{display:none;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:32px 24px;background:linear-gradient(160deg,#E0FAFA,#F5FFFD)}
+.sec-card{background:white;border-radius:22px;padding:26px 22px;width:100%;max-width:340px;box-shadow:0 8px 40px rgba(0,201,184,.15)}
+.sec-title{font-size:16px;font-weight:700;color:var(--tx);margin-bottom:6px;text-align:center}
+.sec-sub{font-size:12px;color:var(--tx3);margin-bottom:20px;text-align:center;line-height:1.5}
+.sec-logo{font-size:28px;font-weight:800;color:var(--t1);margin-bottom:4px;text-align:center}
+.sec-ico{font-size:40px;text-align:center;margin-bottom:12px}
+.otp-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:16px}
+.otp-box{width:100%;aspect-ratio:1;border:2px solid #E0F5F4;border-radius:10px;font-size:20px;font-weight:800;text-align:center;font-family:'JetBrains Mono',monospace;color:var(--tx);background:white}
+.otp-box:focus{outline:none;border-color:var(--t1)}
+.link-btn{background:none;border:none;color:var(--t1);font-size:12px;font-weight:600;cursor:pointer;font-family:'Sora',sans-serif;text-decoration:underline;margin-top:8px;width:100%;text-align:center}
+
+.login-wrap{display:none;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:32px 24px;background:linear-gradient(160deg,#E0FAFA,#F5FFFD)}
+.login-logo{font-size:36px;font-weight:800;color:var(--t1);margin-bottom:4px}.login-tag{font-size:12px;color:var(--tx3);margin-bottom:36px;text-align:center}
+.login-card{background:white;border-radius:22px;padding:26px 22px;width:100%;max-width:340px;box-shadow:0 8px 40px rgba(0,201,184,.15)}
+.login-title{font-size:15px;font-weight:700;color:var(--tx);margin-bottom:18px;text-align:center}
+.login-input{width:100%;padding:13px 15px;border:2px solid #E0F5F4;border-radius:13px;font-size:17px;font-family:'JetBrains Mono',monospace;color:var(--tx);text-align:center;letter-spacing:.15em;text-transform:uppercase}
+.login-input:focus{outline:none;border-color:var(--t1)}
+.login-btn{width:100%;margin-top:14px;padding:14px;background:linear-gradient(135deg,var(--t1),var(--t2));color:white;border:none;border-radius:13px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Sora',sans-serif;box-shadow:var(--sh)}
+.login-err{color:var(--re);font-size:12px;text-align:center;margin-top:10px;display:none}
+.setup-wrap{display:none;overflow-y:auto;height:100vh;padding:24px;background:var(--bg)}
+.setup-title{font-size:19px;font-weight:800;color:var(--tx);margin-bottom:3px}.setup-sub{font-size:11px;color:var(--tx3);margin-bottom:24px}
+.cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px}
+.cat-btn{padding:13px 8px;border-radius:13px;border:2px solid #E0F5F4;background:white;text-align:center;cursor:pointer;font-family:'Sora',sans-serif}
+.cat-btn.sel{border-color:var(--t1);background:var(--bg2)}.cat-ico{font-size:20px;margin-bottom:3px}.cat-name{font-size:12px;font-weight:700;color:var(--tx)}.cat-obj{font-size:9px;color:var(--tx3);margin-top:2px}
+.comm-hist{background:white;border-radius:13px;padding:14px;box-shadow:var(--sh2);margin-bottom:8px}
+.comm-mois{font-size:12px;font-weight:700;color:var(--tx2)}.comm-val{font-size:20px;font-weight:800;color:var(--t1);margin:2px 0}.comm-sub{font-size:10px;color:var(--tx3)}
+.equipe-card{background:white;border-radius:13px;padding:12px;margin-bottom:7px;box-shadow:var(--sh2)}
+.equipe-row{display:flex;justify-content:space-between;align-items:center}.equipe-nom{font-size:13px;font-weight:700}.equipe-meta{font-size:10px;color:var(--tx3);margin-top:1px}.equipe-comm{font-size:14px;font-weight:800;color:var(--t1)}
+</style>
+</head>
+<body>
+
+<div id="login-screen" class="login-wrap" style="display:flex;position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999">
+  <div class="login-logo">PROSPEK</div><div style="font-size:10px;color:var(--tx3);margin-bottom:-20px">v3.1</div>
+  <div class="login-tag">Équipe UP3</div>
+  <div class="login-card">
+    <div class="login-title">Entre ton code d'acces</div>
+    <input class="login-input" id="login-code" type="text" maxlength="20" placeholder="TON CODE..." autocomplete="off" oninput="this.value=this.value.toUpperCase()" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="login-btn" onclick="doLogin()">Se connecter</button>
+    <div class="login-err" id="login-err">Code incorrect. Verifie et reessaie.</div>
+  </div>
+</div>
+
+<!-- SCREEN: SAISIE EMAIL (premier login) -->
+<div id="email-screen" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;background:linear-gradient(160deg,#E0FAFA,#F5FFFD);z-index:9999;overflow-y:auto">
+  <div style="font-size:28px;font-weight:800;color:var(--t1);margin-bottom:16px">PROSPEK</div>
+  <div style="background:white;border-radius:22px;padding:26px 22px;width:100%;max-width:340px;box-shadow:0 8px 40px rgba(0,201,184,.15)">
+    <div style="font-size:32px;text-align:center;margin-bottom:12px">🔐</div>
+    <div style="font-size:15px;font-weight:700;color:var(--tx);margin-bottom:6px;text-align:center">Créer votre compte PROSPEK</div>
+    <div style="font-size:12px;color:var(--tx3);margin-bottom:20px;text-align:center;line-height:1.5">Sécurisez votre accès avec votre email et un mot de passe personnel.</div>
+    <div class="fg"><label class="fl">Votre Gmail</label><input class="fi" id="email-inp" type="email" placeholder="exemple@gmail.com" autocomplete="email"></div>
+    <div class="fg"><label class="fl">Créer un mot de passe</label><div style="position:relative"><input class="fi" id="email-mdp1" type="password" placeholder="Minimum 6 caractères" autocomplete="new-password" style="padding-right:44px"><button id="eye-email-mdp1" onclick="togglePwd('email-mdp1')" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;font-size:18px;cursor:pointer">👁</button></div></div>
+    <div class="fg"><label class="fl">Confirmer le mot de passe</label><div style="position:relative"><input class="fi" id="email-mdp2" type="password" placeholder="Répète ton mot de passe" autocomplete="new-password" style="padding-right:44px"><button id="eye-email-mdp2" onclick="togglePwd('email-mdp2')" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;font-size:18px;cursor:pointer">👁</button></div></div>
+    <button class="btn-p" id="creer-btn" onclick="creerCompte()">Créer mon compte →</button>
+    <div id="admin-hint" style="display:none;margin-top:12px"><button onclick="voirComptePourAdmin()" style="background:none;border:1.5px solid var(--t1);color:var(--t1);padding:10px;border-radius:12px;font-size:12px;font-weight:700;cursor:pointer;width:100%"><span id="admin-btn-lbl">🔑 Acces admin</span></button></div>
+    <div class="login-err" id="email-err"></div>
+  </div>
+</div>
+
+<!-- SCREEN: CODE OTP -->
+<div id="otp-screen" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;background:linear-gradient(160deg,#E0FAFA,#F5FFFD);z-index:9999;overflow-y:auto">
+  <div style="font-size:28px;font-weight:800;color:var(--t1);margin-bottom:16px">PROSPEK</div>
+  <div style="background:white;border-radius:22px;padding:26px 22px;width:100%;max-width:340px;box-shadow:0 8px 40px rgba(0,201,184,.15)">
+    <div style="font-size:32px;text-align:center;margin-bottom:12px">🔐</div>
+    <div style="font-size:15px;font-weight:700;color:var(--tx);margin-bottom:6px;text-align:center">Code de vérification</div>
+    <div style="font-size:12px;color:var(--tx3);margin-bottom:20px;text-align:center" id="otp-sub">Entrez le code reçu sur votre Gmail (valable 10 min)</div>
+    <div class="fg" style="margin-bottom:16px">
+      <label class="fl">Code reçu par Gmail</label>
+      <input class="fi" id="otp-hidden" type="tel" maxlength="6" 
+        autocomplete="one-time-code"
+        placeholder="Ex: 564543"
+        style="font-size:28px;font-weight:800;letter-spacing:8px;text-align:center;font-family:monospace"
+        oninput="otpHiddenInput(this)">
+    </div>
+    <button class="btn-p" onclick="verifierOTP()">Vérifier →</button>
+    <div class="login-err" id="otp-err"></div>
+    <button style="background:none;border:none;color:var(--t1);font-size:12px;font-weight:600;cursor:pointer;font-family:Sora,sans-serif;margin-top:10px;width:100%;text-align:center" onclick="renvoyerCode()">Renvoyer le code</button>
+  </div>
+</div>
+
+<!-- SCREEN: CRÉER MOT DE PASSE -->
+<div id="mdp-screen" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;background:linear-gradient(160deg,#E0FAFA,#F5FFFD);z-index:9999;overflow-y:auto">
+  <div style="font-size:28px;font-weight:800;color:var(--t1);margin-bottom:16px">PROSPEK</div>
+  <div style="background:white;border-radius:22px;padding:26px 22px;width:100%;max-width:340px;box-shadow:0 8px 40px rgba(0,201,184,.15)">
+    <div style="font-size:32px;text-align:center;margin-bottom:12px">🔑</div>
+    <div style="font-size:15px;font-weight:700;color:var(--tx);margin-bottom:6px;text-align:center">Créez votre mot de passe</div>
+    <div style="font-size:12px;color:var(--tx3);margin-bottom:20px;text-align:center;line-height:1.5">Minimum 6 caractères. Mélangez lettres et chiffres pour plus de sécurité.</div>
+    <div class="fg"><label class="fl">Nouveau mot de passe</label><input class="fi" id="mdp1" type="password" placeholder="Minimum 6 caractères"></div>
+    <div class="fg"><label class="fl">Confirmer le mot de passe</label><input class="fi" id="mdp2" type="password" placeholder="Répétez"></div>
+    <button class="btn-p" onclick="creerMDP()">Sauvegarder →</button>
+    <div class="login-err" id="mdp-err"></div>
+  </div>
+</div>
+
+<!-- SCREEN: LOGIN EMAIL + MDP (connexions suivantes) -->
+<div id="emailmdp-screen" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;background:linear-gradient(160deg,#E0FAFA,#F5FFFD);z-index:9999;overflow-y:auto">
+  <div style="font-size:28px;font-weight:800;color:var(--t1);margin-bottom:16px">PROSPEK</div>
+  <div style="background:white;border-radius:22px;padding:26px 22px;width:100%;max-width:340px;box-shadow:0 8px 40px rgba(0,201,184,.15)">
+    <div style="font-size:32px;text-align:center;margin-bottom:12px">👤</div>
+    <div style="font-size:15px;font-weight:700;color:var(--tx);margin-bottom:6px;text-align:center">Connexion</div>
+    <div style="font-size:12px;color:var(--tx3);margin-bottom:20px;text-align:center">Email et mot de passe personnel</div>
+    <div class="fg"><label class="fl">Votre Gmail</label><input class="fi" id="emdp-email" type="email" placeholder="exemple@gmail.com"></div>
+    <div class="fg"><label class="fl">Mot de passe</label><div style="position:relative"><input class="fi" id="emdp-mdp" type="password" placeholder="Votre mot de passe" onkeydown="if(event.key==='Enter')loginAvecMDP()" style="padding-right:44px"><button id="eye-emdp-mdp" onclick="togglePwd('emdp-mdp')" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;font-size:18px;cursor:pointer">👁</button></div></div>
+    <button class="btn-p" onclick="loginAvecMDP()">Se connecter →</button>
+    <div class="login-err" id="emdp-err"></div>
+    <div style="text-align:center;margin-top:14px;display:flex;flex-direction:column;gap:8px">
+    <button onclick="location.reload()" style="background:none;border:none;color:var(--tx3);font-size:12px;cursor:pointer">← Changer de compte</button>
+    <div id="admin-hint-login" style="display:none"><button onclick="voirComptePourAdmin()" style="background:none;border:1.5px solid var(--t1);color:var(--t1);padding:10px;border-radius:12px;font-size:12px;font-weight:700;cursor:pointer;width:100%"><span id="admin-btn-lbl2">🔑 Acces admin</span></button></div>
+    </div>
+    <div style="text-align:center;margin-top:12px;font-size:12px;color:var(--tx3)">Première connexion ? <a href="#" style="color:var(--t1);font-weight:600" onclick="resetToCreate();return false;">Créer mon compte</a></div>
+    <button style="background:none;border:none;color:var(--t1);font-size:12px;font-weight:600;cursor:pointer;font-family:Sora,sans-serif;margin-top:10px;width:100%;text-align:center" onclick="showMDPOublie()">Mot de passe oublié ?</button>
+  </div>
+</div>
+
+
+<div id="setup-screen" class="setup-wrap">
+  <div class="setup-title">Bienvenue <span id="setup-nom"></span> !</div>
+  <div class="setup-sub">Configure ton profil une seule fois</div>
+  <div class="stitle">TA CATÉGORIE</div>
+  <div class="cat-grid">
+    <div class="cat-btn" onclick="selCat('Leader')" id="cat-Leader"><div class="cat-ico">🏆</div><div class="cat-name">Leader</div><div class="cat-obj">5 contrats/sem - 125k</div></div>
+    <div class="cat-btn" onclick="selCat('Challenger')" id="cat-Challenger"><div class="cat-ico">🚀</div><div class="cat-name">Challenger</div><div class="cat-obj">5 contrats/sem - 100k</div></div>
+    <div class="cat-btn" onclick="selCat('Avenir')" id="cat-Avenir"><div class="cat-ico">⭐</div><div class="cat-name">Avenir</div><div class="cat-obj">5 contrats/sem - 80k</div></div>
+    <div class="cat-btn" onclick="selCat('Debutant')" id="cat-Debutant"><div class="cat-ico">🌱</div><div class="cat-name">Debutant</div><div class="cat-obj">3 contrats/sem - 26k</div></div>
+  </div>
+  <div class="fg"><label class="fl">TON OBJECTIF PERSONNEL (FCFA/MOIS)</label><input class="fi" id="setup-obj" type="number" value="1000000"><div style="font-size:10px;color:var(--tx3);margin-top:5px">Modifiable a tout moment dans ton profil</div></div>
+  <button class="btn-p" onclick="saveSetup()">Commencer</button>
+</div>
+
+<div id="app-screen" class="app" style="display:none">
+  <div class="topbar">
+    <div><div class="app-name">PROSPEK <span id="topbar-badge" style="font-size:11px;background:rgba(255,255,255,.25);padding:2px 7px;border-radius:10px;vertical-align:middle"></span></div><div class="app-sub" id="topbar-sub"></div></div>
+    <div class="topbar-right"><div class="tbadge" id="tbadge"></div><button class="syncbtn" id="syncbtn" onclick="syncSheets()">Sync Sheets</button></div>
+  </div>
+  <div class="main" id="main"></div>
+  <nav class="nav" id="nav"></nav>
+  <div class="toast" id="toast"></div>
+</div>
+
+<script>
+var API_IND='https://script.google.com/macros/s/AKfycbxHjj_FEYK2iTG4UxigBc7Um8H6QC_9orJVYV7grljOqB1-sSzGKhBmAuyMbK2tFiQ/exec';
+var API_EQ='https://script.google.com/macros/s/AKfycbwDsuanGIVoabNfg6xVwCd9U74WDjMSy__QlXQowU_CAjKcJYRq1HfCtiPXPB2CVnRDgg/exec';
+var API_TOKEN='PROSPEK_JESUS_CHRIST_2026';
+var TODAY=new Date().toISOString().slice(0,10);
+var _sqT=null;
+var _adminViewCode=null;
+var _bilAnFilt="tout";
+function togglePwd(id){var i=document.getElementById(id);if(!i)return;i.type=i.type==='password'?'text':'password';var b=document.getElementById('eye-'+id);if(b)b.textContent=i.type==='password'?'👁':'🙈';}
+function rechercherSheets(q){
+  if(!q||q.length<3)return;
+  var action=S.apiType==='ind'?'search':'searchContacts';
+  apiGet(action+'&q='+encodeURIComponent(q)+'&code='+S.code)
+    .then(function(r){return r.json();})
+    .then(function(res){
+      var el=document.getElementById('sheets-results');
+      if(!el)return;
+      if(!res.success||!res.results||!res.results.length){el.innerHTML='';return;}
+      var h='<div style="font-size:10px;font-weight:700;color:var(--tx3);margin:8px 0 4px;padding:0 4px">RÉSULTATS SHEETS ('+res.results.length+')</div>';
+      res.results.forEach(function(r){
+        h+='<div style="background:#f8f8f8;border-radius:10px;padding:10px;margin-bottom:6px">';
+        h+='<div style="font-weight:700;font-size:13px">'+r.nom+'</div>';
+        h+='<div style="font-size:11px;color:var(--tx3)">'+(r.tel||'')+(r.produit?' • '+r.produit:'')+'</div></div>';
+      });
+      el.innerHTML=h;
+    }).catch(function(){});
+}
+function debounceSq(v){S.sq=v;var _sr=document.getElementById('sheets-results');if(_sr&&v.length<3)_sr.innerHTML='';clearTimeout(_sqT);_sqT=setTimeout(function(){render();if(v.length>=3)rechercherSheets(v);},280);}
+var OBJ_DEF=1000000;
+var USERS={
+  'GILDAS2026':{nom:'TOSSAVI GILDAS',role:'commercial',api:'eq',onglet:'TOSSAVI'},
+  'CHEF_KPEKPEDE':{nom:'KPEKPEDE GRACE',role:'chef',api:'eq',onglet:'CHEF'},
+  'KPEKPEDE2026':{nom:'KPEKPEDE SANDRA',role:'chef',api:'eq',onglet:'KPEKPEDE'},
+  'AGBESSI2026':{nom:'AGBESSI OPPORTUNE',role:'commercial',api:'eq',onglet:'AGBESSI'},
+  'AGNILO2026':{nom:'AGNILO NADIA',role:'commercial',api:'eq',onglet:'AGNILO'},
+  'AGOSSOU2026':{nom:'AGOSSOU GAIUS',role:'commercial',api:'eq',onglet:'AGOSSOU'},
+  'ATINDEHOU2026':{nom:'ATINDEHOU WILFRID',role:'commercial',api:'eq',onglet:'ATINDEHO'},
+  'AVIMAD2026':{nom:'AVIMADJENON SENAMI',role:'commercial',api:'eq',onglet:'AVIMADJE'},
+  'AVOCE2026':{nom:'AVOCE SEGBE',role:'commercial',api:'eq',onglet:'AVOCE'},
+  'DAFASSAW2026':{nom:'DAFASSAWA AFISSATOU',role:'commercial',api:'eq',onglet:'DAFASSAW'},
+  'DEGBEY2026':{nom:'DEGBEY SAH',role:'commercial',api:'eq',onglet:'DEGBEY'},
+  'FANOU2026':{nom:'FANOU HERVE',role:'commercial',api:'eq',onglet:'FANOU'},
+  'GBAGUID2026':{nom:'GBAGUIDI DEBORAH',role:'commercial',api:'eq',onglet:'GBAGUIDI'},
+  'GNIMAGN2026':{nom:'GNIMAGNON AZANKPOSSE',role:'commercial',api:'eq',onglet:'GNIMAGNO'},
+  'GODONOU2026':{nom:'GODONOU CHRISTELLA',role:'commercial',api:'eq',onglet:'GODONOU'},
+  'GOUBALY2026':{nom:'GOUBALY ARNAUD',role:'commercial',api:'eq',onglet:'GOUBALY'},
+  'HOUEDANO2026':{nom:'HOUEDANOU DOHOU',role:'commercial',api:'eq',onglet:'HOUEDANO'},
+  'KINHO2026':{nom:'KINHO ROMARIC',role:'commercial',api:'eq',onglet:'KINHO'},
+  'KOUGBLA2026':{nom:'KOUGBLA FLORENCE',role:'commercial',api:'eq',onglet:'KOUGBLA'},
+  'KPATOUK2026':{nom:'KPATOUKPA MAWOUTO',role:'commercial',api:'eq',onglet:'KPATOUKP'},
+  'KPONSO2026':{nom:'KPONSO INES',role:'commercial',api:'eq',onglet:'KPONSO'},
+  'LAWSON2026':{nom:'LAWSON LATE ENOCK',role:'commercial',api:'eq',onglet:'LAWSON'},
+  'MARCOS2026':{nom:'MARCOS SATIRATH',role:'commercial',api:'eq',onglet:'MARCOS'},
+  'SINZOGAN2026':{nom:'SINZOGAN MIREILLE',role:'commercial',api:'eq',onglet:'SINZOGAN'},
+  'SODO2026':{nom:'SODO HAROLD',role:'commercial',api:'eq',onglet:'SODO'},
+  'TITO2026':{nom:'TITO DONA GRACE',role:'commercial',api:'eq',onglet:'TITO'}
+};
+
+function chargerUsers(){
+  var cached=ld('pk_users_list',null);
+  if(cached&&cached.length)buildUsers(cached);
+  fetch(API_EQ+'?action=getUsers')
+    .then(function(r){return r.json();})
+    .then(function(res){
+      if(res.success&&res.users&&res.users.length){
+        sv('pk_users_list',res.users);
+        buildUsers(res.users);
+      }
+    }).catch(function(){});
+}
+
+function buildUsers(list){
+  list.forEach(function(u){
+    if(!u.code)return;
+    var isGildas=u.code==='GILDAS2026';
+    var isChef=u.role==='Chef equipe';
+    USERS[u.code]={
+      nom:u.nom,
+      role:isGildas?'commercial':(isChef?'chef':'commercial'),
+      api:isGildas?'ind':'eq',
+      onglet:u.onglet||u.code.replace('2026','')
+    };
+  });
+}
+
+var OBJ_CAT={Leader:{cs:5,ca:125000},Challenger:{cs:5,ca:100000},Avenir:{cs:5,ca:80000},Debutant:{cs:3,ca:26000}};
+var S={code:'',nom:'',role:'',apiType:'',cat:'',obj:OBJ_DEF,view:'accueil',selId:null,filt:'tous',sq:'',contrats:[],contacts:[],comms:[],classement:[],equipe:[]};
+function sv(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+function ld(k,d){try{var s=localStorage.getItem(k);return s?JSON.parse(s):d;}catch(e){return d;}}
+function apiUrl(){return S.apiType==='ind'?API_IND:API_EQ;}
+function apiGet(a,x){return fetch(apiUrl()+'?action='+a+(x||'')+'&code='+S.code+'&token='+API_TOKEN);}
+function apiPost(d){return fetch(apiUrl(),{method:'POST',body:JSON.stringify(Object.assign({code:S.code,token:API_TOKEN},d))});}
+function fmt(n){return Math.round(n||0).toLocaleString('fr-FR')+' FCFA';}
+function fp(p){if(!p)return'';var v=(p+'').replace(/\s/g,'');if(v&&v[0]!='0'&&v[0]!='+')v='0'+v;return v;}
+function now2(){var d=new Date();return('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2);}
+function period(){var h=new Date().getHours();if(h>=5&&h<12)return'Matin';if(h>=12&&h<18)return'Apres-midi';if(h>=18&&h<22)return'Soir';return'Nuit';}
+function dago(d){if(!d)return 999;return Math.floor((new Date()-new Date(d))/86400000);}
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(function(){t.classList.remove('show');},2500);}
+function totalComm(){return S.contrats.reduce(function(s,c){return s+(c.st==='actif'?(c.comm||0):0);},0);}
+function calcComm(p,pr,d){if(!p)return 0;d=d||10;var pl=p.toLowerCase();if(pl.indexOf('td')>=0||pl.indexOf('3cap')>=0)return Math.round(pr*0.10);if(pl.indexOf('fonds')>=0||pl.indexOf('capi')>=0)return Math.round(pr*0.015);if(pl.indexOf('hr5')>=0)return Math.round(pr*0.019);var t=pl.indexOf('mixte')>=0?0.0193:0.019;return Math.round(pr*Math.min(d,15)*12*t/12);}
+function getBadge(c,o){var p=c/(o||1);if(p>=0.8)return{cls:'badge-feu',ico:'🔥',t:'En feu !',s:'Tu dechiress ce mois-ci'};if(p>=0.4)return{cls:'badge-forme',ico:'⚡',t:'En forme',s:'Continue sur cette lancee'};return{cls:'badge-boost',ico:'⚠️',t:'A booster',s:'Passons a la vitesse superieure'};}
+function getStreak(){var s=parseInt(ld('pk_str_'+S.code,'1'));var l=ld('pk_str_d_'+S.code,TODAY);if(l!==TODAY){var d2=new Date();d2.setDate(d2.getDate()-1);var y=d2.toISOString().slice(0,10);var ns=l===y?s+1:1;sv('pk_str_'+S.code,ns);sv('pk_str_d_'+S.code,TODAY);return ns;}return s;}
+function markAct(){sv('pk_str_d_'+S.code,TODAY);}
+function updateTime(){var e=document.getElementById('tbadge');if(e)e.textContent=period()+' '+now2();}
+function analyserObs(t){var r={st:null,rel:null};if(!t)return r;var tl=t.toLowerCase();var today=new Date(),d=null;if(tl.indexOf('pas interesse')>=0||tl.indexOf('refuse')>=0||tl.indexOf('perdu')>=0)r.st='perdu';else if(tl.indexOf('signe')>=0)r.st='signe';else if(tl.indexOf('interesse')>=0||tl.indexOf('chaud')>=0)r.st='chaud';if(tl.indexOf('demain')>=0)d=new Date(today.getTime()+86400000);else if(tl.indexOf('dans 1 semaine')>=0||tl.indexOf('semaine prochaine')>=0)d=new Date(today.getTime()+7*86400000);else if(tl.indexOf('dans 2 semaines')>=0)d=new Date(today.getTime()+14*86400000);else if(tl.indexOf('dans 1 mois')>=0||tl.indexOf('fin du mois')>=0)d=new Date(today.getTime()+30*86400000);else if(tl.indexOf('dans 2 mois')>=0)d=new Date(today.getTime()+60*86400000);else if(tl.indexOf('lundi')>=0){var dy=today.getDay();d=new Date(today.getTime()+((dy<=1?1-dy:8-dy)*86400000));}else if(tl.indexOf('mardi')>=0){var dy=today.getDay();d=new Date(today.getTime()+((dy<=2?2-dy:9-dy)*86400000));}else if(tl.indexOf('mercredi')>=0){var dy=today.getDay();d=new Date(today.getTime()+((dy<=3?3-dy:10-dy)*86400000));}else if(tl.indexOf('jeudi')>=0){var dy=today.getDay();d=new Date(today.getTime()+((dy<=4?4-dy:11-dy)*86400000));}else if(tl.indexOf('vendredi')>=0){var dy=today.getDay();d=new Date(today.getTime()+((dy<=5?5-dy:12-dy)*86400000));}else if(tl.indexOf('rappel')>=0||tl.indexOf('relancer')>=0)d=new Date(today.getTime()+7*86400000);if(d)r.rel=d.toISOString().slice(0,10);return r;}
+function doLogin(){
+  try{
+    var code=document.getElementById('login-code').value.trim().toUpperCase();
+    if(!code)return;
+    var u=USERS[code];
+    if(!u){document.getElementById('login-err').style.display='block';return;}
+    document.getElementById('login-err').style.display='none';
+    S.code=code;S.nom=u.nom;S.role=u.role;S.apiType=u.api;
+    S.onglet=(u.onglet||u.nom.split(' ')[0].slice(0,8));
+    _secCode=code;
+    var secured=ld('pk_secured_'+code,false);
+    if(secured){
+      hideAllScreens();
+      document.getElementById('emailmdp-screen').style.display='flex';var _adm2=getAdminLocal();var _ah2=document.getElementById('admin-hint-login');if(_ah2)_ah2.style.display=_adm2?'block':'none';var _al2=document.getElementById('admin-btn-lbl2');if(_al2&&_adm2)_al2.textContent='🔑 Voir en tant que '+(_adm2.nom.split(' ')[1]||_adm2.nom);
+      var em=ld('pk_email_'+code,'');
+      if(em)document.getElementById('emdp-email').value=em;
+    } else {
+      hideAllScreens();
+      document.getElementById('email-screen').style.display='flex';var _adm=getAdminLocal();var _ah=document.getElementById('admin-hint');if(_ah)_ah.style.display=_adm?'block':'none';var _albl=document.getElementById('admin-btn-lbl');if(_albl&&_adm)_albl.textContent='🔑 Voir en tant que '+(_adm.nom.split(' ')[1]||_adm.nom);
+    }
+  }catch(err){
+    document.getElementById('login-err').style.display='block';
+    document.getElementById('login-err').textContent='Erreur: '+err.message;
+  }
+}
+var _cat='';
+function selCat(c){_cat=c;document.querySelectorAll('.cat-btn').forEach(function(b){b.classList.remove('sel');});var e=document.getElementById('cat-'+c);if(e)e.classList.add('sel');}
+function saveSetup(){if(!_cat){toast('Choisis ta categorie');return;}S.cat=_cat;S.obj=parseInt(document.getElementById('setup-obj').value)||OBJ_DEF;sv('pk_setup_'+S.code,{cat:S.cat,obj:S.obj});sv('pk_sess',{code:S.code,nom:S.nom,role:S.role,apiType:S.apiType,cat:S.cat,obj:S.obj});document.getElementById('setup-screen').style.display='none';showApp();}
+function showApp(){
+  // Cacher TOUS les ecrans avant de montrer l app
+  ['login-screen','email-screen','otp-screen','mdp-screen','emailmdp-screen','setup-screen'].forEach(function(id){
+    var el=document.getElementById(id);if(el)el.style.display='none';
+  });
+  var app=document.getElementById('app-screen');
+  app.style.display='flex';
+  document.getElementById('topbar-sub').textContent=S.nom+(S.role==='chef'?' · Chef UP3':(S.cat?' · '+S.cat:''));
+  S.contrats=ld('pk_ctr_'+S.code,[]);
+  S.contacts=ld('pk_cnt_'+S.code,[]);
+  S.comms=ld('pk_com_'+S.code,[]);
+  S.classement=[];
+  S.equipe=[];
+  renderNav();
+  render();
+  updateTime();
+  setInterval(updateTime,30000);
+  chargerUsers();chargerDonnees();setTimeout(demanderNotif,3000);setTimeout(checkRappels,7000);setInterval(function(){if(document.getElementById('app-screen')&&document.getElementById('app-screen').style.display!=='none')chargerDonnees();},5*60*1000);
+}
+function chargerContratsEquipe(){
+  fetch(API_EQ+'?action=getContrats&code='+S.code+'&token='+API_TOKEN)
+    .then(function(r){return r.json();})
+    .then(function(res){
+      if(res.success&&res.contrats){
+        S.contrats=res.contrats;
+        sv('pk_ctr_'+S.code,S.contrats);
+        render();
+        // Mise a jour classement avec vrais chiffres
+        var caSem=getCASemaine();
+        var monIdx=S.classement.findIndex(function(c){return c.estMoi;});
+        if(monIdx>=0){
+          S.classement[monIdx].contrats=caSem.nb;
+          S.classement[monIdx].commission=caSem.ca;
+          S.classement.sort(function(a,b){return b.commission-a.commission;});
+          S.classement.forEach(function(c,i){c.rang=i+1;});
+        }
+      }
+    }).catch(function(){});
+}
+function chargerContactsEquipe(){
+  fetch(API_EQ+'?action=getProspects&code='+S.code+'&token='+API_TOKEN)
+    .then(function(r){return r.json();})
+    .then(function(res){
+      if(res.success&&res.contacts&&res.contacts.length){
+        res.contacts.forEach(function(sc){
+          if(!sc.nom)return;
+          var ex=S.contacts.find(function(c){return c.nom.toUpperCase()===sc.nom.toUpperCase();});
+          if(!ex)S.contacts.push({
+            id:'sh'+Date.now()+Math.random(),
+            nom:sc.nom,tel:sc.tel||'',
+            src:sc.src||'Sheets',st:sc.st||'nouveau',
+            prod:sc.prod||'',obs:sc.obs||'',
+            rel:sc.rel||''
+          });
+        });
+        sv('pk_cnt_'+S.code,S.contacts);
+        render();
+      }
+    }).catch(function(){});
+}
+function chargerCREquipe(){
+  if(S.role!=='chef')return;
+  apiGet('getCREquipe').then(function(r){return r.json();}).then(function(res){
+    if(res.success){S.crEquipe=res;render();}
+  }).catch(function(){});
+}
+function chargerDonnees(){
+  if(S.role==='chef'){
+    chargerEquipe();chargerClassement();
+  } else if(S.apiType==='eq'){
+    chargerContratsEquipe();setTimeout(chargerContactsEquipe,200);setTimeout(chargerComms,400);setTimeout(chargerClassement2,600);setTimeout(chargerNotesChef,800);
+  } else {
+    chargerContrats();chargerContacts();chargerComms();chargerClassement2();
+  }
+}
+function chargerContrats(){apiGet('getContrats').then(function(r){return r.json();}).then(function(res){if(res.success&&res.contrats&&res.contrats.length){S.contrats=res.contrats.map(function(c){return{nom:c.nom||'',bia:c.bia||'',tel:c.tel||'',produit:c.produit||'',prime:c.prime||0,duree:c.duree||15,comm:c.comm||0,date:c.date||'',notes:c.notes||'',st:(c.statut||c.st||'attente').toLowerCase().replace('e\u0301','e').replace('u\u0302','u')};});sv('pk_ctr_'+S.code,S.contrats);
+      // Mettre à jour l'entrée du classement avec les vraies données
+      var monIdx=S.classement.findIndex(function(c){return c.estMoi;});
+      if(monIdx>=0){
+        var caSem=getCASemaine();
+        S.classement[monIdx].contrats=caSem.nb;
+        S.classement[monIdx].commission=caSem.ca;
+        // Re-trier par commission
+        S.classement.sort(function(a,b){return b.commission-a.commission;});
+        S.classement.forEach(function(c,i){c.rang=i+1;});
+      }
+      render();}}).catch(function(){});}
+function chargerContacts(){if(S.apiType!=='ind')return;apiGet('getPipeline').then(function(r){return r.json();}).then(function(res){if(res.success&&res.contacts&&res.contacts.length){var added=0;res.contacts.forEach(function(sc){if(!sc.nom)return;var ex=S.contacts.find(function(c){return c.nom.toUpperCase()===sc.nom.toUpperCase()||(sc.tel&&sc.tel.length>5&&c.tel===fp(sc.tel));});if(!ex){S.contacts.push({id:'sh'+Date.now()+Math.random(),nom:sc.nom.toUpperCase(),tel:fp(sc.tel||''),src:sc.source||'Sheets',st:sc.statut||'nouveau',prod:sc.produit||'A definir',prime:15000,obs:sc.notes||'',rel:sc.relance||''});added++;}});if(added>0){sv('pk_cnt_'+S.code,S.contacts);}
+      var sb=document.getElementById('syncbtn');
+      if(sb&&sb.textContent!=='Sync Sheets'&&sb.textContent!=='Sync...'){}
+      else if(sb)sb.textContent='Sync Sheets';
+      render();}}).catch(function(){});}
+function chargerComms(){apiGet('getCommissions').then(function(r){return r.json();}).then(function(res){if(res.success&&res.commissions&&res.commissions.length){S.comms=res.commissions;sv('pk_com_'+S.code,S.comms);if(S.view==='commissions')render();}}).catch(function(){});}
+function chargerClassement(){
+  // Fallback immédiat
+  if(S.classement.length===0){
+    var liste=['AGBESSI2026','AGNILO2026','AGOSSOU2026','ATINDEHOU2026','AVIMAD2026','AVOCE2026','DAFASSAW2026','DEGBEY2026','FANOU2026','GBAGUID2026','GNIMAGN2026','GODONOU2026','GOUBALY2026','HOUEDANO2026','KINHO2026','KOUGBLA2026','KPATOUK2026','KPONSO2026','LAWSON2026','MARCOS2026','SINZOGAN2026','SODO2026','TITO2026','KPEKPEDE2026','GILDAS2026'];
+    S.classement=[];
+    for(var i=0;i<liste.length;i++){
+      var code=liste[i];var user=USERS[code];if(!user||user.role==='chef')continue;
+      S.classement.push({rang:i+1,nom:user.nom,contrats:0,commission:0,estMoi:code===S.code});
+    }
+    S.classement.forEach(function(c,i){c.rang=i+1;});
+    render();
+  }
+  fetch(API_EQ+'?action=getClassement&code='+S.code).then(function(r){return r.json();}).then(function(res){if(res.success&&res.classement&&res.classement.length){S.classement=res.classement;render();}}).catch(function(){});}
+function chargerClassement2(){
+  if(S.classement.length===0){
+    var liste=[
+      'AGBESSI2026','AGNILO2026','AGOSSOU2026','ATINDEHOU2026','AVIMAD2026',
+      'AVOCE2026','DAFASSAW2026','DEGBEY2026','FANOU2026','GBAGUID2026',
+      'GNIMAGN2026','GODONOU2026','GOUBALY2026','HOUEDANO2026','KINHO2026',
+      'KOUGBLA2026','KPATOUK2026','KPONSO2026','LAWSON2026','MARCOS2026',
+      'SINZOGAN2026','SODO2026','TITO2026','KPEKPEDE2026'
+    ];
+    var caSem=getCASemaine();
+    S.classement=[{rang:1,nom:'TOSSAVI GILDAS',contrats:caSem.nb,commission:caSem.ca,estMoi:S.code==='GILDAS2026'}];
+    for(var i=0;i<liste.length;i++){
+      var code=liste[i];
+      var user=USERS[code];
+      if(!user)continue;
+      S.classement.push({rang:i+2,nom:user.nom,contrats:0,commission:0,estMoi:code===S.code});
+    }
+    if(S.view==='equipe')render();
+  }
+  fetch(API_EQ+'?action=getClassement&code='+S.code)
+    .then(function(r){return r.json();})
+    .then(function(res){
+      if(res.success&&res.classement&&res.classement.length){
+        S.classement=res.classement;
+        if(S.view==='equipe')render();
+      }
+    }).catch(function(){});
+}
+function chargerEquipe(){fetch(API_EQ+'?action=getEquipe&code='+S.code).then(function(r){return r.json();}).then(function(res){if(res.success&&res.equipe){S.equipe=res.equipe;render();}}).catch(function(){});}
+function syncSheets(){var b=document.getElementById('syncbtn');if(b)b.textContent='Sync...';toast('Sync en cours...');if(S.role==='chef'){chargerEquipe();setTimeout(chargerCREquipe,1000);chargerClassement();}else if(S.apiType==='eq'){chargerContratsEquipe();chargerContactsEquipe();}else{chargerContrats();chargerContacts();}chargerComms();chargerClassement2();setTimeout(function(){if(b)b.textContent='Sync Sheets';toast('✅ Synchronise !');render();},3500);}
+function updateSt(id,st,rel){S.contacts=S.contacts.map(function(c){if(c.id===id){var n=Object.assign({},c,{st:st});if(rel)n.rel=rel;return n;}return c;});sv('pk_cnt_'+S.code,S.contacts);var c=S.contacts.find(function(x){return x.id===id;});if(c)apiPost({action:'updateStatut',nom:c.nom,tel:c.tel,statut:st}).catch(function(){});if(st==='signe')markAct();var msgs={signe:'Contrat signe !',rdv:'RDV enregistre !',rappel:'Rappel programme',perdu:'Contact perdu',chaud:'Contact chaud !'};toast(msgs[st]||'Mis a jour');if(S.view==='detail')S.view='pipeline';render();}
+function saveObs(id){var val=(document.getElementById('obs-inp')||{}).value||'';if(!val.trim()){toast('Ecris une observation');return;}var a=analyserObs(val.trim());var c0=S.contacts.find(function(x){return x.id===id;});var prev=c0&&c0.obs?c0.obs+'\n':'';var newObs=prev+'['+TODAY+'] '+val.trim();var upd={obs:newObs};if(a.st)upd.st=a.st;if(a.rel)upd.rel=a.rel;S.contacts=S.contacts.map(function(c){return c.id===id?Object.assign({},c,upd):c;});sv('pk_cnt_'+S.code,S.contacts);var c=S.contacts.find(function(x){return x.id===id;});if(c)apiPost({action:'addObservation',nom:c.nom,tel:c.tel,observation:val,relance:a.rel||''}).catch(function(){});var msg='Obs enregistree';if(a.st)msg+=' | '+a.st;if(a.rel)msg+=' | Relance:'+a.rel;toast(msg);render();}
+function openRelance(id){var today=new Date();var opts=[{l:'Demain',d:new Date(today.getTime()+86400000).toISOString().slice(0,10)},{l:'3 jours',d:new Date(today.getTime()+3*86400000).toISOString().slice(0,10)},{l:'1 semaine',d:new Date(today.getTime()+7*86400000).toISOString().slice(0,10)},{l:'2 semaines',d:new Date(today.getTime()+14*86400000).toISOString().slice(0,10)},{l:'1 mois',d:new Date(today.getTime()+30*86400000).toISOString().slice(0,10)},{l:'2 mois',d:new Date(today.getTime()+60*86400000).toISOString().slice(0,10)}];var m=document.createElement('div');m.id='rmod';m.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:200;display:flex;align-items:flex-end;justify-content:center';var inner=document.createElement('div');inner.style.cssText='background:white;border-radius:20px 20px 0 0;padding:20px;width:100%;max-width:430px';inner.innerHTML='<div style="font-size:15px;font-weight:700;margin-bottom:12px;color:#0A2E2C">Programmer une relance</div>';var grid=document.createElement('div');grid.style.cssText='display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px';opts.forEach(function(o){var btn=document.createElement('div');btn.style.cssText='padding:10px;background:#E0F5F4;border-radius:10px;text-align:center;font-size:13px;font-weight:600;color:#00A89A;cursor:pointer';btn.innerHTML=o.l+'<br><span style="font-size:10px;opacity:.7">'+o.d+'</span>';btn.onclick=(function(oid,od){return function(){updateSt(oid,'rappel',od);closeModal();var c=S.contacts.find(function(x){return x.id===oid;});if(c)apiPost({action:'saveRelance',nom:c.nom,tel:c.tel,relance:od}).catch(function(){});toast('Relance: '+od);};})(id,o.d);grid.appendChild(btn);});var ann=document.createElement('button');ann.textContent='Annuler';ann.style.cssText='width:100%;padding:11px;background:white;color:#00C9B8;border:2px solid #00C9B8;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;font-family:Sora,sans-serif';ann.onclick=closeModal;inner.appendChild(grid);inner.appendChild(ann);m.appendChild(inner);m.onclick=function(e){if(e.target===m)closeModal();};document.body.appendChild(m);}
+function closeModal(){var m=document.getElementById('rmod');if(m)m.remove();}
+var TABS_C=[{id:'accueil',ico:'🏠',lb:'Accueil'},{id:'pipeline',ico:'🔥',lb:'Pipeline'},{id:'ajouter',ico:'➕',lb:'Ajouter'},{id:'bilan',ico:'📊',lb:'Bilan'},{id:'equipe',ico:'🏆',lb:'Classement'},{id:'profil',ico:'⚙️',lb:'Profil'}];
+var TABS_CH=[{id:'equipe',ico:'👥',lb:'Equipe'},{id:'classement',ico:'🏆',lb:'Classement'},{id:'alertes',ico:'🚨',lb:'Alertes'},{id:'notes',ico:'📝',lb:'Notes'},{id:'profil',ico:'⚙️',lb:'Profil'}];
+function renderNav(){var tabs=S.role==='chef'?TABS_CH:TABS_C;document.getElementById('nav').style.gridTemplateColumns='repeat('+tabs.length+',1fr)';var urg=S.contacts.filter(function(c){return c.st==='urgent'&&c.rel<=TODAY;}).length;document.getElementById('nav').innerHTML=tabs.map(function(t){var on=S.view===t.id||(S.view==='detail'&&t.id==='pipeline');return'<button class="nb'+(on?' on':'')+'" onclick="navTo(\''+t.id+'\')">'+(t.id==='pipeline'&&urg>0?'<div class="nb-dot"></div>':'')+'<span class="ico">'+t.ico+'</span>'+t.lb+'</button>';}).join('');}
+function navTo(v){
+  S.view=v;S.selId=null;S.sq='';
+  history.pushState({view:v,selId:null},'','#'+v);
+  render();
+}
+function openDetail(id){
+  S.selId=id;S.view='detail';
+  history.pushState({view:'detail',selId:id},'','#detail');
+  render();
+}
+window.addEventListener('popstate',function(e){
+  if(!document.getElementById('app-screen')||document.getElementById('app-screen').style.display==='none')return;
+  if(e.state&&e.state.view){S.view=e.state.view;S.selId=e.state.selId||null;render();}
+  else{S.view='accueil';render();}
+});
+function render(){renderNav();var m=document.getElementById('main');var streak=getStreak();var badge=getBadge(totalComm(),S.obj);var bp=document.getElementById('topbar-badge');if(bp&&S.role!=='chef')bp.textContent=badge.ico+' '+streak+'j';if(S.role==='chef'){if(S.view==='equipe')m.innerHTML=rChefEq();else if(S.view==='classement')m.innerHTML=rClassement();else if(S.view==='alertes')m.innerHTML=rChefAlert();else if(S.view==='notes')m.innerHTML=rNotes();else if(S.view==='profil')m.innerHTML=rProfil();else m.innerHTML=rChefEq();}else{if(S.view==='accueil')m.innerHTML=rAccueil();else if(S.view==='pipeline')m.innerHTML=rPipeline();else if(S.view==='detail')m.innerHTML=rDetail();else if(S.view==='ajouter')m.innerHTML=rAjouter();else if(S.view==='bilan')m.innerHTML=rBilan();else if(S.view==='commissions')m.innerHTML=rComm();else if(S.view==='equipe')m.innerHTML=rClassement();else if(S.view==='profil')m.innerHTML=rProfil();else{m.innerHTML=rAccueil();
+    var stats=m.querySelectorAll('.stat');
+    if(stats[0])stats[0].onclick=function(){navTo('bilan');};
+    if(stats[1])stats[1].onclick=function(){S.ft='chaud';navTo('pipeline');};
+    if(stats[2])stats[2].onclick=function(){S.ft='urgent';navTo('pipeline');};
+    if(stats[3])stats[3].onclick=function(){navTo('pipeline');};}}}
+function rAccueil(){var comm=totalComm();var obj=S.obj||OBJ_DEF;var pct=Math.min(100,Math.round(comm/obj*100));var urg=S.contacts.filter(function(c){return c.st==='urgent'&&c.rel<=TODAY;});var chauds=S.contacts.filter(function(c){return c.st==='chaud'||c.st==='rdv';}).length;var cat=S.cat||'Challenger';var os=OBJ_CAT[cat]||OBJ_CAT.Challenger;var streak=getStreak();var badge=getBadge(comm,obj);var mois=new Date().toISOString().slice(0,7);var ctrMois=S.contrats.filter(function(c){return c.date&&c.date.slice(0,7)===mois;}).length;var nonDem=S.contrats.filter(function(c){return c.st==='attente'&&dago(c.date)>30;});var monRang=S.classement.find(function(c){return c.estMoi;});var h2=new Date().getHours();var brief='';if(h2>=5&&h2<14){var msg='Bonjour '+(S.nom.split(' ')[1]||S.nom)+'!\n';if(urg.length)msg+=urg.length+' contact'+(urg.length>1?'s':'')+' a appeler MAINTENANT\n';if(chauds)msg+=chauds+' prospects chauds a relancer\n';msg+='Objectif: signe '+(Math.max(0,os.cs*4-ctrMois))+' contrats ce mois';if(nonDem.length)msg+='\n'+nonDem.length+' contrat'+(nonDem.length>1?'s':'')+' en attente +30j - Signaler cheffe';brief='<div class="brief"><div class="brief-ttl">BRIEF DU MATIN</div><div class="brief-msg">'+msg.replace(/\n/g,'<br>')+'</div><button class="brief-btn" onclick="navTo(\'pipeline\')">Voir maintenant</button></div>';}
+else if(h2>=18&&h2<22){
+var msg2='Bilan du soir '+(S.nom.split(' ')[1]||S.nom)+'!\n';
+var att2=S.contrats.filter(function(x){return x.st==='attente';}).length;
+var urg2=S.contacts.filter(function(x){return x.st==='urgent';}).length;
+if(att2>0)msg2+=att2+' contrat(s) en attente — verifier avec ta cheffe\n';
+msg2+=urg2+' urgent(s) a appeler demain\nN oublie pas ton C.R. !';
+brief='<div class="brief" style="background:linear-gradient(135deg,#003D7A,#0057B0)"><div class="brief-ttl">🌙 BILAN DU SOIR</div><div class="brief-msg">'+msg2.replace(/\n/g,'<br>')+'</div><button class="brief-btn" onclick="navTo(\'bilan\')">Faire mon C.R.</button></div>';}
+var h=brief;h+='<div class="hero"><div class="hero-lbl">Commission mensuelle estimee</div><div class="hero-val">'+fmt(comm)+'</div><div class="hero-sub">Objectif perso : '+fmt(obj)+'</div><div class="hero-bar"><div class="hero-fill" style="width:'+pct+'%"></div></div><div class="hero-pct">'+pct+'% atteint - Gap : '+fmt(Math.max(0,obj-comm))+'</div></div>';
+var pctS=Math.min(100,Math.round(comm/(os.ca*4)*100));h+='<div class="obj2"><div class="obj2-row"><div class="obj2-lbl"><span style="color:var(--tx2)">Objectif  ('+cat+')</span><span style="color:var(--t1);font-weight:700">'+fmt(os.ca*4)+'/mois</span></div><div class="obj2-bar"><div class="obj2-fill" style="width:'+pctS+'%;background:var(--t1)"></div></div></div><div class="obj2-row" style="margin-bottom:0"><div class="obj2-lbl"><span style="color:var(--tx2)">Objectif perso</span><span style="color:var(--pu);font-weight:700">'+fmt(obj)+'/mois</span></div><div class="obj2-bar"><div class="obj2-fill" style="width:'+pct+'%;background:var(--pu)"></div></div></div></div>';
+var cActA=S.contrats.filter(function(x){return x.st==='actif';});
+var totActA=cActA.reduce(function(s,x){return s+x.comm;},0);
+var totPotA=S.contrats.filter(function(x){return x.st!=='bloque';}).reduce(function(s,x){return s+x.comm;},0);
+h+='<div onclick="navTo(\'bilan\')" style="background:white;border-radius:14px;padding:12px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,201,184,.12)">';
+h+='<div style="font-size:10px;font-weight:700;color:var(--tx3);margin-bottom:6px">&#128176; MES COMMISSIONS &#8594; voir Bilan</div>';
+h+='<div style="display:flex;gap:6px">';
+h+='<div style="flex:1;background:var(--grl);border-radius:9px;padding:8px;text-align:center"><div style="font-size:9px;color:var(--gr);font-weight:600">MAINTENANT</div><div style="font-size:13px;font-weight:800;color:var(--gr)">'+fmt(totActA)+'</div></div>';
+h+='<div style="flex:1;background:var(--yel);border-radius:9px;padding:8px;text-align:center"><div style="font-size:9px;color:#8B6000;font-weight:600">POTENTIEL</div><div style="font-size:13px;font-weight:800;color:#8B6000">'+fmt(totPotA)+'</div></div>';
+h+='</div></div>';
+h+='<div class="stats"><div class="stat"><div class="stat-ico">📋</div><div class="stat-val" style="color:var(--t1)">'+S.contrats.length+'</div><div class="stat-lbl">Contrats 2026</div></div><div class="stat"><div class="stat-ico">🔥</div><div class="stat-val" style="color:var(--or)">'+chauds+'</div><div class="stat-lbl">Prospects chauds</div></div><div class="stat"><div class="stat-ico">🚨</div><div class="stat-val" style="color:var(--re)">'+urg.length+'</div><div class="stat-lbl">Urgents</div></div><div class="stat"><div class="stat-ico">👥</div><div class="stat-val" style="color:var(--pu)">'+S.contacts.length+'</div><div class="stat-lbl">Pipeline</div></div></div>';
+
+var relAuj=S.contacts.filter(function(x){return x.rel&&x.rel<=TODAY&&x.st!=='signe'&&x.st!=='perdu';}).slice(0,5);if(relAuj.length>0){h+='<div style="background:linear-gradient(135deg,#FF6B35,#FF8C42);border-radius:14px;padding:14px;margin-bottom:12px;color:white"><div style="font-size:11px;font-weight:800;margin-bottom:8px">RELANCES AUJOURD HDY ('+relAuj.length+')</div>';relAuj.forEach(function(p){var tel=fp(p.tel||'');h+='<div style="background:rgba(255,255,255,.15);border-radius:10px;padding:10px;margin-bottom:6px"><div style="font-weight:700;font-size:13px">'+p.nom+'</div><div style="font-size:11px;opacity:.9">'+( p.prod||p.src||'')+'</div><div style="display:flex;gap:6px;margin-top:6px">';if(tel)h+='<a href="tel:'+tel+'" style="background:rgba(255,255,255,.25);color:white;padding:5px 10px;border-radius:8px;font-size:11px;font-weight:600;text-decoration:none">Appeler</a>';if(tel)h+='<a href="https://wa.me/229'+tel+'" target="_blank" style="background:rgba(255,255,255,.25);color:white;padding:5px 10px;border-radius:8px;font-size:11px;font-weight:600;text-decoration:none">WA</a>';h+='</div></div>';});h+='</div>';}
+// Message de la cheffe
+var msgCheffe=getMsgCheffe();
+if(msgCheffe){var typIco={encouragement:'🌟',alerte:'⚠️',conseil:'💡',felicitation:'🏆'}[msgCheffe.type]||'📝';h+='<div class="alrt" style="background:var(--pul);border-color:var(--pu);margin-bottom:10px"><div class="alrt-ico">'+typIco+'</div><div><div style="font-size:10px;font-weight:700;color:var(--pu)">MESSAGE DE TA CHEFFE — '+msgCheffe.date+'</div><div class="alrt-txt" style="margin-top:3px">'+msgCheffe.txt+'</div></div></div>';}
+// Comparaison mois precedent
+var comp=getComparaisonMois();
+if(comp){var cc2=comp.diff>=0?'var(--gr)':'var(--re)';var ci=comp.diff>=0?'📈':'📉';h+='<div class="card cn" style="padding:12px;margin-bottom:10px"><div style="display:flex;justify-content:space-between"><div><div style="font-size:10px;font-weight:700;color:var(--tx3);text-transform:uppercase">VS MOIS PRECEDENT</div><div style="font-size:13px;font-weight:800;color:'+cc2+';margin-top:3px">'+ci+' '+(comp.diff>=0?'+':'')+fmt(comp.diff)+' ('+comp.pct+'%)</div></div><div style="text-align:right"><div style="font-size:10px;color:var(--tx3)">Mois prec.</div><div style="font-size:13px;font-weight:700">'+fmt(comp.prec)+'</div></div></div></div>';}
+// Taux de conversion
+var taux=getTauxConversion();
+if(taux!='—'){h+='<div class="alrt" style="background:var(--bg2);border-color:var(--t1);margin-bottom:10px"><div class="alrt-ico">🎯</div><div class="alrt-txt" style="color:var(--t2)"><strong>Taux conversion :</strong> '+taux+'</div></div>';}
+// Plan du jour
+var plan=getPlanSemaine();
+if(plan.contactsDuJour.length>0){var catNoms2={notaire:'Notaires',pharmacie:'Pharmacies',clinique:'Cliniques',medecin:'Medecins',douanier:'Douaniers',avocat:'Avocats',fonctionnaire:'Fonctionnaires',autre:'Autres'};h+='<div class="stitle">📋 PLAN DU JOUR — '+catNoms2[plan.catDuJour].toUpperCase()+'</div>';plan.contactsDuJour.slice(0,3).forEach(function(pc){var tt=fp(pc.tel);h+='<div class="card ck" style="padding:10px 12px"><div class="ch"><div><div class="cnom">'+pc.nom.substring(0,24)+'</div><div class="cmeta">'+(pc.rel?'📅 '+pc.rel:'')+'</div></div>'+(tt?'<a href="tel:'+tt+'" onclick="event.stopPropagation()" class="bsm bcall" style="font-size:10px">📞</a>':'')+'</div></div>';});}
+h+='<div class="badge-com '+badge.cls+'"><div class="badge-ico">'+badge.ico+'</div><div class="badge-info"><div class="badge-title">'+badge.t+'</div><div class="badge-sub">'+badge.s+'</div></div><div class="streak-val"><div class="streak-num">🔥'+streak+'</div><div class="streak-lbl">jours actifs</div></div></div>';
+var alertes=[];if(nonDem.length>0)alertes.push({bg:'#FFF3E0',bd:'#E65100',ico:'⏳',txt:nonDem.length+' contrat(s) en attente +30j - Verifier avec ta cheffe'});if(urg.length>0)alertes.push({bg:'#FFEBEE',bd:'#E84040',ico:'🚨',txt:urg.length+' contact(s) urgents - Appeler MAINTENANT'});if(Math.max(0,obj-comm)>0&&S.contrats.length>0)alertes.push({bg:'#E3F2FD',bd:'#0D47A1',ico:'🎯',txt:'Gap : '+fmt(Math.max(0,obj-comm))+' - ~'+Math.ceil(Math.max(0,obj-comm)/5000)+' contrats a 5k'});if(monRang)alertes.push({bg:'var(--bg2)',bd:'var(--t1)',ico:'🏆',txt:'Classement equipe : #'+monRang.rang+' - '+fmt(monRang.commission||0)+' ce mois'});
+if(alertes.length){h+='<div class="stitle">ALERTES INTELLIGENTES</div>';alertes.forEach(function(a){h+='<div class="alrt" style="background:'+a.bg+';border-color:'+a.bd+'"><div class="alrt-ico">'+a.ico+'</div><div class="alrt-txt">'+a.txt+'</div></div>';});}
+if(urg.length){h+='<div class="stitle">A APPELER MAINTENANT</div>';urg.slice(0,3).forEach(function(c){h+=rCard(c);});if(urg.length>3)h+='<div style="text-align:center;font-size:11px;color:var(--tx3);padding:5px">+'+(urg.length-3)+' autres dans Pipeline</div>';}
+h+='<div class="stitle">MES CONTRATS 2026</div>';S.contrats.slice(0,5).forEach(function(c){var bg=c.st==='actif'?'var(--grl)':'var(--yel)';h+='<div class="card cn"><div class="ch"><div><div class="cnom">'+c.nom.substring(0,24)+'</div><div class="cmeta">'+(c.produit||'')+' - '+(c.duree||'?')+' ans</div></div><div style="text-align:right"><div style="font-size:13px;font-weight:800;color:var(--t1)">'+fmt(c.comm)+'</div><div style="font-size:9px;background:'+bg+';padding:2px 5px;border-radius:5px;margin-top:2px">'+(c.st==='actif'?'✅ Actif':'⏳ Attente')+'</div></div></div></div>';});
+if(S.contrats.length>5)h+='<div style="text-align:center;font-size:11px;color:var(--tx3);padding:6px;cursor:pointer" onclick="navTo(\'bilan\')">Voir tous les '+S.contrats.length+' contrats</div>';
+h+='<div style="height:20px"></div>';return'<div class="sec">'+h+'</div>';}
+function rCard(c){var st=c.st||'nouveau';var bc='ck',bb='bt',btxt=st;if(st==='urgent'){bc='cu';bb='bu';btxt='URGENT';}else if(st==='chaud'){bc='cc';bb='bo';}else if(st==='rdv'){bc='cp';bb='bp';btxt='RDV';}else if(st==='signe'){bc='cg';bb='bg2';btxt='Signe';}else if(st==='perdu'){bc='';bb='bx';}var tel=fp(c.tel);var h='<div class="card '+bc+'" onclick="openDetail(\''+c.id+'\')">';h+='<div class="ch"><div><div class="cnom">'+(c.nom||'').substring(0,24)+'</div><div class="cmeta">'+(c.src||c.fonction||'')+'</div></div><span class="cbadge '+bb+'">'+btxt+'</span></div>';if(c.obs)h+='<div class="cobs">'+String(c.obs).substring(0,90)+'</div>';if(c.rel)h+='<div style="font-size:10px;color:'+(c.rel<=TODAY?'var(--re)':'var(--tx3)')+';margin-top:4px">📅 '+c.rel+'</div>';if(st!=='perdu'&&st!=='signe'){h+='<div class="cact">';if(tel)h+='<a href="tel:'+tel+'" onclick="event.stopPropagation()" class="bsm bcall">📞 Appeler</a>';if(tel)h+='<a href="https://wa.me/229'+tel+'" target="_blank" onclick="event.stopPropagation()" class="bsm">💬 WA</a>';h+='<button class="bsm bok" onclick="event.stopPropagation();updateSt(\''+c.id+'\',\'signe\')">✅ Signe</button><button class="bsm brdv" onclick="event.stopPropagation();updateSt(\''+c.id+'\',\'rdv\')">📅 RDV</button><button class="bsm brel" onclick="event.stopPropagation();openRelance(\''+c.id+'\')">🔄</button><button class="bsm bno" onclick="event.stopPropagation();updateSt(\''+c.id+'\',\'perdu\')">❌</button></div>';}h+='</div>';return h;}
+function rPipeline(){var f=S.contacts.filter(function(c){if(S.filt!=='tous'&&c.st!==S.filt)return false;if(S.sq&&!(c.nom||'').toLowerCase().includes(S.sq.toLowerCase())&&!(c.tel||'').includes(S.sq)&&!(c.src||'').toLowerCase().includes(S.sq.toLowerCase()))return false;return true;});var cnt={tous:S.contacts.length};['urgent','chaud','rdv','nouveau','perdu','signe'].forEach(function(s){cnt[s]=S.contacts.filter(function(c){return c.st===s;}).length;});var h='<div class="search-bar"><span>🔍</span><input type="text" placeholder="Rechercher nom, tel, secteur..." value="'+S.sq+'" oninput="debounceSq(this.value)"></div>';h+='<div class="chips">';[['tous','Tous'],['urgent','🚨 Urgents'],['chaud','🔥 Chauds'],['rdv','📅 RDV'],['nouveau','Nouveaux'],['signe','✅ Signes'],['perdu','❌ Perdus']].forEach(function(pair){if(cnt[pair[0]]>0||pair[0]==='tous')h+='<div class="chip'+(S.filt===pair[0]?' on':'')+'" onclick="S.filt=\''+pair[0]+'\';render()">'+pair[1]+' ('+cnt[pair[0]]+')</div>';});h+='</div>';if(f.length===0)h+='<div style="text-align:center;padding:40px 20px;color:var(--tx3)"><div style="font-size:36px;margin-bottom:8px">📭</div><div style="font-size:12px">Aucun contact</div></div>';else f.forEach(function(c){h+=rCard(c);});h+='<div id="sheets-results"></div>';return'<div class="sec">'+h+'</div>';}
+
+function rDetail(){var c=S.contacts.find(function(x){return x.id===S.selId;});if(!c)return'<div class="sec"><button class="back" onclick="navTo(\'pipeline\')">← Retour</button></div>';var tel=fp(c.tel);var h='<button class="back" onclick="navTo(\'pipeline\')">← Pipeline</button>';h+='<div class="det-head"><div class="det-nom">'+(c.nom||'')+'</div><div class="det-meta">'+(c.src||'')+'</div></div>';h+='<div class="card cn">';if(tel)h+='<div class="irow"><span class="ikey">Telephone</span><a href="tel:'+tel+'" class="ival" style="color:var(--t1)">'+tel+'</a></div>';h+='<div class="irow"><span class="ikey">Statut</span><span class="ival">'+c.st+'</span></div><div class="irow"><span class="ikey">Produit</span><span class="ival">'+(c.prod||'A definir')+'</span></div><div class="irow"><span class="ikey">Relance</span><span class="ival">'+(c.rel||'Non definie')+'</span></div></div>';if(c.obs){
+    h+='<div class="obs-box">'+c.obs+'</div>';
+    // Historique des conversations
+    var obsLines=c.obs.split('\n').filter(function(l){return l.trim();});
+    if(obsLines.length>1){
+      h+='<div class="stitle">HISTORIQUE DES CONVERSATIONS</div>';
+      h+='<div class="card cn" style="padding:10px 12px;max-height:160px;overflow-y:auto">';
+      obsLines.slice().reverse().forEach(function(line){
+        var isDate=/^\[/.test(line.trim());
+        h+='<div style="font-size:11px;color:'+(isDate?'var(--t2)':'var(--tx)')+';padding:3px 0;border-bottom:1px solid var(--bg2)">'+line+'</div>';
+      });
+      h+='</div>';
+    }
+  }h+='<div class="stitle">AJOUTER UNE OBSERVATION</div><div class="fg"><textarea class="fi" id="obs-inp" placeholder="Ce qu il a dit... (demain, dans 1 semaine detecte auto)"></textarea></div><button class="btn-p" onclick="saveObs(\''+c.id+'\')">💾 Enregistrer</button>';h+='<div class="cact" style="margin-top:10px">';if(tel)h+='<a href="tel:'+tel+'" class="bsm bcall">📞 Appeler</a>';if(tel)h+='<a href="https://wa.me/229'+tel+'" target="_blank" class="bsm">💬 WhatsApp</a>';h+='<button class="bsm bok" onclick="updateSt(\''+c.id+'\',\'signe\')">✅ Signe</button><button class="bsm brdv" onclick="updateSt(\''+c.id+'\',\'rdv\')">📅 RDV</button><button class="bsm brel" onclick="openRelance(\''+c.id+'\')">🔄 Relance</button><button class="bsm bno" onclick="updateSt(\''+c.id+'\',\'perdu\')">❌ Perdu</button></div>';h+='<div class="stitle" style="margin-top:10px">💬 SCRIPT RAPIDE</div>';h+='<div style="background:var(--yel);border-radius:11px;padding:12px;font-size:11px;line-height:1.75;color:var(--tx2);cursor:pointer" onclick="navigator.clipboard&&navigator.clipboard.writeText(getScriptRapide(S.contacts.find(function(x){return x.id===\''+c.id+'\';}))).then(function(){toast(\'Script copie !\');}).catch(function(){toast(\'Script copie manuellement\');})">'+getScriptRapide(c)+'<div style="font-size:9px;color:var(--tx3);margin-top:5px">Appuie pour copier</div></div>';return'<div class="sec">'+h+'</div>';}
+function rAjouter(){var tp='<div class="stitle">NOUVEAU PROSPECT</div><div class="fg"><label class="fl">Nom complet *</label><input class="fi" id="f-nom" type="text" placeholder="AGOSSOU Jean-Pierre"></div><div class="fg"><label class="fl">Telephone</label><input class="fi" id="f-tel" type="tel" placeholder="0197000000"></div><div class="fg"><label class="fl">Fonction</label><input class="fi" id="f-fonc" type="text" placeholder="Douanier, Medecin, Avocat..."></div><div class="fg"><label class="fl">Source</label><select class="fi" id="f-src"><option>Terrain</option><option>Fonctionnaires</option><option>Douaniers</option><option>Avocats</option><option>Notaires</option><option>Pharmacies</option><option>Medecins</option><option>Cliniques</option><option>Reference</option></select></div><div class="fg"><label class="fl">Statut</label><select class="fi" id="f-st"><option value="nouveau">Nouveau</option><option value="chaud">Chaud</option><option value="rdv">RDV fixe</option><option value="urgent">Urgent</option></select></div><div class="fg"><label class="fl">Produit</label><select class="fi" id="f-prod"><option>A definir</option><option>REP NF</option><option>Mixte Plus NF</option><option>Liberty</option><option>Fonds Cantonne NF-1</option><option>HR5</option><option>CAPIPLU</option></select></div><div class="fg"><label class="fl">Date de relance</label><input class="fi" id="f-rel" type="date" value="'+new Date(Date.now()+2*86400000).toISOString().slice(0,10)+'"></div><div class="fg"><label class="fl">Notes</label><textarea class="fi" id="f-obs" placeholder="Ce qu il a dit, objections, contexte..."></textarea></div><button class="btn-p" onclick="submitProspect()">✅ Enregistrer le prospect</button>';var tc='<div class="stitle" style="margin-top:20px">CONTRAT SIGNE</div><div class="fg"><label class="fl">Client *</label><input class="fi" id="c-nom" type="text" placeholder="Nom du client" style="text-transform:uppercase"></div><div class="fg"><label class="fl">Telephone</label><input class="fi" id="c-tel" type="tel" placeholder="0197000000"></div><div class="fg"><label class="fl">N° BIA</label><input class="fi" id="c-bia" type="text" placeholder="1234/2026"></div><div class="fg"><label class="fl">Fonction / Metier</label><input class="fi" id="c-fonc" type="text" placeholder="Fonctionnaire, Medecin, Douanier..."></div><div class="fg"><label class="fl">Produit</label><select class="fi" id="c-prod" onchange="calcPrev()"><option>REP NF</option><option>Mixte Plus NF</option><option>Liberty</option><option>Fonds Cantonne NF-1</option><option>HR5</option></select></div><div class="fg"><label class="fl">Prime mensuelle (FCFA)</label><input class="fi" id="c-prime" type="number" placeholder="15000" oninput="calcPrev()"></div><div class="fg"><label class="fl">Duree (ans)</label><input class="fi" id="c-dur" type="number" value="15" oninput="calcPrev()"></div><div class="fg"><label class="fl">Date signature</label><input class="fi" id="c-datesig" type="date" value="'+new Date().toISOString().slice(0,10)+'"></div><div class="fg"><label class="fl">Date d effet (debut prelevements)</label><input class="fi" id="c-dateeff" type="date" value="'+new Date().toISOString().slice(0,10)+'"></div><div id="cprev" style="background:var(--grl);border-radius:11px;padding:12px;margin-bottom:12px;display:none"><div style="font-size:11px;font-weight:600;color:var(--gr)">COMMISSION ESTIMEE</div><div id="cprev-val" style="font-size:22px;font-weight:800;color:var(--gr)">0 FCFA</div></div><button class="btn-p" style="background:linear-gradient(135deg,var(--gr),#00A060)" onclick="submitContrat()">📋 Enregistrer le contrat</button><div style="height:20px"></div>';return'<div class="sec">'+tp+tc+'</div>';}
+function calcPrev(){var p=parseFloat(document.getElementById('c-prime').value)||0;if(p>0){var d=parseFloat(document.getElementById('c-dur').value)||15;var prod=(document.getElementById('c-prod')||{}).value||'REP NF';var c=calcComm(prod,p,d);document.getElementById('cprev').style.display='block';document.getElementById('cprev-val').textContent=fmt(c)+'/mois';}}
+function submitProspect(){var nom=(document.getElementById('f-nom').value||'').trim();if(!nom){toast('Le nom est obligatoire');return;}var c={id:'l'+Date.now(),nom:nom.toUpperCase(),tel:fp(document.getElementById('f-tel').value),src:document.getElementById('f-src').value,st:document.getElementById('f-st').value,prod:document.getElementById('f-prod').value,fonc:document.getElementById('f-fonc').value,prime:15000,obs:document.getElementById('f-obs').value,rel:document.getElementById('f-rel').value};S.contacts.unshift(c);sv('pk_cnt_'+S.code,S.contacts);markAct();apiPost({action:'addProspect',nom:c.nom,tel:c.tel,fonction:c.fonc,src:c.src,st:c.st,prod:c.prod,obs:c.obs,rel:c.rel}).catch(function(){});toast(nom+' ajoute au pipeline !');S.view='pipeline';render();}
+function submitContrat(){var nom=(document.getElementById('c-nom').value||'').trim();var pr=parseFloat(document.getElementById('c-prime').value)||0;if(!nom||!pr){toast('Nom et prime obligatoires');return;}var prod=document.getElementById('c-prod').value;var dur=parseFloat(document.getElementById('c-dur').value)||15;var comm=calcComm(prod,pr,dur);var c={nom:nom.toUpperCase(),produit:prod,prime:pr,duree:dur,comm:comm,date:TODAY,st:'attente'};S.contrats.unshift(c);sv('pk_ctr_'+S.code,S.contrats);markAct();apiPost({action:'addContrat',tel:(document.getElementById('c-tel')||{}).value||'',bia:(document.getElementById('c-bia')||{}).value||'',fonction:(document.getElementById('c-fonc')||{}).value||'',date:(document.getElementById('c-datesig')||{}).value||TODAY,dateEffet:(document.getElementById('c-dateeff')||{}).value||TODAY,nom:c.nom,produit:prod,prime:pr,duree:dur}).catch(function(){});toast('Contrat '+nom+' ajoute - Comm: '+fmt(comm)+'/mois');S.view='bilan';render();}
+function rBilan(){var _ctr=S.contrats.filter(function(x){return _bilAnFilt==='tout'||!x.date||(x.date+'').slice(0,4)===_bilAnFilt;});var h='<div class="stitle">COMPTE-RENDU DU JOUR</div><div class="cr-grid"><div class="cr-box"><input type="number" id="cr-app" value="0" min="0"><div class="cr-lbl">📞 Appels</div></div><div class="cr-box"><input type="number" id="cr-con" value="0" min="0"><div class="cr-lbl">👥 Contacts</div></div><div class="cr-box"><input type="number" id="cr-rdv" value="0" min="0"><div class="cr-lbl">📅 RDV</div></div><div class="cr-box"><input type="number" id="cr-sig" value="0" min="0"><div class="cr-lbl">✅ Signes</div></div></div><div class="fg"><label class="fl">Prospects chauds</label><textarea class="fi" id="cr-ch" placeholder="Liste..."></textarea></div><div class="fg"><label class="fl">A faire demain</label><textarea class="fi" id="cr-dem" placeholder="Relances..."></textarea></div><div class="fg"><label class="fl">Notes</label><textarea class="fi" id="cr-notes" placeholder="Observations..."></textarea></div><button class="btn-p" onclick="submitCR()">📊 Enregistrer dans Sheets</button>';h+='<div class="stitle" style="margin-top:16px">CONTRATS ('+_ctr.length+')</div>';h+='<div style="display:flex;gap:6px;margin-bottom:10px">';['tout','2026','2025'].forEach(function(an){var sel=_bilAnFilt===an;h+='<button onclick="_bilAnFilt=\''+an+'\';render()" style="flex:1;padding:7px;border-radius:10px;font-size:11px;font-weight:700;cursor:pointer;border:none;background:'+(sel?'var(--t1)':'#f0f0f0')+';color:'+(sel?'white':'var(--tx3)')+'">'+( an==='tout'?'Tous':an)+'</button>';});h+='</div>';_ctr.forEach(function(c){var bg=c.st==='actif'?'var(--grl)':c.st==='bloque'?'var(--rel)':'var(--yel)';h+='<div class="card cn"><div class="ch"><div><div class="cnom">'+c.nom.substring(0,24)+'</div><div class="cmeta">'+(c.produit||'')+'</div></div><div style="text-align:right"><div style="font-size:13px;font-weight:800;color:var(--t1)">'+fmt(c.comm)+'</div><div style="font-size:9px;background:'+bg+';padding:2px 5px;border-radius:5px;margin-top:2px">'+(c.st==='actif'?'✅ Actif':c.st==='bloque'?'🚫 Bloque':c.st==='relance'?'🔄 Relance':'⏳ Attente')+'</div></div></div>';if(c.bia)h+='<div style="font-size:9px;color:var(--tx3);margin-top:4px">N° '+c.bia+'</div>';h+='<div class="cact"><button class="bsm bok" onclick="chgCtr(\''+c.nom+'\',\'Actif\',\''+c.bia+'\')">✅ Actif</button><button class="bsm brdv" onclick="chgCtr(\''+c.nom+'\',\'Attente\',\''+c.bia+'\')">⏳ Attente</button><button class="bsm bno" onclick="sigPrel(\''+c.nom+'\')">🚨 Signaler</button></div></div>';});h+='<div style="background:white;border-radius:14px;padding:14px;margin-bottom:12px;box-shadow:0 2px 12px rgba(0,201,184,.1)">';
+h+='<div style="font-size:11px;font-weight:700;color:var(--tx3);margin-bottom:8px">COMMISSIONS 2026</div>';
+var cAct=_ctr.filter(function(x){return x.st==='actif';});
+var cAtt=_ctr.filter(function(x){return x.st!=='actif'&&x.st!=='bloque';});
+var totAct=cAct.reduce(function(s,x){return s+x.comm;},0);
+var totAtt=cAtt.reduce(function(s,x){return s+x.comm;},0);
+h+='<div style="display:flex;justify-content:space-between;align-items:center;padding:8px;background:var(--grl);border-radius:9px;margin-bottom:6px">';
+h+='<div><div style="font-size:10px;color:var(--gr);font-weight:600">✅ ACTIFS ('+cAct.length+')</div><div style="font-size:16px;font-weight:800;color:var(--gr)">'+fmt(totAct)+'</div></div>';
+h+='<div style="font-size:9px;color:var(--gr);text-align:right">tu touches<br>maintenant</div></div>';
+h+='<div style="display:flex;justify-content:space-between;align-items:center;padding:8px;background:var(--yel);border-radius:9px;margin-bottom:6px">';
+h+='<div><div style="font-size:10px;color:#8B6000;font-weight:600">⏳ EN ATTENTE ('+cAtt.length+')</div><div style="font-size:16px;font-weight:800;color:#8B6000">'+fmt(totAtt)+'</div></div>';
+h+='<div style="font-size:9px;color:#8B6000;text-align:right">quand ils<br>démarrent</div></div>';
+if(cAtt.length>0)h+='<div style="background:#FFF3E0;border-radius:9px;padding:8px;font-size:11px;color:#E65100;margin-bottom:6px"><b>⚠️ '+cAtt.length+' contrat(s) pas encore actif(s)</b><br>Verifier les prelevements avec ta cheffe</div>';
+h+='<div style="display:flex;justify-content:space-between;padding:8px 10px;border-top:1px solid var(--bd)">';
+h+='<span style="font-size:11px;font-weight:700;color:var(--tx)">Total potentiel</span>';
+h+='<span style="font-size:14px;font-weight:800;color:var(--t1)">'+fmt(totAct+totAtt)+'</span></div>';
+h+='</div>';h+='<button class="btn-p" style="margin-top:8px;background:var(--pu)" onclick="navTo(\'commissions\')">Voir mes commissions</button><div style="height:20px"></div>';return'<div class="sec">'+h+'</div>';}
+function chgCtr(nom,st,bia){
+  S.contrats=S.contrats.map(function(c){return c.nom===nom&&(!bia||c.bia===bia)?Object.assign({},c,{st:st.toLowerCase()}):c;});
+  sv('pk_ctr_'+S.code,S.contrats);render();
+  apiPost({action:'updateStatutContrat',nom:nom,statut:st,bia:bia||''})
+    .then(function(r){return r.json();})
+    .then(function(res){toast(res.success?'✅ '+nom.split(' ')[0]+' → '+st:'⚠️ Erreur: '+(res.message||'Sheets non mis a jour'));})
+    .catch(function(){toast('⚠️ Connexion requise pour Sheets');});
+}
+function sigPrel(nom){apiPost({action:'signalerPrelNonSuivi',nom:nom,mois:new Date().toISOString().slice(0,7)}).catch(function(){});toast('Signale a ta cheffe : '+nom.substring(0,20));}
+function submitCR(){var d={action:'compteRendu',date:TODAY,appels:parseInt(document.getElementById('cr-app').value)||0,contacts:parseInt(document.getElementById('cr-con').value)||0,rdv:parseInt(document.getElementById('cr-rdv').value)||0,signes:parseInt(document.getElementById('cr-sig').value)||0,chauds:document.getElementById('cr-ch').value,demain:document.getElementById('cr-dem').value,notes:document.getElementById('cr-notes').value};apiPost(d).catch(function(){});markAct();toast('Compte-rendu enregistre dans Sheets !');}
+function rComm(){var comm=totalComm();var obj=S.obj||OBJ_DEF;var h='<div class="hero"><div class="hero-lbl">Commission totale estimee</div><div class="hero-val">'+fmt(comm)+'</div><div class="hero-sub">Objectif : '+fmt(obj)+' / mois</div><div class="hero-bar"><div class="hero-fill" style="width:'+Math.min(100,Math.round(comm/obj*100))+'%"></div></div><div class="hero-pct">'+Math.min(100,Math.round(comm/obj*100))+'% - Gap : '+fmt(Math.max(0,obj-comm))+'</div></div>';h+='<div class="stitle">HISTORIQUE COMMISSIONS REÇUES</div>';
+  // Mois actuel estimé
+  var moisActuel=new Date().toISOString().slice(0,7);
+  var moisNomActuel=new Date().toLocaleString('fr-FR',{month:'long',year:'numeric'});
+  var dejaEnregistre=S.comms.find(function(c){return c.mois===moisActuel;});
+  if(!dejaEnregistre){
+    h+='<div class="card cn" style="border-left:3px solid var(--ye)">';
+    h+='<div style="display:flex;justify-content:space-between;align-items:center">';
+    h+='<div><div style="font-size:11px;font-weight:700;color:var(--ye)">'+moisNomActuel.toUpperCase()+'</div><div style="font-size:10px;color:var(--tx3);margin-top:2px">Commission calculée (non encore reçue)</div></div>';
+    h+='<div style="text-align:right"><div style="font-size:18px;font-weight:800;color:var(--t1)">'+fmt(totalComm())+'</div><div style="font-size:9px;color:var(--tx3)">AIB estimé: -'+fmt(Math.round(totalComm()*0.05))+'</div><div style="font-size:11px;font-weight:700;color:var(--gr)">Net: '+fmt(Math.round(totalComm()*0.95))+'</div></div>';
+    h+='</div></div>';
+  }
+  if(S.comms.length===0&&dejaEnregistre){h+='<div style="text-align:center;padding:30px;color:var(--tx3);font-size:12px">Synchronise pour voir l historique</div>';}else{S.comms.forEach(function(c){
+    var aib=c.aib||Math.round((c.montant||0)*0.05);
+    var net=c.net||(c.montant-aib);
+    var moisNoms={1:'Jan',2:'Fev',3:'Mar',4:'Avr',5:'Mai',6:'Juin',7:'Juil',8:'Aout',9:'Sep',10:'Oct',11:'Nov',12:'Dec'};
+    var moisParts=(c.mois||'').split('-');
+    var moisLabel=moisParts.length>1?(moisNoms[parseInt(moisParts[1])]||c.mois)+' '+moisParts[0]:c.mois;
+    h+='<div class="comm-hist">';
+    h+='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">';
+    h+='<div class="comm-mois">'+moisLabel+'</div>';
+    h+='<div style="text-align:right"><div style="font-size:9px;color:var(--tx3)">Actuaires brut</div><div style="font-size:15px;font-weight:800;color:var(--t1)">'+fmt(c.montant||0)+'</div></div>';
+    h+='</div>';
+    h+='<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">';
+    h+='<div style="background:var(--rel);border-radius:8px;padding:8px;text-align:center">';
+    h+='<div style="font-size:9px;color:var(--re);font-weight:600">AIB 5%</div>';
+    h+='<div style="font-size:13px;font-weight:800;color:var(--re)">-'+fmt(aib)+'</div>';
+    h+='</div>';
+    h+='<div style="background:var(--grl);border-radius:8px;padding:8px;text-align:center">';
+    h+='<div style="font-size:9px;color:var(--gr);font-weight:600">✅ Net reçu</div>';
+    h+='<div style="font-size:13px;font-weight:800;color:var(--gr)">'+fmt(net)+'</div>';
+    h+='</div>';
+    h+='</div>';
+    h+='</div>';
+  });}h+='<div class="stitle">SAISIR COMMISSION REÇUE (ACTUAIRES)</div>';
+  h+='<div class="card cn">';
+  h+='<div style="font-size:11px;color:var(--tx2);margin-bottom:10px">Saisis le montant brut reçu — l app calcule AIB 5% et ton net automatiquement</div>';
+  h+='<div class="fg"><label class="fl">Mois</label><input class="fi" id="cm-mois" type="month" value="'+new Date().toISOString().slice(0,7)+'"></div>';
+  h+='<div class="fg"><label class="fl">Montant brut actuaires (FCFA)</label><input class="fi" id="cm-mont" type="number" placeholder="0" oninput="previewAIB()"></div>';
+  h+='<div id="aib-prev" style="display:none;background:var(--bg2);border-radius:10px;padding:10px;margin-bottom:10px">';
+  h+='<div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px"><span>Commission brute</span><span id="aib-brut" style="font-weight:700"></span></div>';
+  h+='<div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px;color:var(--re)"><span>AIB 5%</span><span id="aib-mont"></span></div>';
+  h+='<div style="display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--gr)"><span>✅ Net à recevoir</span><span id="aib-net"></span></div>';
+  h+='</div>';
+  h+='<button class="btn-p" onclick="saveComm()">💾 Enregistrer</button>';
+  h+='</div><div style="height:20px"></div>';
+var secteurs={};S.contacts.forEach(function(p){var cat=detectCat(p)||'autre';if(!secteurs[cat])secteurs[cat]={total:0,signes:0};secteurs[cat].total++;if(p.st==='signe')secteurs[cat].signes++;});var secList=Object.keys(secteurs).sort(function(a,b){return secteurs[b].signes-secteurs[a].signes;});if(secList.length>0){h+='<div style="background:white;border-radius:14px;padding:14px;margin-bottom:12px">';h+='<div style="font-size:11px;font-weight:700;color:var(--tx3);margin-bottom:10px">TAUX CONVERSION PAR SECTEUR</div>';secList.slice(0,6).forEach(function(sec){var d=secteurs[sec];var taux=d.total>0?Math.round((d.signes/d.total)*100):0;h+='<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">';h+='<div style="font-size:11px;font-weight:600;color:var(--tx);width:90px;text-transform:capitalize">'+sec+'</div>';h+='<div style="flex:1;background:#f0f0f0;border-radius:6px;height:8px"><div style="background:var(--t1);border-radius:6px;height:8px;width:'+taux+'%"></div></div>';h+='<div style="font-size:10px;font-weight:700;color:var(--t1);width:35px">'+taux+'%</div>';h+='<div style="font-size:9px;color:var(--tx3)">'+d.signes+'/'+d.total+'</div></div>';});h+='</div>';}
+// ── PROJECTION FIN 2026 ──
+var now=new Date();
+var moisRestants=Math.max(1,12-now.getMonth());
+var cActifs=S.contrats.filter(function(x){return x.st==='actif';});
+var totAct=cActifs.reduce(function(s,x){return s+x.comm;},0);
+var commsH=S.comms||[];
+var moyMois=commsH.length>0?Math.round(commsH.reduce(function(s,m){return s+(m.montant||0);},0)/commsH.length):totAct;
+var projection=moyMois*moisRestants;
+h+='<div style="background:white;border-radius:14px;padding:14px;margin-bottom:12px">';
+h+='<div style="font-size:11px;font-weight:700;color:var(--tx3);margin-bottom:8px">PROJECTION FIN 2026</div>';
+h+='<div style="display:flex;justify-content:space-between;margin-bottom:6px"><span style="font-size:12px;color:var(--tx)">Commission moyenne/mois</span><span style="font-size:12px;font-weight:700">'+fmt(moyMois)+'</span></div>';
+h+='<div style="display:flex;justify-content:space-between;margin-bottom:10px"><span style="font-size:12px;color:var(--tx)">Mois restants</span><span style="font-size:12px;font-weight:700">'+moisRestants+'</span></div>';
+h+='<div style="background:#FFF8E1;border-radius:10px;padding:12px;text-align:center">';
+h+='<div style="font-size:11px;color:#8B6000;margin-bottom:4px">Projection annuelle</div>';
+h+='<div style="font-size:24px;font-weight:900;color:#E65100">'+fmt(projection)+'</div></div></div>';
+
+// ── CALCUL PAR CONTRAT ACTIF ──
+if(cActifs.length>0){
+  h+='<div style="background:white;border-radius:14px;padding:14px;margin-bottom:12px">';
+  h+='<div style="font-size:11px;font-weight:700;color:var(--tx3);margin-bottom:4px">MON CALCUL DE COMMISSION — VÉRIFIER LES ACTUAIRES</div>';
+  h+='<div style="font-size:11px;color:var(--tx3);margin-bottom:10px">Contrats actifs: '+cActifs.length+' | Commission calculée:</div>';
+  cActifs.forEach(function(ct){
+    h+='<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--bd)">';
+    h+='<span style="font-size:12px;color:var(--tx)">'+ct.nom.substring(0,22)+'</span>';
+    h+='<span style="font-size:12px;font-weight:700;color:var(--t1)">'+fmt(ct.comm)+'/mois</span></div>';
+  });
+  h+='<div style="display:flex;justify-content:space-between;padding:10px 0;font-weight:800">';
+  h+='<span>Total calculé</span><span style="color:var(--t1)">'+fmt(totAct)+'/mois</span></div>';
+  h+='</div>';
+}
+
+// ── MES OBJECTIFS PAR PRODUIT ──
+var cat=S.cat||'Challenger';
+var objSunu={
+  'Leader':    {repNF:{nb:192},mixte:{nb:18},td:{ca:720000},epargne:{nb:48},obj_mois:500000},
+  'Challenger':{repNF:{nb:192,ca:5688015},mixte:{nb:18,ca:497701},td:{ca:576000},epargne:{nb:48,ca:21848605},obj_mois:400000},
+  'Avenir':    {repNF:{nb:192},mixte:{nb:18},td:{ca:460800},epargne:{nb:48},obj_mois:320000},
+  'Debutant':  {repNF:{nb:115},mixte:{nb:11},td:{ca:149760},epargne:{nb:29},obj_mois:104000}
+};
+var catObj=objSunu[cat]||objSunu['Challenger'];
+var repNFCount=S.contrats.filter(function(x){var p=(x.produit||x.prod||'').toUpperCase();return p.indexOf('REPNF')>=0||p.indexOf('REP NF')>=0;}).length;
+var mixteCount=S.contrats.filter(function(x){var p=(x.produit||x.prod||'').toUpperCase();return p.indexOf('MPNF')>=0||p.indexOf('MIXTE')>=0;}).length;
+var tdPrime=S.contrats.filter(function(x){var p=(x.produit||x.prod||'').toUpperCase();return p.indexOf('TD')>=0||p.indexOf('3CAP')>=0;}).reduce(function(s,x){return s+(x.prime||0);},0);
+var epCount=S.contrats.filter(function(x){var p=(x.produit||x.prod||'').toUpperCase();return p.indexOf('FOND')>=0||p.indexOf('EPARG')>=0;}).length;
+h+='<div style="background:white;border-radius:14px;padding:14px;margin-bottom:12px">';
+h+='<div style="font-size:13px;font-weight:800;color:var(--t1);margin-bottom:12px">MES OBJECTIFS 2026</div>';
+[
+  {lbl:'REP NF',val:repNFCount+' / '+catObj.repNF.nb,pct:Math.min(100,Math.round((repNFCount/catObj.repNF.nb)*100))},
+  {lbl:'Mixte Plus NF',val:mixteCount+' / '+catObj.mixte.nb,pct:Math.min(100,Math.round((mixteCount/catObj.mixte.nb)*100))},
+  {lbl:'TD Prévoyance',val:fmt(tdPrime)+' / '+fmt(catObj.td.ca),pct:Math.min(100,Math.round((tdPrime/catObj.td.ca)*100))},
+  {lbl:'Épargne + Fonds',val:epCount+' / '+catObj.epargne.nb,pct:Math.min(100,Math.round((epCount/catObj.epargne.nb)*100))}
+].forEach(function(row){
+  var col=row.pct>=80?'var(--gr)':row.pct>=50?'var(--or)':'var(--t1)';
+  h+='<div style="margin-bottom:12px">';
+  h+='<div style="display:flex;justify-content:space-between;margin-bottom:4px"><b style="font-size:12px">'+row.lbl+'</b><span style="font-size:11px;color:'+col+'">'+row.val+'</span></div>';
+  h+='<div style="background:#f0f0f0;border-radius:6px;height:6px"><div style="background:'+col+';border-radius:6px;height:6px;width:'+row.pct+'%"></div></div>';
+  h+='</div>';
+});
+h+='</div>';
+
+
+return'<div class="sec">'+h+'</div>';}
+function previewAIB(){
+  var brut=parseFloat(document.getElementById('cm-mont').value)||0;
+  if(brut>0){
+    var aib=Math.round(brut*0.05);
+    var net=brut-aib;
+    var prev=document.getElementById('aib-prev');
+    if(prev){
+      prev.style.display='block';
+      document.getElementById('aib-brut').textContent=brut.toLocaleString('fr-FR')+' FCFA';
+      document.getElementById('aib-mont').textContent='-'+aib.toLocaleString('fr-FR')+' FCFA';
+      document.getElementById('aib-net').textContent=net.toLocaleString('fr-FR')+' FCFA';
+    }
+  }
+}
+function saveComm(){var mois=document.getElementById('cm-mois').value;var brut=parseFloat(document.getElementById('cm-mont').value)||0;if(!brut){toast('Montant invalide');return;}var aib=Math.round(brut*0.05);var net=brut-aib;apiPost({action:'saveCommission',mois:mois,montant:brut,aib:aib,net:net,estime:totalComm()}).catch(function(){});var ex=S.comms.findIndex(function(c){return c.mois===mois;});var entry={mois:mois,montant:brut,aib:aib,net:net,estime:totalComm()};if(ex>=0)S.comms[ex]=entry;else S.comms.unshift(entry);sv('pk_com_'+S.code,S.comms);toast('Brut: '+fmt(brut)+' | AIB: '+fmt(aib)+' | Net: '+fmt(net));render();}
+function rClassement(){
+  var medals=['🥇','🥈','🥉'];
+  var OBJ={Leader:125000,Challenger:100000,Avenir:80000,Debutant:26000};
+  var moi=S.classement.find(function(c){return c.estMoi;});
+  var maCa=moi?(moi.commission||0):0;
+  var monObj=OBJ[S.cat]||100000;
+  var maPct=Math.min(100,Math.round(maCa/monObj*100));
+  var maColor=maPct>=100?'var(--gr)':maPct>=50?'var(--t1)':'var(--or)';
+  var h='';
+  // Ma progression vs objectif
+  h+='<div class="card cn" style="border-left:3px solid '+maColor+';margin-bottom:12px">';
+  h+='<div style="font-size:10px;font-weight:700;color:var(--tx3);text-transform:uppercase;margin-bottom:6px">MON OBJECTIF '+(S.cat||'').toUpperCase()+' CETTE SEMAINE</div>';
+  h+='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">';
+  h+='<div style="font-size:20px;font-weight:800;color:'+maColor+'">'+fmt(maCa)+'</div>';
+  h+='<div style="text-align:right"><div style="font-size:10px;color:var(--tx3)">Objectif</div><div style="font-size:14px;font-weight:700">'+fmt(monObj)+'</div></div>';
+  h+='</div>';
+  h+='<div style="background:#E8F5F4;border-radius:5px;height:8px;overflow:hidden;margin-bottom:4px">';
+  h+='<div style="height:100%;background:'+maColor+';border-radius:5px;width:'+maPct+'%"></div></div>';
+  h+='<div style="font-size:10px;color:'+maColor+';font-weight:600">';
+  if(maPct>=100)h+='🎉 Objectif atteint cette semaine !';
+  else h+=maPct+'% atteint — Manque '+fmt(monObj-maCa);
+  h+='</div></div>';
+  h+='<div class="stitle">🏆 CLASSEMENT ÉQUIPE SEMAINE</div>';
+  if(S.classement.length===0){
+    h+='<div style="text-align:center;padding:20px;color:var(--tx3);font-size:12px">⏳ Chargement...</div>';
+  } else {
+    S.classement.forEach(function(m){
+      var pct=Math.min(100,Math.round((m.commission||0)/125000*100));
+      var oc=(m.commission||0)>=125000?'var(--gr)':(m.commission||0)>=100000?'var(--t1)':(m.commission||0)>=80000?'var(--ye)':'var(--or)';
+      var niv='';
+      if((m.commission||0)>=125000)niv='🏆 Leader';
+      else if((m.commission||0)>=100000)niv='🚀 Challenger';
+      else if((m.commission||0)>=80000)niv='⭐ Avenir';
+      else if((m.commission||0)>=26000)niv='🌱 Débutant';
+      else if((m.commission||0)>0)niv='💪 En cours';
+      h+='<div class="rank-card'+(m.estMoi?' rank-me':'')+'">';
+      h+='<div class="rank-num '+(m.rang<=3?'r'+m.rang:'')+'">'+(m.rang<=3?medals[m.rang-1]:m.rang)+'</div>';
+      h+='<div class="rank-info">';
+      h+='<div class="rank-nom">'+m.nom+(m.estMoi?' (Toi)':'')+'</div>';
+      h+='<div class="rank-meta">'+(m.contrats||0)+' contrat'+(m.contrats!==1?'s':'')+' · '+fmt(m.commission||0)+'</div>';
+      h+='<div class="rank-bar"><div class="rank-bar-fill" style="width:'+pct+'%;background:'+oc+'"></div></div>';
+      if(niv)h+='<div style="font-size:9px;color:'+oc+';margin-top:2px">'+niv+'</div>';
+      h+='</div>';
+      h+='<div style="text-align:right">';
+      h+='<div class="rank-comm" style="color:'+oc+'">'+fmt(m.commission||0)+'</div>';
+      h+='<div style="font-size:9px;color:var(--tx3)">CA sem.</div>';
+      h+='</div></div>';
+    });
+  }
+  h+='<div style="height:20px"></div>';
+  return'<div class="sec">'+h+'</div>';
+}
+function rChefEq(){var tot=S.equipe.reduce(function(s,m){return s+(m.commission||0);},0);var totC=S.equipe.reduce(function(s,m){return s+(m.contrats||0);},0);var h='<div class="hero"><div class="hero-lbl">Commission totale equipe UP3</div><div class="hero-val">'+fmt(tot)+'</div><div class="hero-sub">'+totC+' contrats - '+S.equipe.length+' commerciaux</div></div><div class="stitle">VUE COMMERCIAUX</div>';if(S.equipe.length===0){S.equipe=Object.entries(USERS).filter(function(u){return u[1].role==='commercial';}).map(function(u){return{nom:u[1].nom,contrats:0,commission:0,prospects:0};});}S.equipe.forEach(function(m){var bi=m.contrats>=3?'🔥 En feu':m.contrats>=1?'⚡ En forme':'⚠️ A booster';var bc=m.contrats>=3?'bg2':m.contrats>=1?'bo':'bu';h+='<div class="equipe-card"><div class="equipe-row"><div><div class="equipe-nom">'+m.nom+'</div><div class="equipe-meta">'+(m.contrats||0)+' contrats - '+(m.prospects||0)+' prospects</div></div><div style="text-align:right"><div class="equipe-comm">'+fmt(m.commission||0)+'</div><span class="cbadge '+bc+'" style="font-size:9px;display:inline-block;margin-top:3px">'+bi+'</span></div></div><div class="rank-bar" style="margin-top:7px"><div class="rank-bar-fill" style="width:'+Math.min(100,Math.round((m.commission||0)/1000000*100))+'%"></div></div></div>';});h+='<div style="height:20px"></div>';return'<div class="sec">'+h+'</div>';}
+function rChefAlert(){var alertes=[];S.equipe.forEach(function(m){if(m.contrats===0)alertes.push({t:'r',ico:'🚨',msg:m.nom.split(' ')[0]+' - 0 contrat ce mois',a:'A coacher en urgence'});else if(m.contrats>=5)alertes.push({t:'g',ico:'🏆',msg:m.nom.split(' ')[0]+' - '+m.contrats+' contrats 🔥',a:'A feliciter !'});else if(m.contrats<=2)alertes.push({t:'o',ico:'⚠️',msg:m.nom.split(' ')[0]+' - '+m.contrats+' contrat(s) seulement',a:'A relancer et coacher'});});var h='<div class="stitle">ALERTES INTELLIGENTES</div>';if(alertes.length===0){h+='<div style="text-align:center;padding:30px;color:var(--tx3);font-size:12px">✅ Aucune alerte urgente</div>';}alertes.forEach(function(a){var bg=a.t==='r'?'var(--rel)':a.t==='g'?'var(--grl)':'var(--orl)';var bd=a.t==='r'?'var(--re)':a.t==='g'?'var(--gr)':'var(--or)';h+='<div class="alrt" style="background:'+bg+';border-color:'+bd+'"><div class="alrt-ico">'+a.ico+'</div><div><div class="alrt-txt" style="font-weight:700">'+a.msg+'</div><div class="alrt-txt">'+a.a+'</div></div></div>';});h+='<div style="height:20px"></div>';return'<div class="sec">'+h+'</div>';}
+function rNotes(){var saved=ld('pk_notes_chef',[]);var noms=S.equipe.length?S.equipe.map(function(m){return'<option>'+m.nom+'</option>';}).join(''):Object.values(USERS).filter(function(u){return u.role==='commercial';}).map(function(u){return'<option>'+u.nom+'</option>';}).join('');var h='<div class="stitle">ENVOYER UNE NOTE</div><div class="fg"><label class="fl">Commercial</label><select class="fi" id="note-who">'+noms+'</select></div><div class="fg"><label class="fl">Type</label><select class="fi" id="note-type"><option value="encouragement">🌟 Encouragement</option><option value="alerte">⚠️ Alerte</option><option value="conseil">💡 Conseil</option><option value="felicitation">🏆 Felicitation</option></select></div><div class="fg"><label class="fl">Note</label><textarea class="fi" id="note-txt" placeholder="Ta note..."></textarea></div><button class="btn-p" onclick="submitNote()">📝 Enregistrer</button><div class="stitle" style="margin-top:16px">NOTES RECENTES</div>';saved.slice(-5).reverse().forEach(function(n){h+='<div class="note-card"><div class="note-who">'+n.who+'</div><div class="note-txt">'+n.txt+'</div><div class="note-date">'+n.date+' - '+n.type+'</div></div>';});h+='<div style="height:20px"></div>';return'<div class="sec">'+h+'</div>';}
+function submitNote(){var who=document.getElementById('note-who').value;var type=document.getElementById('note-type').value;var txt=(document.getElementById('note-txt').value||'').trim();if(!txt){toast('Ecris une note');return;}var saved=ld('pk_notes_chef',[]);saved.push({who:who,type:type,txt:txt,date:TODAY});sv('pk_notes_chef',saved);fetch(API_EQ,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'saveNote',code:S.code,commercial:who,note:txt,type:type})}).catch(function(){});toast('Note envoyee a '+who.split(' ')[0]);render();}
+function rProfil(){var streak=getStreak();var h='<div class="hero"><div class="hero-lbl">Mon profil</div><div class="hero-val" style="font-size:20px">'+S.nom+'</div><div class="hero-sub">'+(S.role==='chef'?"Chef equipe UP3":S.cat+' - UP3')+'</div></div>';if(S.role!=='chef'){var cat=S.cat||'Challenger';var catNext={Leader:'Leader',Challenger:'Leader',Avenir:'Challenger',Debutant:'Avenir'};h+='<div class="card cn"><div class="irow"><span class="ikey">Catégorie</span><span class="ival">'+cat+'</span></div><div class="irow"><span class="ikey">Objectif perso</span><span class="ival">'+fmt(S.obj)+'/mois</span></div><div class="irow" style="border:none"><span class="ikey">Streak</span><span class="ival">🔥 '+streak+' jours</span></div></div>';h+='<div class="alrt" style="background:var(--pul);border-color:var(--pu)"><div class="alrt-ico">🎯</div><div class="alrt-txt">Pour passer '+catNext[cat]+' en 2027, maintiens les objectifs '+cat+' pendant 3 mois consecutifs.</div></div>';h+='<div class="fg" style="margin-top:14px"><label class="fl">Modifier objectif personnel</label><input class="fi" id="new-obj" type="number" value="'+S.obj+'"></div><button class="btn-p" style="background:var(--t2)" onclick="updObj()">Sauvegarder</button>';}h+='<div style="background:white;border-radius:14px;padding:14px;margin-bottom:10px">';
+h+='<div style="font-size:11px;font-weight:700;color:var(--tx3);margin-bottom:8px">MON OBJECTIF PERSO (FCFA/mois)</div>';
+h+='<div style="display:flex;gap:8px">';
+h+='<input id="obj-input" type="number" value="'+(S.obj||1000000)+'" style="flex:1;border:2px solid var(--bd);border-radius:10px;padding:10px;font-size:14px;font-weight:700">';
+h+='<button onclick="saveObjPerso()" style="background:var(--t1);color:white;border:none;padding:10px 16px;border-radius:10px;font-weight:700;cursor:pointer">OK</button>';
+h+='</div></div>';
+h+='<button onclick="changerCategorie()" style=""width:100%;padding:12px;border-radius:12px;border:1.5px solid #9C27B0;background:none;color:#9C27B0;font-weight:700;font-size:13px;cursor:pointer;margin-bottom:8px;display:block">✏️ Corriger ma catégorie</button><button class="btn-p" style="background:var(--re);margin-top:4px" onclick="deconnect()">🚪 Se deconnecter</button><div style="height:20px"></div>';return'<div class="sec">'+h+'</div>';}
+function updObj(){var v=parseInt(document.getElementById('new-obj').value)||OBJ_DEF;S.obj=v;sv('pk_setup_'+S.code,{cat:S.cat,obj:v});var sess=ld('pk_sess',{});sess.obj=v;sv('pk_sess',sess);toast('Objectif mis a jour');render();}
+function saveObjPerso(){
+  var val=parseInt(document.getElementById('obj-input').value)||1000000;
+  S.obj=val;
+  var setup=ld('pk_setup_'+S.code,{cat:S.cat||'Challenger',obj:1000000});
+  setup.obj=val;
+  sv('pk_setup_'+S.code,setup);
+  sv('pk_sess',Object.assign(ld('pk_sess',{}),{obj:val}));
+  toast('Objectif mis à jour: '+fmt(val));
+  render();
+}
+function changerCategorie(){
+  if(!confirm('Voulez-vous corriger votre catégorie ?'))return;
+  localStorage.removeItem('pk_setup_'+S.code);
+  localStorage.removeItem('pk_sess');
+  location.reload();
+}
+function deconnect(){
+  var secured=ld('pk_secured_'+S.code,false);
+  var code=S.code;
+  localStorage.removeItem('pk_sess');
+  if(secured){
+    S={code:'',nom:'',role:'',apiType:'',cat:'',obj:OBJ_DEF,view:'accueil',selId:null,filt:'tous',sq:'',contrats:[],contacts:[],comms:[],classement:[],equipe:[]};
+    _secCode=code;
+    document.getElementById('app-screen').style.display='none';
+    showScreen('emailmdp-screen');
+    var em=ld('pk_email_'+code,'');
+    if(em)document.getElementById('emdp-email').value=em;
+  } else {
+    location.reload();
+  }
+}
+
+// ============================================================
+// DETECTION CATEGORIE PROSPECT
+// ============================================================
+
+// ============================================================
+// CALCUL CA SEMAINE (prime mensuelle des contrats cette semaine)
+// ============================================================
+function getLundiSemaine(){
+  var d=new Date();
+  var jour=d.getDay()||7; // 1=lundi, 7=dimanche
+  d.setDate(d.getDate()-(jour-1));
+  return d.toISOString().slice(0,10);
+}
+function getDimancheSemaine(){
+  var d=new Date();
+  var jour=d.getDay()||7;
+  d.setDate(d.getDate()+(7-jour));
+  return d.toISOString().slice(0,10);
+}
+function getCASemaine(){
+  var lundi=getLundiSemaine();
+  var dim=getDimancheSemaine();
+  var contratsSemaine=S.contrats.filter(function(c){
+    return c.date&&c.date>=lundi&&c.date<=dim;
+  });
+  return{
+    nb:contratsSemaine.length,
+    ca:contratsSemaine.reduce(function(s,c){return s+(c.prime||0);},0),
+    contrats:contratsSemaine
+  };
+}
+function detectCat(c){
+  var t=((c.src||'')+(c.fonc||c.fonction||'')+(c.nom||'')).toLowerCase();
+  if(t.indexOf('notaire')>=0||t.indexOf('notaires')>=0)return'notaire';
+  if(t.indexOf('pharma')>=0)return'pharmacie';
+  if(t.indexOf('clinic')>=0||t.indexOf('hopital')>=0||t.indexOf('hôpital')>=0)return'clinique';
+  if(t.indexOf('medecin')>=0||t.indexOf('docteur')>=0||t.indexOf('dr ')>=0||t.indexOf('médecin')>=0)return'medecin';
+  if(t.indexOf('douanier')>=0||t.indexOf('douane')>=0)return'douanier';
+  if(t.indexOf('avocat')>=0||t.indexOf('avocat')>=0)return'avocat';
+  if(t.indexOf('fonctionnaire')>=0||t.indexOf('tresor')>=0||t.indexOf('trésor')>=0||t.indexOf('impot')>=0)return'fonctionnaire';
+  return'autre';
+}
+
+// ============================================================
+// PLAN DE SEMAINE
+// ============================================================
+function getPlanSemaine(){
+  var cats={notaire:[],pharmacie:[],clinique:[],medecin:[],douanier:[],avocat:[],fonctionnaire:[],autre:[]};
+  S.contacts.forEach(function(c){
+    if(c.st==='signe'||c.st==='perdu')return;
+    var cat=detectCat(c);
+    cats[cat].push(c);
+  });
+  // Priorité : relances urgentes d'abord
+  var urgents=S.contacts.filter(function(c){return c.rel&&c.rel<=TODAY&&c.st!=='signe'&&c.st!=='perdu';});
+  // Top catégories du jour
+  var jourSemaine=new Date().getDay();
+  var catDuJour=['fonctionnaire','notaire','pharmacie','medecin','douanier','avocat'][jourSemaine%6]||'fonctionnaire';
+  var contactsDuJour=cats[catDuJour].slice(0,5);
+  return{urgents:urgents.slice(0,3),catDuJour:catDuJour,contactsDuJour:contactsDuJour,cats:cats};
+}
+
+// ============================================================
+// TAUX DE CONVERSION
+// ============================================================
+function getTauxConversion(){
+  var nbContacts=S.contacts.filter(function(c){return c.st!=='signe';}).length;
+  var nbSignes=S.contacts.filter(function(c){return c.st==='signe';}).length+S.contrats.length;
+  if(nbSignes===0)return'—';
+  return Math.round(nbContacts/nbSignes)+' prospects → 1 contrat';
+}
+
+// ============================================================
+// COMPARAISON MOIS PRECEDENT
+// ============================================================
+function getComparaisonMois(){
+  var mois=new Date().toISOString().slice(0,7);
+  var d=new Date();d.setMonth(d.getMonth()-1);
+  var moisPrec=d.toISOString().slice(0,7);
+  var commMois=S.contrats.filter(function(c){return c.date&&c.date.slice(0,7)===mois;}).reduce(function(s,c){return s+(c.comm||0);},0);
+  var commPrec=S.comms.find(function(c){return c.mois===moisPrec;});
+  var montantPrec=commPrec?commPrec.montant:0;
+  if(!montantPrec)return null;
+  var diff=commMois-montantPrec;
+  var pct=Math.round(diff/montantPrec*100);
+  return{mois:commMois,prec:montantPrec,diff:diff,pct:pct};
+}
+
+// ============================================================
+// MESSAGE DE LA CHEFFE (visible par commercial)
+// ============================================================
+function getMsgCheffe(){
+  var notes=ld('pk_notes_chef',[]);
+  var mesNotes=notes.filter(function(n){
+    return n.who&&(n.who.toUpperCase().indexOf(S.nom.split(' ')[0].toUpperCase())>=0||n.who.toUpperCase().indexOf(S.nom.split(' ')[1]||'XXXXXX')>=0);
+  });
+  return mesNotes.length?mesNotes[mesNotes.length-1]:null;
+}
+
+
+// ============================================================
+// SÉCURITÉ — Variables
+// ============================================================
+var _secCode = ''; // Code initial en cours de configuration
+var _secEmail = ''; // Email en cours de vérification
+
+function hideAllScreens(){
+  ['login-screen','email-screen','otp-screen','mdp-screen','emailmdp-screen','setup-screen','app-screen'].forEach(function(id){
+    var el=document.getElementById(id);
+    if(el)el.style.display='none';
+  });
+}
+
+function showScreen(id){
+  hideAllScreens();
+  var el=document.getElementById(id);
+  if(el)el.style.display='flex';
+}
+
+// ============================================================
+// FLUX LOGIN — Déterminer quel écran montrer
+// ============================================================
+
+function envoyerCode(){
+  var email=(document.getElementById('email-inp').value||'').trim().toLowerCase();
+  if(!email||!email.includes('@')){showErr('email-err','Email invalide');return;}
+  _secEmail=email;
+  var btn=document.querySelector('#email-screen .btn-p');
+  if(btn)btn.textContent='Envoi en cours...';
+
+  fetch((_secCode==='GILDAS2026'?API_IND:API_EQ),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'envoyerCode',code:_secCode,email:email})})
+    .then(function(r){return r.json();})
+    .then(function(res){
+      if(btn)btn.textContent='Recevoir mon code →';
+      if(res.success){
+        document.getElementById('otp-sub').textContent='Code envoyé sur '+email+'. Valable 10 minutes.';
+        showScreen('otp-screen');
+        document.getElementById('otp0').focus();
+      } else {
+        showErr('email-err',res.message||'Erreur envoi');
+      }
+    }).catch(function(){
+      if(btn)btn.textContent='Recevoir mon code →';
+      showErr('email-err','Erreur réseau. Réessayez.');
+    });
+}
+
+function renvoyerCode(){
+  showScreen('email-screen');
+  toast('Entrez à nouveau votre email pour renvoyer le code');
+}
+
+// OTP navigation
+function otpNext(el,idx){
+  el.value=el.value.replace(/[^0-9]/g,'');
+  if(el.value.length===1&&idx<5){
+    var next=document.getElementById('otp'+(idx+1));
+    if(next)next.focus();
+  }
+  if(idx===5&&el.value.length===1)verifierOTP();
+}
+
+// ============================================================
+// VÉRIFIER CODE OTP
+// ============================================================
+function otpPaste(e){
+  e.preventDefault();
+  var pasted=(e.clipboardData||window.clipboardData).getData('text');
+  var digits=pasted.replace(/[^0-9]/g,'').slice(0,6);
+  if(digits.length===0)return;
+  for(var i=0;i<6;i++){var el=document.getElementById('otp'+i);if(el)el.value=digits[i]||'';}
+  var last=document.getElementById('otp'+(Math.min(digits.length,6)-1));
+  if(last)last.focus();
+  if(digits.length===6)setTimeout(function(){verifierOTP();},100);
+}
+function otpHiddenInput(el){
+  var val=(el.value||'').replace(/[^0-9]/g,'').slice(0,6);
+  el.value=val;
+  if(val.length===6){setTimeout(function(){verifierOTP();},200);}
+}
+function verifierOTP(){
+  var hiddenEl=document.getElementById('otp-hidden');
+  var code=hiddenEl?hiddenEl.value.replace(/[^0-9]/g,''):'';
+  if(code.length!==6){showErr('otp-err','Entrez les 6 chiffres');return;}
+
+  fetch((_secCode==='GILDAS2026'?API_IND:API_EQ),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'verifierCode',code:_secCode,verif:code})})
+    .then(function(r){return r.json();})
+    .then(function(res){
+      if(res.success){
+        if(res.hasPassword){
+          // A déjà un mdp → connexion directe
+          finishLogin(res);
+        } else {
+          // Pas encore de mdp → créer
+          showScreen('mdp-screen');
+        }
+      } else {
+        showErr('otp-err',res.message||'Code incorrect');
+        // Reset OTP
+        var h=document.getElementById('otp-hidden');if(h){h.value='';h.focus();}
+        otpUpdateDisplay('');
+      }
+    }).catch(function(){showErr('otp-err','Erreur réseau');});
+}
+
+// ============================================================
+// CRÉER MOT DE PASSE
+// ============================================================
+function creerMDP(){
+  var mdp1=(document.getElementById('mdp1').value||'').trim();
+  var mdp2=(document.getElementById('mdp2').value||'').trim();
+  if(mdp1.length<6){showErr('mdp-err','Minimum 6 caractères');return;}
+  if(mdp1!==mdp2){showErr('mdp-err','Les mots de passe ne correspondent pas');return;}
+
+  fetch((_secCode==='GILDAS2026'?API_IND:API_EQ),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'creerMotDePasse',code:_secCode,mdp:mdp1})})
+    .then(function(r){return r.json();})
+    .then(function(res){
+      if(res.success){
+        sv('pk_secured_'+_secCode,true);
+        sv('pk_email_'+_secCode,_secEmail);sv('pk_hash_'+_secCode,hashSimple(_secMdp||''));
+        toast('Mot de passe créé ! Bienvenue.');
+        // Continuer vers setup ou app
+        var setup=ld('pk_setup_'+_secCode,null);
+        if(setup){S.cat=setup.cat;S.obj=setup.obj;sv('pk_sess',{code:S.code,nom:S.nom,role:S.role,apiType:S.apiType,cat:S.cat,obj:S.obj});showApp();}
+        else{hideAllScreens();document.getElementById('setup-screen').style.display='block';document.getElementById('setup-nom').textContent=S.nom.split(' ')[1]||S.nom;if(_secCode==='GILDAS2026')selCat('Challenger');}
+      } else {
+        showErr('mdp-err',res.message||'Erreur');
+      }
+    }).catch(function(){showErr('mdp-err','Erreur réseau');});
+}
+
+// ============================================================
+// LOGIN EMAIL + MDP (connexions suivantes)
+// ============================================================
+function loginAvecMDP(){
+  var email=(document.getElementById('emdp-email').value||'').trim().toLowerCase();
+  var mdp=(document.getElementById('emdp-mdp').value||'').trim();
+  if(!email||!mdp){showErr('emdp-err','Email et mot de passe requis');return;}
+
+  // En mode admin: vérifier localement (l'admin peut avoir son compte dans Sheets individuel)
+  if(_adminViewCode){
+    var adminCode=getAdminLocal();
+    if(adminCode){
+      var savedHash=ld('pk_hash_'+adminCode.code,'');
+      var inputHash=hashSimple(mdp);
+      // Vérifier aussi via API (ind ou eq selon l'admin)
+      var adminApiType=adminCode.code==='GILDAS2026'?API_IND:API_EQ;
+      fetch(adminApiType,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'loginEmail',email:email,mdp:mdp})})
+        .then(function(r){return r.json();})
+        .then(function(res){
+          if(!res.success){
+            // Fallback: vérifier localement si hash stocké correspond
+            if(savedHash&&savedHash===inputHash){
+              res={success:true,code:adminCode.code,nom:adminCode.nom,role:USERS[adminCode.code]?USERS[adminCode.code].role:'commercial'};
+            }
+          }
+          handleLoginRes(res);
+        }).catch(function(){
+          // Réseau échoue: vérifier localement
+          if(savedHash&&savedHash===inputHash){
+            handleLoginRes({success:true,code:adminCode.code,nom:adminCode.nom,role:USERS[adminCode.code]?USERS[adminCode.code].role:'commercial'});
+          } else {
+            showErr('emdp-err','Erreur réseau - mot de passe incorrect');
+          }
+        });
+      return;
+    }
+  }
+
+  fetch(_secCode==='GILDAS2026'?API_IND:API_EQ,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'loginEmail',email:email,mdp:mdp})})
+    .then(function(r){return r.json();})
+    .then(function(res){
+      if(res.success){
+        var b2=document.getElementById('admin-mode-banner');if(b2)b2.style.display='none';
+        if(_adminViewCode){
+          var tCode=_adminViewCode;_adminViewCode=null;
+          var tu=USERS[tCode];
+          if(tu){
+            S.code=tCode;S.nom=tu.nom;S.role=tu.role||'commercial';
+            S.apiType='eq';S.onglet=tu.onglet||tu.nom.split(' ')[0].slice(0,8);
+            S.adminMode=true;
+            var setup=ld('pk_setup_'+tCode,null);
+            S.cat=(setup&&setup.cat)||'Commercial';S.obj=(setup&&setup.obj)||400000;
+            sv('pk_sess',{code:tCode,nom:tu.nom,role:'commercial',apiType:'eq',onglet:S.onglet,cat:S.cat,obj:S.obj,adminMode:true});
+            toast('Vue admin: '+tu.nom.split(' ')[0]);
+            showApp();return;
+          }
+        }
+        S.code=res.code;S.nom=res.nom;S.role=res.role;S.apiType=res.code==='GILDAS2026'?'ind':'eq';
+        var u=USERS[res.code];if(u)S.onglet=u.onglet;
+        finishLogin(res);
+      } else {
+        showErr('emdp-err',res.message||'Erreur connexion');
+      }
+    }).catch(function(){showErr('emdp-err','Erreur réseau');});
+}
+
+function creerCompte(){
+  var email=(document.getElementById('email-inp').value||'').trim().toLowerCase();
+  var mdp1=(document.getElementById('email-mdp1').value||'').trim();
+  var mdp2=(document.getElementById('email-mdp2').value||'').trim();
+  if(!email||!email.includes('@')){showErr('email-err','Email invalide');return;}
+  if(mdp1.length<6){showErr('email-err','Minimum 6 caractères');return;}
+  if(mdp1!==mdp2){showErr('email-err','Mots de passe différents');return;}
+  var btn=document.getElementById('creer-btn');
+  if(btn)btn.textContent='Création en cours...';
+  // 1. Sauvegarder localement d'abord (fonctionne toujours)
+  var hash=hashSimple(mdp1);
+  sv('pk_email_'+_secCode,email);
+  sv('pk_hash_'+_secCode,hash);
+  sv('pk_secured_'+_secCode,true);
+  // 2. Essayer de syncer avec le serveur (optionnel)
+  var api=_secCode==='GILDAS2026'?API_IND:API_EQ;
+  fetch(api,{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({action:'creerCompte',code:_secCode,email:email,mdpHash:hash})})
+  .then(function(r){return r.json();})
+  .then(function(res){
+    if(btn)btn.textContent='Créer mon compte →';
+    // Succès ou non, on est déjà sauvegardé localement
+    toast('✅ Compte créé !');
+    S.code=_secCode;
+    var u=USERS[_secCode];
+    if(u){S.nom=u.nom;S.role=u.role||'commercial';S.onglet=u.onglet;}
+    S.apiType=_secCode==='GILDAS2026'?'ind':'eq';
+    finishLogin({success:true,code:_secCode,nom:S.nom,role:S.role});
+  }).catch(function(){
+    // Réseau échoue → compte local uniquement (OK pour l'instant)
+    if(btn)btn.textContent='Créer mon compte →';
+    toast('✅ Compte créé localement');
+    S.code=_secCode;
+    var u=USERS[_secCode];
+    if(u){S.nom=u.nom;S.role=u.role||'commercial';S.onglet=u.onglet;}
+    S.apiType=_secCode==='GILDAS2026'?'ind':'eq';
+    finishLogin({success:true,code:_secCode,nom:S.nom,role:S.role});
+  });
+}
+
+function getAdminLocal(){
+  var admins=['GILDAS2026','CHEF_KPEKPEDE','KPEKPEDE2026'];
+  for(var i=0;i<admins.length;i++){
+    if(ld('pk_secured_'+admins[i],false)&&ld('pk_email_'+admins[i],'')){
+      var u=USERS[admins[i]];
+      return {code:admins[i],nom:u?u.nom:'Admin'};
+    }
+  }
+  return null;
+}
+function voirComptePourAdmin(){
+  var adm=getAdminLocal();
+  if(!adm){toast('Aucun admin detecte sur cet appareil');return;}
+  _adminViewCode=_secCode;
+  hideAllScreens();
+  document.getElementById('emailmdp-screen').style.display='flex';
+  var ef=document.getElementById('emdp-email');
+  if(ef)ef.value=ld('pk_email_'+adm.code,'');
+  var b=document.getElementById('admin-mode-banner');
+  if(!b){b=document.createElement('div');b.id='admin-mode-banner';
+  b.style='background:var(--t1);color:white;padding:8px;border-radius:10px;font-size:12px;font-weight:700;text-align:center;margin-bottom:10px';
+  var box=document.querySelector('#emailmdp-screen > div');if(box)box.prepend(b);}
+  b.textContent='🔑 Acces admin via '+adm.nom;b.style.display='block';
+}
+function resetToCreate(){
+  if(!_secCode){location.reload();return;}
+  localStorage.removeItem('pk_secured_'+_secCode);
+  hideAllScreens();
+  document.getElementById('email-screen').style.display='flex';
+}
+function hashSimple(s){var h=0;for(var i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i);h|=0;}return h.toString(36);}
+function handleLoginRes(res){
+  var b2=document.getElementById('admin-mode-banner');if(b2)b2.style.display='none';
+  if(res.success){
+    if(_adminViewCode){
+      var tCode=_adminViewCode;_adminViewCode=null;
+      var tu=USERS[tCode];
+      if(tu){
+        S.code=tCode;S.nom=tu.nom;S.role=tu.role||'commercial';
+        S.apiType='eq';S.onglet=tu.onglet||tCode.replace('2026','');
+        S.cat=(ld('pk_setup_'+tCode,null)||{}).cat||'Commercial';
+        S.obj=(ld('pk_setup_'+tCode,null)||{}).obj||400000;
+        S.adminMode=true;
+        sv('pk_sess',{code:tCode,nom:tu.nom,role:S.role,apiType:'eq',onglet:S.onglet,cat:S.cat,obj:S.obj,adminMode:true});
+        toast('Vue admin: '+tu.nom.split(' ')[0]);
+        showApp();return;
+      }
+    }
+    S.code=res.code;S.nom=res.nom;S.role=res.role;
+    S.apiType=res.code==='GILDAS2026'?'ind':'eq';
+    var u=USERS[res.code];if(u)S.onglet=u.onglet;
+    finishLogin(res);
+  } else {
+    showErr('emdp-err',res.message||'Email non enregistre - Verifie ou cree ton compte');
+  }
+}
+function showMDPOublie(){
+  var email=(document.getElementById('emdp-email').value||'').trim().toLowerCase();
+  if(!email){showErr('emdp-err','Entre ton email d abord');return;}
+  fetch(_secCode==='GILDAS2026'?API_IND:API_EQ,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'resetMDP',email:email})})
+    .then(function(r){return r.json();})
+    .then(function(res){
+      if(res.success){
+        toast('Nouveau mot de passe envoyé sur '+email);
+      } else {
+        showErr('emdp-err',(res.message||'Email non trouvé')+' — Contacte l admin');
+      }
+    }).catch(function(){showErr('emdp-err','Erreur réseau');});
+}
+
+function finishLogin(res){
+  if(S.role==='chef'){sv('pk_sess',{code:S.code,nom:S.nom,role:'chef',apiType:S.apiType,cat:'Chef',obj:0});showApp();return;}
+  var setup=ld('pk_setup_'+S.code,null);
+  if(setup){S.cat=setup.cat;S.obj=setup.obj;sv('pk_sess',{code:S.code,nom:S.nom,role:S.role,apiType:S.apiType,cat:S.cat,obj:S.obj});showApp();}
+  else{hideAllScreens();document.getElementById('setup-screen').style.display='block';document.getElementById('setup-nom').textContent=S.nom.split(' ')[1]||S.nom;if(S.code==='GILDAS2026')selCat('Challenger');}
+}
+
+function showErr(id,msg){
+  var el=document.getElementById(id);
+  if(el){el.textContent=msg;el.style.display='block';}
+}
+
+
+
+function demanderNotif(){if('Notification'in window&&Notification.permission==='default'){Notification.requestPermission().then(function(p){if(p==='granted')toast('Notifications activees !');});}}
+function notifPush(ti,bo){if('Notification'in window&&Notification.permission==='granted'){try{new Notification(ti,{body:bo});}catch(e){}}}
+function checkRappels(){var urg=S.contacts.filter(function(cc){return cc.rel&&cc.rel<=TODAY&&cc.st!=='signe'&&cc.st!=='perdu';});if(urg.length>0)notifPush('PROSPEK — '+urg.length+' rappel(s) du jour',urg.slice(0,3).map(function(cc){return cc.nom;}).join(', '));}
+function chargerNotesChef(){if(S.role==='chef')return;fetch(API_EQ+'?action=getNotesCommercial&code='+S.code+'&token='+API_TOKEN).then(function(r){return r.json();}).then(function(res){if(res.success&&res.notes&&res.notes.length){var saved=ld('pk_notes_chef',[]);var chg=false;res.notes.forEach(function(n){if(!saved.find(function(s){return s.txt===n.txt&&s.date===n.date;})){saved.push(n);chg=true;}});if(chg){sv('pk_notes_chef',saved);if(S.view==='accueil')render();}}}).catch(function(){});}
+function getScriptRapide(ct){var n=(ct.nom||'').split(' ')[0];var cat=detectCat(ct);var S_MAP={pharmacie:'Bonjour, je travaille en assurance vie. Je travaille avec plusieurs pharmaciens de Cotonou pour proteger leur revenu. 10 min cette semaine ?',medecin:'Bonjour Docteur, assurance vie. On aide les medecins a securiser leurs revenus et epargner. 10 minutes cette semaine ?',notaire:'Bonjour Maitre, assurance vie. On a des solutions sur mesure pour les notaires — protection cabinet et retraite. Un RDV de 15 min ?',douanier:'Bonjour, assurance vie. En tant que cadre de la douane, vous meritez une couverture a hauteur de votre profil. 15 min pour vous presenter ?',avocat:'Bonjour Maitre, assurance vie. Solutions pour proteger votre revenu liberal. Un cafe 15 min cette semaine ?',fonctionnaire:'Bonjour, assurance vie. On a un produit special fonctionnaires avec prelevement sur salaire. 10 min ce midi ?',clinique:'Bonjour Docteur, assurance vie. On a des solutions pour le personnel medical. 15 min cette semaine ?'};return S_MAP[cat]||('Bonjour '+n+', On a une solution adaptee a votre profil. Disponible 15 min cette semaine ?');}
+if("serviceWorker" in navigator){navigator.serviceWorker.register("/prospek-equipe/sw.js").then(function(reg){reg.addEventListener("updatefound",function(){var nw=reg.installing;nw.addEventListener("statechange",function(){if(nw.state==="installed"&&navigator.serviceWorker.controller){toast("Mise a jour - rechargement...");setTimeout(function(){location.reload();},2000);}});});}).catch(function(){});}
+var _pwaPrompt=null;
+window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();_pwaPrompt=e;setTimeout(function(){if(_pwaPrompt){var btn=document.createElement("div");btn.style="position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--t1);color:white;padding:12px 24px;border-radius:24px;font-weight:700;font-size:13px;cursor:pointer;z-index:9999";btn.textContent="Installer PROSPEK";btn.onclick=function(){_pwaPrompt.prompt();_pwaPrompt=null;btn.remove();};document.body.appendChild(btn);setTimeout(function(){if(btn.parentNode)btn.remove();},8000);}},3000);});
+function checkAppUpdate(){
+  fetch(location.href,{method:'HEAD',cache:'no-store'})
+    .then(function(r){
+      var mod=r.headers.get('last-modified')||r.headers.get('etag')||'';
+      var saved=localStorage.getItem('pk_app_ver')||'';
+      if(mod&&mod!==saved){
+        localStorage.setItem('pk_app_ver',mod);
+        if(saved){location.reload(true);}
+      }
+    }).catch(function(){});
+}
+function init(){chargerUsers();
+  try{
+    var sess=ld('pk_sess',null);
+    if(sess&&sess.code&&USERS[sess.code]){
+      Object.assign(S,sess);
+      var _su=USERS[S.code];if(_su)S.role=_su.role;
+      if(S.code==='GILDAS2026')S.apiType='ind';
+      document.getElementById('login-screen').style.display='none';
+      showApp();
+    } else {
+      localStorage.removeItem('pk_sess');
+      document.getElementById('login-screen').style.display='flex';
+    }
+  } catch(e){
+    localStorage.clear();
+    document.getElementById('login-screen').style.display='flex';
+  }
+}
+init();
+</script>
+</body>
+</html>
